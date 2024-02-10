@@ -6,7 +6,10 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    
+    ../common/global
   ];
 
-  networking.hostName = "mynixos";
+  # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "23.11"; # Did you read the comment?
 }

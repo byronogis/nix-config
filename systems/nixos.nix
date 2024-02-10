@@ -5,8 +5,9 @@
   outputs,
   constants,
   lib,
-  config,
-  pkgs,
+  allSystemSpecialArgs,
+  # config,
+  # pkgs,
   ...
 }: {
   # You can import other NixOS modules here
@@ -72,13 +73,13 @@
   };
 
   nixosConfigurations = map (hostname: {
-    "${hostname}" = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs outputs constants;};
+    "${hostname}" = inputs.nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs outputs constants;} // allSystemSpecialArgs.x86_64-linux;
       modules = [
         # > Our main nixos configuration file <
         ../hosts/${hostname}/configuration.nix
 
-        home-manager.nixosModules.home-manager {
+        inputs.home-manager.nixosModules.home-manager {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;

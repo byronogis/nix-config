@@ -1,9 +1,7 @@
-{ config, pkgs, constants, ... }:
-
-{
+{inputs, outputs, host, user, pkgs, ... }: {
   home = {
-    username = constants.username;
-    homeDirectory = "/home/${constants.username}";
+    username = user.username;
+    homeDirectory = "/home/${user.username}";
     packages = with pkgs; [
       tree
       fastfetch
@@ -14,12 +12,11 @@
     sessionVariables = {};
     shellAliases = {};
   };
-
-  programs = {
+  prograns = {
     git = {
       enable = true;
-      userName = constants.username;
-      userEmail = constants.useremail;
+      userName = "byron";
+      userEmail = "byronogis@outlook.com";
     };
 
     starship = {
@@ -35,6 +32,5 @@
 
     home-manager.enable = true;
   };
-
   home.stateVersion = "23.11";
 }

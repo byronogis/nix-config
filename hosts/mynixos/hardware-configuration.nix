@@ -11,6 +11,13 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+    timeout = 10;
+  };
+
   # clear the root volume on every boot
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /mnt
