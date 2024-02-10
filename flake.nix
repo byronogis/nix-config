@@ -29,12 +29,13 @@
     home-manager,
     ...
   } @ inputs: let
-    # Constants
-    constants = import ./constants.nix;
-
-    # 
     inherit (self) outputs;
     lib = nixpkgs.lib // home-manager.lib;
+
+    # Constants
+    constants = import ./constants.nix { inherit lib; };
+
+    # 
     forEachSystem = f: lib.genAttrs constants.systems (system: f pkgsFor.${system});
     pkgsFor = lib.genAttrs constants.systems (system: import nixpkgs {
       inherit system;
@@ -51,16 +52,15 @@
     formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
     # Nixos 
-    # is there has a func: [attr] ==> { attr.x: attr; } ?
-    nixosConfiguration = lib.genAttrs (
-      map (host: host.hostname) constants.osGroupAttrs.nixos
-    ) (hostname: lib.nixosSystem {
+    # TODO is there has a simply way: [attr ...] ==> { attr.x: attr; ... } ?
+    nixosConfigurations = lib.genAttrs 
+      (map (host: host.hostname) constants.osGroupAttrs.nixos)
+      (hostname: lib.nixosSystem {
         modules = [ ./hosts/${hostname}/configuration.nix ];
-        networking.hostName = ${hostname};
         specialArgs = {
           inherit inputs outputs; 
           host = constants.hostAttrs.${hostname};
         };
-    });
+      });
   };
 }

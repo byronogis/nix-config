@@ -1,13 +1,10 @@
 { host, lib, pkgs, ... }: {
   users.users = builtins.mapAttrs (
-    name: value: (
-      lib.trivial.mergeAttrs
-      {
-        extraGroups = [ "wheel" ];
-        isNormalUser = true;
-        shell = pkgs.zsh;
-      }
-      values
-    )
+    name: value: {
+      extraGroups = [ "wheel" ];
+      initialPassword = value.initialPassword;
+      isNormalUser = true;
+      shell = pkgs.zsh;
+    }
   ) host.userAttrs;
 }

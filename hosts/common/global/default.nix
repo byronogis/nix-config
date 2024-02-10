@@ -15,6 +15,8 @@
 
   home-manager.extraSpecialArgs = { inherit inputs outputs host; };
 
+  networking.hostName = host.hostname;
+
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config = {

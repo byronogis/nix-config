@@ -12,11 +12,11 @@
     sessionVariables = {};
     shellAliases = {};
   };
-  prograns = {
+  programs = {
     git = {
       enable = true;
-      userName = "byron";
-      userEmail = "byronogis@outlook.com";
+      userName = user.username;
+      userEmail = user.useremail;
     };
 
     starship = {
