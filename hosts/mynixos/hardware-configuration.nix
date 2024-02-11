@@ -4,59 +4,17 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ ];
+  imports = [ 
+    ../common/optional/ephemeral-btrfs.nix
+  ];
 
   boot.initrd.availableKernelModules = [ "ata_piix" "mptspi" "uhci_hcd" "ehci_pci" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  # clear the root volume on every boot
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    mkdir /mnt
-    mount -t btrfs /dev/disk/by-uuid/37d04be5-261b-45b6-be9f-0dbeee70f812 /mnt
-    btrfs subvolume delete /mnt/@root
-    btrfs subvolume snapshot /mnt/root-blank /mnt/@root
-  '';
-
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/37d04be5-261b-45b6-be9f-0dbeee70f812";
-      fsType = "btrfs";
-      options = [ "subvol=@" "noatime" "space_cache=v2" "compress=zstd" "ssd" "discard=async" ];
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/37d04be5-261b-45b6-be9f-0dbeee70f812";
-      fsType = "btrfs";
-      options = [ "subvol=@home" "noatime" "space_cache=v2" "compress=zstd" "ssd" "discard=async" ];
-    };
-
-  fileSystems."/var" =
-    { device = "/dev/disk/by-uuid/37d04be5-261b-45b6-be9f-0dbeee70f812";
-      fsType = "btrfs";
-      options = [ "subvol=@var" "noatime" "space_cache=v2" "compress=zstd" "ssd" "discard=async" ];
-    };
-
-  fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/37d04be5-261b-45b6-be9f-0dbeee70f812";
-      fsType = "btrfs";
-      options = [ "subvol=@swap" "noatime" "space_cache=v2" "ssd" ];
-    };
-
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/37d04be5-261b-45b6-be9f-0dbeee70f812";
-      fsType = "btrfs";
-      options = [ "subvol=@nix" "noatime" "space_cache=v2" "compress=zstd" "ssd" "discard=async" ];
-    };
-
-  fileSystems."/root" =
-    { device = "/dev/disk/by-uuid/37d04be5-261b-45b6-be9f-0dbeee70f812";
-      fsType = "btrfs";
-      options = [ "subvol=@root" "noatime" "space_cache=v2" "compress=zstd" "ssd" "discard=async" ];
-    };
-
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/1D48-EDFF";
+    { device = "/dev/disk/by-label/ESP";
       fsType = "vfat";
     };
 
