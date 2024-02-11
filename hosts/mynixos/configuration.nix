@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     
     ../common/global
+    ../common/optional/systmed-boot.nix
   ];
 
   # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
