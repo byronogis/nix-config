@@ -5,18 +5,16 @@
 
   disko.devices = {
     disk = {
-      main = {
+      "${host.device}" = {
         type = "disk";
-        name = "";
-        device = "/dev/sda";
+        device = "/dev/${host.device}";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
               priority = 1;
-              name = "ESP";
               start = "1M";
-              end = "512M";
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -24,11 +22,11 @@
                 mountpoint = "/boot";
               };
             };
-            "${host.hostname}" = {
+            Primary = {
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" "-L ${host.hostname}" ];
+                extraArgs = [ "-f" "--label ${host.hostname}" ];
                 subvolumes = {
                   "@" = {
                     mountpoint = "/";
