@@ -3,7 +3,6 @@
     disk = {
       "${host.device}" = {
         type = "disk";
-        device = "/dev/${host.device}";
         content = {
           type = "gpt";
           partitions = {
