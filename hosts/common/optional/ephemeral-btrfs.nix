@@ -1,5 +1,4 @@
 # This file contains an ephemeral btrfs root configuration
-# TODO: perhaps partition using disko in the future
 { lib, config, host, ... }:
 let
   hostname = host.hostname;
@@ -26,6 +25,49 @@ let
   phase1Systemd = config.boot.initrd.systemd.enable;
 in
 {
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
+
+  disko.devices = {
+    disk = {
+      "${host.device}" = {
+        type = "disk";
+        device = "/dev/${host.device}";
+        content = {
+          type = "gpt";
+          partitions = {
+            Primary = {
+              size = "100%";
+              content = {
+                type = "btrfs";
+                extraArgs = [ "-f" "--label ${hostname}" ];
+                subvolumes = {
+                  "@" = {
+                    mountpoint = "/";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+                  "@nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = [ "compress=zstd" "noatime" ];
+                  };
+                  "@persist" = {
+                    mountpoint = "/persist";
+                    mountOptions = [ "compress=zstd" ];
+                  };
+                  "@swap" = {
+                    mountpoint = "/swap";
+                    mountOptions = [ "noatime" ];
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+
   boot.initrd = {
     supportedFilesystems = [ "btrfs" ];
     postDeviceCommands = lib.mkIf (!phase1Systemd) (lib.mkBefore wipeScript);
@@ -45,32 +87,4 @@ in
       script = wipeScript;
     };
   };
-
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/${hostname}";
-      fsType = "btrfs";
-      options = [ "subvol=@" "compress=zstd" ];
-    };
-
-    "/nix" = {
-      device = "/dev/disk/by-label/${hostname}";
-      fsType = "btrfs";
-      options = [ "subvol=@nix" "noatime" "compress=zstd" ];
-    };
-
-    "/persist" = {
-      device = "/dev/disk/by-label/${hostname}";
-      fsType = "btrfs";
-      options = [ "subvol=@persist" "compress=zstd" ];
-      neededForBoot = true;
-    };
-
-    "/swap" = {
-      device = "/dev/disk/by-label/${hostname}";
-      fsType = "btrfs";
-      options = [ "subvol=@swap" "noatime" ];
-    };
-  };
-
 }
