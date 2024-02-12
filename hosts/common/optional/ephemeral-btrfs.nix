@@ -25,49 +25,6 @@ let
   phase1Systemd = config.boot.initrd.systemd.enable;
 in
 {
-  imports = [
-    inputs.disko.nixosModules.disko
-  ];
-
-  disko.devices = {
-    disk = {
-      "${host.device}" = {
-        type = "disk";
-        device = "/dev/${host.device}";
-        content = {
-          type = "gpt";
-          partitions = {
-            Primary = {
-              size = "100%";
-              content = {
-                type = "btrfs";
-                extraArgs = [ "-f" "--label ${hostname}" ];
-                subvolumes = {
-                  "@" = {
-                    mountpoint = "/";
-                    mountOptions = [ "compress=zstd" ];
-                  };
-                  "@nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                  };
-                  "@persist" = {
-                    mountpoint = "/persist";
-                    mountOptions = [ "compress=zstd" ];
-                  };
-                  "@swap" = {
-                    mountpoint = "/swap";
-                    mountOptions = [ "noatime" ];
-                  };
-                };
-              };
-            };
-          };
-        };
-      };
-    };
-  };
-
   boot.initrd = {
     supportedFilesystems = [ "btrfs" ];
     postDeviceCommands = lib.mkIf (!phase1Systemd) (lib.mkBefore wipeScript);
