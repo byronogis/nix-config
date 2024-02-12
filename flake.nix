@@ -13,7 +13,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Persistence
     impermanence.url = "github:nix-community/impermanence";
+
+    # Disk Management
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
