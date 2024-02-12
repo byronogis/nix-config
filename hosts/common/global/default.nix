@@ -7,7 +7,7 @@
     ./nix.nix
     ./openssh.nix
     ./optin-persistence.nix
-    ./systemd-initrd.nix.nix
+    ./systemd-initrd.nix
     ./users.nix
     ./zsh.nix
   ];
