@@ -11,7 +11,7 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" "--label ${hostname}" ];
+                extraArgs = [ "-f" "--label ${host.hostname}" ];
                 subvolumes = {
                   "@" = {
                     mountpoint = "/";
