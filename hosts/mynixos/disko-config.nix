@@ -7,7 +7,7 @@
     disk = {
       "${host.device}" = {
         type = "disk";
-        device = "/dev/${host.device}";
+        device = "${host.device}";
         content = {
           type = "gpt";
           partitions = {
