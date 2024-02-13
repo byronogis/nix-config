@@ -36,7 +36,6 @@ in
       ];
       after = [
         "dev-disk-by\\x2dlabel-${hostname}.device"
-        "systemd-cryptsetup@${hostname}.service"
       ];
       before = [ "sysroot.mount" ];
       unitConfig.DefaultDependencies = "no";
