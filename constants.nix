@@ -17,7 +17,7 @@ rec {
       hostname = "mynixos";
       os = "nixos";
       system = "x86_64-linux";
-      device = "/dev/sda";
+      device = "sda";
       userAttrs = {
         inherit (userAttrs) byron;
       };
