@@ -19,6 +19,7 @@
     };
   };
   programs.fuse.userAllowOther = true;
+  fileSystems."/persist".neededForBoot = true;
 
   system.activationScripts.persistent-dirs.text =
     let
