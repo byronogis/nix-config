@@ -1,4 +1,4 @@
-{ outputs, lib, config, ... }:
+{ outputs, lib, config, host, ... }:
 
 let
   inherit (config.networking) hostName;
@@ -6,8 +6,8 @@ let
   pubKey = hostname: ../../${hostname}/ssh_host_ed25519_key.pub;
 
   # Sops needs acess to the keys before the persist dirs are even mounted; so
-  # just persisting the keys won't work, we must point at /persist
-  hasOptinPersistence = config.environment.persistence ? "/persist";
+  # just persisting the keys won't work, we must point at ${host.persist}
+  hasOptinPersistence = config.environment.persistence ? host.persist;
 in
 {
   services.openssh = {
@@ -19,11 +19,11 @@ in
     hostKeys = [
       {
         bits = 4096;
-        path = "${lib.optionalString hasOptinPersistence "/persist"}/etc/ssh/ssh_host_rsa_key";
+        path = "${lib.optionalString hasOptinPersistence host.persist}/etc/ssh/ssh_host_rsa_key";
         type = "rsa";
       }
       {
-        path = "${lib.optionalString hasOptinPersistence "/persist"}/etc/ssh/ssh_host_ed25519_key";
+        path = "${lib.optionalString hasOptinPersistence host.persist}/etc/ssh/ssh_host_ed25519_key";
         type = "ed25519";
       }
     ];

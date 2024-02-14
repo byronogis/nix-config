@@ -26,6 +26,7 @@ rec {
       os = "nixos";
       system = "x86_64-linux";
       device = "sda";
+      persist = "/persist"; # absolute path
       userAttrs = {
         inherit (userAttrs) byron;
       };
