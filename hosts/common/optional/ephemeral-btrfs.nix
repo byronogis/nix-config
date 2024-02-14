@@ -19,7 +19,7 @@ let
       done && btrfs subvolume delete "$MNTPOINT/@"
 
       echo "Restoring blank subvolume"
-      btrfs subvolume snapshot "$MNTPOINT/root-blank" "$MNTPOINT/@"
+      btrfs subvolume snapshot "$MNTPOINT/@blank" "$MNTPOINT/@"
     )
   '';
   phase1Systemd = config.boot.initrd.systemd.enable;

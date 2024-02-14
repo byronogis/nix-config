@@ -11,6 +11,10 @@
         mountpoint = "/";
         mountOptions = [ "compress=zstd" ];
       };
+      "@blank" = {
+        mountpoint = "/blabk";
+        mountOptions = [ "compress=zstd" ];
+      };
       "@nix" = {
         mountpoint = "/nix";
         mountOptions = [ "compress=zstd" "noatime" ];
