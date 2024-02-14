@@ -7,8 +7,12 @@ rec {
       useremail = "byronogsi@outlook.com";
       initialPassword = "123456";
       persistence = {
-        directories = [];
-        files = [];
+        directories = [
+          "project"
+        ];
+        files = [
+          ".zsh_history"
+        ];
       };
     };
   };
