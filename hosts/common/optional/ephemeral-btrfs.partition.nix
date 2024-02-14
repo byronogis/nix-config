@@ -12,7 +12,7 @@
         mountOptions = [ "compress=zstd" ];
       };
       "@blank" = {
-        mountpoint = "/blabk";
+        mountpoint = "/blank";
         mountOptions = [ "compress=zstd" ];
       };
       "@nix" = {
