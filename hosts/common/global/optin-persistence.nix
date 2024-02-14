@@ -3,7 +3,7 @@
 # users' home persist dir exists and has the right permissions
 #
 # It works even if / is tmpfs, btrfs snapshot, or even not ephemeral at all.
-{ inputs, config, lib, ... }: {
+{ inputs, config, lib, host, ... }: {
   imports = [
     inputs.impermanence.nixosModules.impermanence
   ];
@@ -16,6 +16,9 @@
         "/var/log"
         "/srv"
       ];
+      users = builtins.mapAttrs (
+        name: value: value.persistence
+      ) host.userAttrs;
     };
   };
   programs.fuse.userAllowOther = true;

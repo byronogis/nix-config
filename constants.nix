@@ -6,6 +6,10 @@ rec {
       username = "byron";
       useremail = "byronogsi@outlook.com";
       initialPassword = "123456";
+      persistence = {
+        directories = [];
+        files = [];
+      };
     };
   };
 
