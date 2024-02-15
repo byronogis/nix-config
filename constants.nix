@@ -4,7 +4,7 @@ rec {
   userAttrs = {
     byron = {
       username = "byron";
-      useremail = "byronogsi@outlook.com";
+      useremail = "byronogis@outlook.com";
       initialPassword = "123456";
       persistence = {
         directories = [
