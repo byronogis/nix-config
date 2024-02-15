@@ -9,6 +9,7 @@ rec {
       persistence = {
         directories = [
           "project"
+          ".ssh"
         ];
         files = [
           ".zsh_history"
