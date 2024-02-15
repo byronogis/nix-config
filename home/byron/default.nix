@@ -8,6 +8,7 @@
       tree
       fastfetch
       fnm
+      yazi
     ];
     file = {};
     sessionPath = [];
