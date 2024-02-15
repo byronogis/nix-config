@@ -9,6 +9,7 @@
     
     ../common/global
     ../common/optional/systemd-boot.nix
+    ../common/optional/nix-ld.nix
   ];
 
   # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
