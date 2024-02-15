@@ -12,6 +12,7 @@ rec {
         directories = [
           "project"
           ".ssh"
+          ".vscode-server"
         ];
         files = [
           ".zsh_history"
