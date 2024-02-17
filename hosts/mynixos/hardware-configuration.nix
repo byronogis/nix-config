@@ -4,10 +4,7 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ 
-    ../common/optional/ephemeral-btrfs.nix
-    ./disko-config.nix
-  ];
+  imports = [ ];
 
   boot.initrd.availableKernelModules = [ "ata_piix" "mptspi" "uhci_hcd" "ehci_pci" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];

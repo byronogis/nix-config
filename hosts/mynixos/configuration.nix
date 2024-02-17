@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./disko-config.nix
     
     ../common/global
     ../common/optional/systemd-boot.nix
