@@ -7,6 +7,9 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
+    flake-utils.url = "github:numtide/flake-utils";
+
+
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -22,9 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-ld = {
-      url = "github:Mic92/nix-ld";
+    # nix-ld
+    nix-ld-rs = {
+      url = "github:/nix-community/nix-ld-rs";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
 
     # TODO: Add any other flake you might need
