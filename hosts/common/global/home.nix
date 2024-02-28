@@ -8,12 +8,9 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = { inherit inputs outputs host pkgs; };
+  home-manager.extraSpecialArgs = { inherit inputs outputs host; };
   
   home-manager.users = builtins.mapAttrs ( name: value: (
-    import ../../../home/${name} {
-      inherit inputs outputs host pkgs;
-      user = value;
-    }
+    import ../../../home/${name}.nix
   )) host.userAttrs;
 }
