@@ -2,6 +2,7 @@
 { inputs, outputs, host, ... }: {
   imports = [
     ./editor.nix
+    ./font.nix
     ./home.nix
     ./locale.nix
     ./nix.nix
