@@ -1,15 +1,6 @@
 # See https://nix-community.github.io/home-manager/options.xhtml
 
-{inputs, outputs, host, pkgs, ... }: 
-let
-  # TODO get <byron> automatic
-  user = host.userAttrs.byron;
-in
-{
-  _module.args = {
-    inherit user;
-  };
-  
+{inputs, outputs, host, user, pkgs, ... }: {
   imports = [
     ./global
     ./feature/cli/git.nix

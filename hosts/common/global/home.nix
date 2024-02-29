@@ -10,7 +10,11 @@
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = { inherit inputs outputs host; };
   
-  home-manager.users = builtins.mapAttrs ( name: value: (
-    import ../../../home/${name}.nix
-  )) host.userAttrs;
+  home-manager.users = builtins.mapAttrs ( name: value: {
+    _module.args = {
+      user = value;
+    };
+
+    imports = [ ../../../home/${name}.nix ];
+  }) host.userAttrs;
 }
