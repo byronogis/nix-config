@@ -1,5 +1,9 @@
 # This file contains an ephemeral btrfs root configuration
-{ lib, config, host, ... }:
+{ lib
+, config
+, host
+, ...
+}:
 let
   hostname = host.hostname;
   wipeScript = ''

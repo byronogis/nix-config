@@ -1,4 +1,7 @@
-{ inputs, host, ...}: {
+{ inputs
+, host
+, ...
+}: {
   imports = [
     inputs.disko.nixosModules.disko
     ../common/optional/ephemeral-btrfs.nix

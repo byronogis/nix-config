@@ -40,44 +40,46 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    lib = nixpkgs.lib // home-manager.lib;
+  outputs =
+    { self
+    , nixpkgs
+    , home-manager
+    , ...
+    } @ inputs:
+    let
+      inherit (self) outputs;
+      lib = nixpkgs.lib // home-manager.lib;
 
-    # Constants
-    constants = import ./constants.nix { inherit lib; };
+      # Constants
+      constants = import ./constants.nix { inherit lib; };
 
-    # 
-    forEachSystem = f: lib.genAttrs constants.systems (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs constants.systems (system: import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    });
-  in {
-    inherit lib;
-
-    nixosModules = import ./modules/nixos;
-    darwinModules = import ./modules/darwin;
-
-    overlays = import ./overlays { inherit inputs outputs; };
-    packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-    formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
-
-    # Nixos 
-    # TODO is there has a simply way: [attr ...] ==> { attr.x: attr; ... } ?
-    nixosConfigurations = lib.genAttrs 
-      (map (host: host.hostname) constants.osGroupAttrs.nixos)
-      (hostname: lib.nixosSystem {
-        modules = [ ./hosts/${hostname}/configuration.nix ];
-        specialArgs = {
-          inherit inputs outputs; 
-          host = constants.hostAttrs.${hostname};
-        };
+      # 
+      forEachSystem = f: lib.genAttrs constants.systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs constants.systems (system: import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
       });
-  };
+    in
+    {
+      inherit lib;
+
+      nixosModules = import ./modules/nixos;
+      darwinModules = import ./modules/darwin;
+
+      overlays = import ./overlays { inherit inputs outputs; };
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
+
+      # Nixos 
+      # TODO is there has a simply way: [attr ...] ==> { attr.x: attr; ... } ?
+      nixosConfigurations = lib.genAttrs
+        (map (host: host.hostname) constants.osGroupAttrs.nixos)
+        (hostname: lib.nixosSystem {
+          modules = [ ./hosts/${hostname}/configuration.nix ];
+          specialArgs = {
+            inherit inputs outputs;
+            host = constants.hostAttrs.${hostname};
+          };
+        });
+    };
 }

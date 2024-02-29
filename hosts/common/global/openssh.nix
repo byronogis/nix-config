@@ -1,5 +1,9 @@
-{ outputs, lib, config, host, ... }:
-
+{ outputs
+, lib
+, config
+, host
+, ...
+}:
 let
   inherit (config.networking) hostName;
   hosts = outputs.nixosConfigurations;
@@ -31,13 +35,16 @@ in
 
   programs.ssh = {
     # Each hosts public key
-    knownHosts = builtins.mapAttrs
-      (hostname: _: {
-        publicKeyFile = pubKey hostname;
-        extraHostNames = lib.optional (
-          hostname == config.networking.hostName
-        ) "localhost"; # Alias for localhost if it's the same host
-      })
-      outputs.nixosConfigurations;
+    knownHosts =
+      builtins.mapAttrs
+        (hostname: _: {
+          publicKeyFile = pubKey hostname;
+          extraHostNames =
+            lib.optional
+              (
+                hostname == config.networking.hostName
+              ) "localhost"; # Alias for localhost if it's the same host
+        })
+        outputs.nixosConfigurations;
   };
 }

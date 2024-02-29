@@ -1,6 +1,4 @@
-{ lib }:
-
-rec {
+{ lib }: rec {
   userAttrs = {
     byron = {
       username = "byron";
@@ -61,11 +59,13 @@ rec {
 
   # ==> [ "x86_64-darwin" "x86_64-linux" ]
   systems = lib.lists.unique (
-    lib.attrsets.mapAttrsToList (
-      name: value: value.system
-    ) hostAttrs
+    lib.attrsets.mapAttrsToList
+      (
+        name: value: value.system
+      )
+      hostAttrs
   );
 
   # ==> { darwin = [ ... ]; nixos = [ ... ]; }
-  osGroupAttrs = lib.lists.groupBy (hostvalue: hostvalue.os ) hostvalues;
+  osGroupAttrs = lib.lists.groupBy (hostvalue: hostvalue.os) hostvalues;
 }

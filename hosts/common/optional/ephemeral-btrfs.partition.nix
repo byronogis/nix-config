@@ -1,5 +1,4 @@
 # power by disko
-
 { host, ... }: {
   size = "100%";
   content = {

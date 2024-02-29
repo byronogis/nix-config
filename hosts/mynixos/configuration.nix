@@ -1,13 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ... 
+{ config
+, lib
+, pkgs
+, ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ./disko-config.nix
-    
+
     ../common/global
     ../common/optional/systemd-boot.nix
     ../common/optional/nix-ld.nix
