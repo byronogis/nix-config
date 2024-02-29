@@ -3,6 +3,7 @@
 {inputs, outputs, host, user, pkgs, ... }: {
   imports = [
     ./global
+    ./feature/cli/bat.nix
     ./feature/cli/git.nix
     ./feature/cli/starship.nix
     ./feature/cli/zsh.nix
