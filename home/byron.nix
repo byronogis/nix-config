@@ -9,6 +9,7 @@
   imports = [
     ./global
     ./feature/cli/bat.nix
+    ./feature/cli/direnv.nix
     ./feature/cli/git.nix
     ./feature/cli/starship.nix
     ./feature/cli/zsh.nix
