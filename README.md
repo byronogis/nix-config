@@ -6,34 +6,39 @@
 - disk manage by [disko](https://github.com/nix-community/disko)
 - home manage by [home-manager](https://github.com/nix-community/home-manager)
 - manage user and host info by [settings](./settings.nix) file
+- can set different ability to different host for single user
 - ...
 
 ## Usage
 
-cd first.
+**cd first.**
+
+`cd path/to/current/repo`
 
 ### New User & Host
 
 
 #### Add new user
 
-Add new user inside userAttrs. And then add user nix file in `home/<username>/default.nix`.
+Add new user inside [userAttrs](./settings.nix). And then add user nix file in `home/<username>/`.
+
+
+`default.nix` is needed. Like this:
 
 ```nix
 # See https://nix-community.github.io/home-manager/options.xhtml
 
 {inputs, outputs, host, user, pkgs, ... }: {
-  home = {
-    username = user.username;
-    homeDirectory = "/home/${user.username}";
-  };
-  home.stateVersion = "23.11";
+  imports = [
+    ../common/global
+    ../common/optional/cli/zsh.nix
+  ];
 }
 ```
 
 #### Add new host
 
-Add new host inside hostAttrs. And then add host nix files in `host/<hostname>/`.
+Add new host inside [hostAttrs](./settings.nix). And then add host nix files in `host/<hostname>/`.
 
 `configuration.nix` is needed. Like this:
 
@@ -59,17 +64,12 @@ Add new host inside hostAttrs. And then add host nix files in `host/<hostname>/`
 ### First Time Install
 
 ```bash
-# enable flakes in live
-export NIX_CONFIG="experimental-features = nix-command flakes"
-
-# maybe should run this first (such in installer) when git is not install
-nix shell nixpkgs#git
-# or just delete ./git
-rm -rf .git
+# enable flakes environment
+nix-shell
 
 # optional if not partition and format manually
 ## **Be aware of data**
-nix run github:nix-community/disko -- --mode disko --flake /absolute/path/to/flakes#<hostname>
+nix run github:nix-community/disko -- --mode disko --flake /absolute/path/to/current/repo#<hostname>
 # check label, 
 lsblk -o name,fstype,label,mountpoints,parttypename,partlabel,size
 # set manually if not exit or not same with hostname
@@ -82,7 +82,7 @@ nixos-install --flake .#<hostname> --show-trace
 ### Rebuild After
 
 ```bash
-nixos-rebuild switch
+sudo nixos-rebuild switch --flake .#<hostname> --show-trace
 ```
 
 ## References
