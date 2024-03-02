@@ -5,7 +5,7 @@
 - [impermanence](https://github.com/nix-community/impermanence) with btrfs
 - disk manage by [disko](https://github.com/nix-community/disko)
 - home manage by [home-manager](https://github.com/nix-community/home-manager)
-- manage user and host info by [setting](./constants.nix) file
+- manage user and host info by [settings](./settings.nix) file
 - ...
 
 ## Usage

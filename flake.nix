@@ -50,12 +50,10 @@
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
 
-      # Constants
-      constants = import ./constants.nix { inherit lib; };
+      settings = import ./settings.nix { inherit lib; };
 
-      # 
-      forEachSystem = f: lib.genAttrs constants.systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs constants.systems (system: import nixpkgs {
+      forEachSystem = f: lib.genAttrs settings.systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs settings.systems (system: import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       });
@@ -74,12 +72,12 @@
       # Nixos 
       # TODO is there has a simply way: [attr ...] ==> { attr.x: attr; ... } ?
       nixosConfigurations = lib.genAttrs
-        (map (host: host.hostname) constants.osGroupAttrs.nixos)
+        (map (host: host.hostname) settings.osGroupAttrs.nixos)
         (hostname: lib.nixosSystem {
           modules = [ ./hosts/${hostname}/configuration.nix ];
           specialArgs = {
             inherit inputs outputs;
-            host = constants.hostAttrs.${hostname};
+            host = settings.hostAttrs.${hostname};
           };
         });
     };
