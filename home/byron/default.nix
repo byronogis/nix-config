@@ -7,14 +7,14 @@
 , ...
 }: {
   imports = [
-    ./global
-    ./feature/cli/bat.nix
-    ./feature/cli/direnv.nix
-    ./feature/cli/fastfetch.nix
-    ./feature/cli/fzf.nix
-    ./feature/cli/git.nix
-    ./feature/cli/starship.nix
-    ./feature/cli/zsh.nix
+    ../common/global
+    ../common/feature/cli/bat.nix
+    ../common/feature/cli/direnv.nix
+    ../common/feature/cli/fastfetch.nix
+    ../common/feature/cli/fzf.nix
+    ../common/feature/cli/git.nix
+    ../common/feature/cli/starship.nix
+    ../common/feature/cli/zsh.nix
   ];
 
   home = {

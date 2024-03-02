@@ -21,7 +21,7 @@
           user = value;
         };
 
-        imports = [ ../../../home/${name}.nix ];
+        imports = [ ../../../home/${name} ];
       })
       host.userAttrs;
 }
