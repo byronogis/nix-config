@@ -7,7 +7,7 @@
       "--layout reverse"
     ];
     fileWidgetOptions = [
-       "--preview 'bat {} || cat {} | head -500'"
+      "--preview 'bat {} || cat {} | head -500'"
     ];
   };
 }
