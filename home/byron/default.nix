@@ -8,13 +8,13 @@
 }: {
   imports = [
     ../common/global
-    ../common/feature/cli/bat.nix
-    ../common/feature/cli/direnv.nix
-    ../common/feature/cli/fastfetch.nix
-    ../common/feature/cli/fzf.nix
-    ../common/feature/cli/git.nix
-    ../common/feature/cli/starship.nix
-    ../common/feature/cli/zsh.nix
+    ../common/optional/cli/bat.nix
+    ../common/optional/cli/direnv.nix
+    ../common/optional/cli/fastfetch.nix
+    ../common/optional/cli/fzf.nix
+    ../common/optional/cli/git.nix
+    ../common/optional/cli/starship.nix
+    ../common/optional/cli/zsh.nix
   ];
 
   home = {

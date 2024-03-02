@@ -1,5 +1,5 @@
 {
   imports = [
-    ../common/feature/cli/screen.nix
+    ../common/optional/cli/screen.nix
   ];
 }
