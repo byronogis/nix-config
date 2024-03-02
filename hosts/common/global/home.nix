@@ -21,7 +21,18 @@
           user = value;
         };
 
-        imports = [ ../../../home/${name} ];
+        imports = [ 
+          ../../../home/${name}
+
+          (
+            let
+              hostSpecialPath = ../../../home/${name}/${host.hostname}.nix;
+            in 
+              if (builtins.pathExists hostSpecialPath)
+              then hostSpecialPath
+              else {}
+          )
+        ];
       })
       host.userAttrs;
 }
