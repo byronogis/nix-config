@@ -9,6 +9,7 @@
         name: value: {
           extraGroups = [ "wheel" ];
           initialPassword = value.initialPassword;
+          # https://nixos.org/manual/nixos/stable/options#opt-users.users._name_.isNormalUser
           isNormalUser = true;
           shell = pkgs.zsh;
         }
