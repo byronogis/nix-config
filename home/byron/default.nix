@@ -15,7 +15,6 @@
     packages = with pkgs; [
       tree
       fnm
-      yazi
     ];
     file = { };
     sessionPath = [ ];
