@@ -1,12 +1,7 @@
-{
-  imports = [
-    ./bat.nix
-    ./direnv.nix
-    ./fastfetch.nix
-    ./fzf.nix
-    ./git.nix
-    ./screen.nix
-    ./starship.nix
-    ./zsh.nix
-  ];
+{ lib, ... }: {
+  imports = lib.attrsets.mapAttrsToList
+    (name: _: (builtins.toString ./${name}))
+    (lib.attrsets.filterAttrs
+      (name: type: (type == "regular" && name != "default.nix"))
+      (builtins.readDir (builtins.toString ./.)));
 }

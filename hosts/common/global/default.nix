@@ -2,20 +2,14 @@
 { inputs
 , outputs
 , host
+, lib
 , ...
 }: {
-  imports = [
-    ./editor.nix
-    ./font.nix
-    ./home.nix
-    ./locale.nix
-    ./nix.nix
-    ./openssh.nix
-    ./optin-persistence.nix
-    ./systemd-initrd.nix
-    ./users.nix
-    ./zsh.nix
-  ];
+  imports = lib.attrsets.mapAttrsToList
+    (name: _: (builtins.toString ./${name}))
+    (lib.attrsets.filterAttrs
+      (name: type: (type == "regular" && name != "default.nix"))
+      (builtins.readDir (builtins.toString ./.)));
 
   networking.hostName = host.hostname;
 
