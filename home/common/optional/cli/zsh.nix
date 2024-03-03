@@ -21,6 +21,9 @@
         zle -N down-line-or-beginning-search
         bindkey "$key[Up]" up-line-or-beginning-search
         bindkey "$key[Down]" down-line-or-beginning-search
+
+        # Fix fnm can not completions postinstall
+        eval "$(fnm env --use-on-cd)"
       '';
     };
   };
