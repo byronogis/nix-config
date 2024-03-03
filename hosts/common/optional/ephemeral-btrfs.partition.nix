@@ -19,7 +19,7 @@
         mountOptions = [ "compress=zstd" "noatime" ];
       };
       "@persist" = {
-        mountpoint = "${host.persist}";
+        mountpoint = "${host.persistencePath}";
         mountOptions = [ "compress=zstd" ];
       };
       "@swap" = {

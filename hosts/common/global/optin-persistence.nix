@@ -14,7 +14,7 @@
   ];
 
   environment.persistence = {
-    "${host.persist}" = {
+    "${host.persistencePath}" = {
       directories = [
         "/var/lib/systemd"
         "/var/lib/nixos"
@@ -37,15 +37,15 @@
     };
   };
   programs.fuse.userAllowOther = true;
-  fileSystems."${host.persist}".neededForBoot = true;
+  fileSystems."${host.persistencePath}".neededForBoot = true;
 
   system.activationScripts.persistent-dirs.text =
     let
       mkHomePersist = user:
         lib.optionalString user.createHome ''
-          mkdir -p ${host.persist}/${user.home}
-          chown ${user.name}:${user.group} ${host.persist}/${user.home}
-          chmod ${user.homeMode} ${host.persist}/${user.home}
+          mkdir -p ${host.persistencePath}/${user.home}
+          chown ${user.name}:${user.group} ${host.persistencePath}/${user.home}
+          chmod ${user.homeMode} ${host.persistencePath}/${user.home}
         '';
       users = lib.attrValues config.users.users;
     in
