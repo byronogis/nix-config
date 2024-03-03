@@ -14,6 +14,7 @@
         update = "sudo nixos-rebuild switch --show-trace --flake ";
       };
       initExtra = ''
+        # Search history on up and down keys according input.
         autoload -U up-line-or-beginning-search
         autoload -U down-line-or-beginning-search
         zle -N up-line-or-beginning-search
