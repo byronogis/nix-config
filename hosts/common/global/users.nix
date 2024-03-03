@@ -23,4 +23,7 @@
         }
       )
       host.userAttrs;
+
+  # necessary because of user.shell choose it
+  programs.zsh.enable = true;
 }
