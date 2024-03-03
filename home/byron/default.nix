@@ -8,13 +8,7 @@
 }: {
   imports = [
     ../common/global
-    ../common/optional/cli/bat.nix
-    ../common/optional/cli/direnv.nix
-    ../common/optional/cli/fastfetch.nix
-    ../common/optional/cli/fzf.nix
-    ../common/optional/cli/git.nix
-    ../common/optional/cli/starship.nix
-    ../common/optional/cli/zsh.nix
+    ../common/optional/cli
   ];
 
   home = {
