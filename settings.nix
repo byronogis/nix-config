@@ -11,6 +11,7 @@
           "project"
           ".ssh"
           ".vscode-server"
+          ".local/share/fnm" # fnm dir
         ];
         files = [
           ".zsh_history"
