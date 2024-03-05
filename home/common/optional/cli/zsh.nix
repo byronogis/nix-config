@@ -7,7 +7,13 @@
       syntaxHighlighting.enable = true;
       autocd = true;
       history = {
+        save = 10000;
+        size = 10000;
+        expireDuplicatesFirst = true;
+        extended = true;
         ignoreAllDups = true;
+        ignoreDups = true;
+        ignoreSpace = true;
       };
       historySubstringSearch = {
         enable = true;
