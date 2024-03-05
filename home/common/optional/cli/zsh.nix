@@ -9,20 +9,17 @@
       history = {
         ignoreAllDups = true;
       };
+      historySubstringSearch = {
+        enable = true;
+        searchDownKey = [ "$terminfo[kcud1]" ];
+        searchUpKey = [ "$terminfo[kcuu1]" ];
+      };
       shellAliases = {
         check = "nix flake check --show-trace";
         update = "sudo nixos-rebuild switch --show-trace --flake ";
         sp = "set_proxy";
       };
       initExtra = ''
-        # Search history on up and down keys according input.
-        autoload -U up-line-or-beginning-search
-        autoload -U down-line-or-beginning-search
-        zle -N up-line-or-beginning-search
-        zle -N down-line-or-beginning-search
-        bindkey "$key[Up]" up-line-or-beginning-search
-        bindkey "$key[Down]" down-line-or-beginning-search
-
         # NOTE Fixme fnm can not completions postinstall
         eval "$(fnm env --use-on-cd)"
 
