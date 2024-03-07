@@ -12,6 +12,7 @@
           ".ssh"
           ".vscode-server"
           ".local/share/fnm" # fnm dir
+          ".local/share/direnv" # direnv data
         ];
         files = [
           ".zsh_history"
