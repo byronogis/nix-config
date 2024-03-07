@@ -23,8 +23,6 @@
         searchUpKey = [ "$terminfo[kcuu1]" ];
       };
       shellAliases = {
-        check = "nix flake check --show-trace";
-        update = "sudo nixos-rebuild switch --show-trace --flake ";
         sp = "set_proxy";
       };
       initExtra = ''

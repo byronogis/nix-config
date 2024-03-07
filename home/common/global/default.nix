@@ -9,6 +9,10 @@
     username = user.username;
     homeDirectory = "/home/${user.username}";
     stateVersion = "23.11";
+    shellAliases = {
+      check = "nix flake check --show-trace";
+      update = "sudo nixos-rebuild switch --show-trace --flake ";
+    };
   };
   programs = {
     home-manager.enable = true;
