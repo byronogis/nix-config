@@ -6,8 +6,6 @@
       (builtins.readDir (builtins.toString ./.)));
 
   home = {
-    username = user.username;
-    homeDirectory = "/home/${user.username}";
     stateVersion = "23.11";
     shellAliases = {
       # nix
