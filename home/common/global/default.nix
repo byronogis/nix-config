@@ -10,8 +10,14 @@
     homeDirectory = "/home/${user.username}";
     stateVersion = "23.11";
     shellAliases = {
+      # nix
       check = "nix flake check --show-trace";
       update = "sudo nixos-rebuild switch --show-trace --flake ";
+
+      # service
+      stop = "sudo systemctl stop";
+      start = "sudo systemctl start";
+      status = "systemctl status";
     };
   };
   programs = {
