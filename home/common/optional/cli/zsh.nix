@@ -1,3 +1,5 @@
+# See https://zsh.sourceforge.io/Doc/Release/Options.html
+
 {
   programs = {
     zsh = {
