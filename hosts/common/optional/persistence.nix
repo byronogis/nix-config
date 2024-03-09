@@ -31,7 +31,7 @@
       users =
         builtins.mapAttrs
           (
-            name: value: value.persistence
+            username: user: user.persistence
           )
           host.userAttrs;
     };

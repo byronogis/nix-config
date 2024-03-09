@@ -16,17 +16,17 @@
 
   home-manager.users =
     builtins.mapAttrs
-      (name: value: {
+      (username: user: {
         _module.args = {
-          user = value;
+          inherit user;
         };
 
         imports = [
-          ../../../home/${name}
+          ../../../home/${username}
 
           (
             let
-              hostSpecialPath = ../../../home/${name}/${host.hostname}.nix;
+              hostSpecialPath = ../../../home/${username}/${host.hostname}.nix;
             in
             if (builtins.pathExists hostSpecialPath) then hostSpecialPath else { }
           )
