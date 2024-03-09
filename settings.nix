@@ -30,7 +30,7 @@
       os = "nixos";
       system = "x86_64-linux";
       device = "sda"; # used by disko 
-      persistencePath = "/persist"; # absolute path
+      persistencePath = "/persist"; # used by impermanence, absolute path
       userAttrs = {
         inherit (userAttrs) byron;
       };
