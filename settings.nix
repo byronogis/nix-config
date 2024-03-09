@@ -18,6 +18,7 @@
           ".zsh_history"
         ];
       }; # used by impermanence
+      usernameKeyForGit = "usernameAlternative";
     };
   };
 
