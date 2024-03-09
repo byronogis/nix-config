@@ -34,6 +34,7 @@
       userAttrs = {
         inherit (userAttrs) byron;
       };
+      allowedPorts = [];
     };
     # mynixos2 = {
     #   hostname = "mynixos2";
