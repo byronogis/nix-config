@@ -17,7 +17,7 @@
         files = [
           ".zsh_history"
         ];
-      };
+      }; # used by impermanence
     };
   };
 
@@ -29,12 +29,12 @@
       hostname = "mynixos";
       os = "nixos";
       system = "x86_64-linux";
-      device = "sda";
+      device = "sda"; # used by disko 
       persistencePath = "/persist"; # absolute path
       userAttrs = {
         inherit (userAttrs) byron;
       };
-      allowedPorts = [ ];
+      allowedPorts = [ ]; # used by firewall
     };
     # mynixos2 = {
     #   hostname = "mynixos2";
