@@ -1,5 +1,5 @@
 {
-  description = "Byron's nix config based flakes";
+  description = "A nix config based flakes.";
 
   inputs = {
     # Nixpkgs
