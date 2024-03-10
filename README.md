@@ -141,10 +141,10 @@ A attr inside `userAttrs` in [settings](./settings.nix) file. Key is username, v
 | usernameFull        | string | false    | full name                                         |
 | useremail           | string | false    | email                                             |
 | initialPassword     | string | true     | initial password                                  |
-| persistence         | set    | false    | persistence config, reference the [^impermanence] |
+| persistence         | set    | false    | persistence config, reference the impermanence[^impermanence] |
 | usernameKeyForGit   | string | false    | key for git. If not set, use `username`           |
 
-[^impermanence]: https://github.com/nix-community/impermanence?tab=readme-ov-file#home-manager.
+[^impermanence]: [impermanence](https://github.com/nix-community/impermanence?tab=readme-ov-file#home-manager)
 
 ### Host
 
@@ -158,10 +158,10 @@ A attr inside `hostAttrs` in [settings](./settings.nix) file. Key is hostname, v
 | device          | string | false    | device                                                        |
 | impermanence    | bool   | false    | whether to use impermanence                                   |
 | persistencePath | string | false    | used by impermanence, absolute path                           |
-| userAttrs       | set    | true     | user config, reference the [^user], also can inherit directly |
+| userAttrs       | set    | true     | user config, reference the user[^user], also can inherit directly |
 | allowedPorts    | list   | false    | used by firewall                                              |
 
-[^user]: #user
+[^user]: [User](#user)
 
 
 ## References
