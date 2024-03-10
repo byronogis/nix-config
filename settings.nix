@@ -9,13 +9,10 @@
       persistence = {
         directories = [
           "project"
-          ".ssh"
           ".vscode-server"
-          ".local/share/fnm" # fnm dir
-          ".local/share/direnv" # direnv data
         ];
         files = [
-          ".zsh_history"
+          # ...
         ];
       }; # used by impermanence
       usernameKeyForGit = "usernameAlternative";
@@ -31,6 +28,7 @@
       os = "nixos";
       system = "x86_64-linux";
       device = "sda"; # used by disko 
+      impermanence = true; # whether to use impermanence
       persistencePath = "/persist"; # used by impermanence, absolute path
       userAttrs = {
         inherit (userAttrs) byron;

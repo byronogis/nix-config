@@ -5,7 +5,6 @@
   imports = [
     inputs.disko.nixosModules.disko
     ../common/optional/ephemeral-btrfs.nix
-    ../common/optional/persistence.nix
   ];
 
   disko.devices = {

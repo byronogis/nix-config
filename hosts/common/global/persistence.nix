@@ -8,7 +8,7 @@
 , lib
 , host
 , ...
-}: {
+}: lib.optionalAttrs host.impermanence {
   imports = [
     inputs.impermanence.nixosModules.impermanence
   ];
