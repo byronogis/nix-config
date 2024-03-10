@@ -1,0 +1,14 @@
+keys:
+  # Users
+  - &users:
+    - &byron 2FFD DC00 C94F 1181 30ED  4892 08B3 ABED 7546 C580
+  # Hosts
+  - &hosts:
+    - &mynixos age1ssz4a0gyy6vt99cad22pgq9dp888htyplmchry9hc57xy7q4l9gs7lcz7s
+creation_rules:
+  - path_regex: hosts/mynixos/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *mynixos
+      pgp:
+      - *byron

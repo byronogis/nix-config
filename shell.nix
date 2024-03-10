@@ -17,6 +17,13 @@
       git
       disko
       hello
+
+      sops
+      ssh-to-age
+      ssh-to-pgp
+      gnupg
+      age
+
     ];
     shellHook = ''
       hello -g "You are now in a flake-enabled nix shell!"
