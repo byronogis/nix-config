@@ -36,7 +36,7 @@ Need add disko config file in `host/<hostname>/` and import in `host/<hostname>/
 
 ```bash
 ## **Be aware of data**
-nix run github:nix-community/disko -- --mode disko --flake /absolute/path/to/current/repo#<hostname>
+disko --mode disko --flake /absolute/path/to/current/repo#<hostname>
 
 # check label, 
 lsblk -o name,fstype,label,mountpoints,parttypename,partlabel,size

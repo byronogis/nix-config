@@ -15,6 +15,11 @@
     nativeBuildInputs = with pkgs; [
       nix
       git
+      disko
+      hello
     ];
+    shellHook = ''
+      hello -g "You are now in a flake-enabled nix shell!"
+    '';
   };
 }
