@@ -2,10 +2,12 @@
 , host
 , user
 , ...
-}: { } // lib.optionalAttrs host.impermanence {
-  home.persistence."${host.persistencePath}/home/${user.username}" = {
-    directories = [
-      ".ssh"
-    ];
-  };
-}
+}: lib.recursiveUpdate
+{ }
+  (lib.optionalAttrs host.impermanence {
+    home.persistence."${host.persistencePath}/home/${user.username}" = {
+      directories = [
+        ".ssh"
+      ];
+    };
+  })

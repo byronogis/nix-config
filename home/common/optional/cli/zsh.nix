@@ -4,7 +4,8 @@
 , host
 , user
 , ...
-}: {
+}: lib.recursiveUpdate
+{
   programs = {
     zsh = {
       enable = true;
@@ -63,10 +64,12 @@
       '';
     };
   };
-} // lib.optionalAttrs host.impermanence {
-  home.persistence."${host.persistencePath}/home/${user.username}" = {
-    files = [
-      ".zsh_history"
-    ];
-  };
 }
+
+  (lib.optionalAttrs host.impermanence {
+    home.persistence."${host.persistencePath}/home/${user.username}" = {
+      files = [
+        ".zsh_history"
+      ];
+    };
+  })
