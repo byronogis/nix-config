@@ -26,8 +26,8 @@ lib.recursiveUpdate
     pinentryFlavor = pinentry.name;
     enableSshSupport = true;
     enableExtraSocket = true;
-    defaultCacheTtl = 60480000;
-    maxCacheTtl = 60480000;
+    defaultCacheTtl = 604800;
+    maxCacheTtl = 604800;
   };
 
   programs.gpg = {
