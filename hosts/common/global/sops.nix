@@ -10,6 +10,7 @@ in
   ];
 
   sops = {
+    defaultSopsFile = ../secrets.yaml;
     age.sshKeyPaths = map getKeyPath keys;
   };
 }
