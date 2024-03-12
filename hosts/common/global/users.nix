@@ -15,9 +15,9 @@
           openssh.authorizedKeys.keys = [
             (
               let
-                authorizedKeysPath = ../../../home/${username}/authorizedKeys.pub;
+                sshAuthorizedKeysFile = ../../../home/${username}/ssh-authorized-keys.pub;
               in
-              if (builtins.pathExists authorizedKeysPath) then (builtins.readFile authorizedKeysPath) else ""
+              if (builtins.pathExists sshAuthorizedKeysFile) then (builtins.readFile sshAuthorizedKeysFile) else ""
             )
           ];
         }

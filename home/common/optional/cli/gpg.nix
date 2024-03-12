@@ -6,7 +6,7 @@
 , ...
 }:
 let
-  userPublicKeyPath = ../../../${user.username}/gpg.asc;
+  pgpPublicKeyFile = ../../../${user.username}/pgp-public-key.asc;
   pinentry =
     if config.gtk.enable then {
       packages = [ pkgs.pinentry-gnome pkgs.gcr ];
@@ -33,8 +33,8 @@ lib.recursiveUpdate
   programs.gpg = {
     enable = true;
     settings = { };
-    publicKeys = [ ] ++ lib.optionals (builtins.pathExists userPublicKeyPath) [{
-      source = userPublicKeyPath;
+    publicKeys = [ ] ++ lib.optionals (builtins.pathExists pgpPublicKeyFile) [{
+      source = pgpPublicKeyFile;
       trust = 5;
     }];
   };
