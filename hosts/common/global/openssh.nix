@@ -11,7 +11,7 @@ let
 
   # Sops needs acess to the keys before the persist dirs are even mounted; so
   # just persisting the keys won't work, we must point at ${host.persistencePath}
-  hasOptinPersistence = lib.hasAttrByPath [ "persistence" host.persistencePath] config.environment;
+  hasOptinPersistence = lib.hasAttrByPath [ "persistence" host.persistencePath ] config.environment;
 in
 {
   services.openssh = {
