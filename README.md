@@ -2,6 +2,19 @@
 
 A nix config based flakes.
 
+- [nix-config](#nix-config)
+  - [Highlight](#highlight)
+  - [Usage](#usage)
+    - [First Time Install](#first-time-install)
+    - [Rebuild(Update) After](#rebuildupdate-after)
+  - [Add New User and Host](#add-new-user-and-host)
+    - [Add new user](#add-new-user)
+    - [Add new host](#add-new-host)
+  - [Settings](#settings)
+    - [User](#user)
+    - [Host](#host)
+  - [References](#references)
+
 ## Highlight
 
 - [impermanence](https://github.com/nix-community/impermanence) with btrfs
