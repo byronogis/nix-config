@@ -5,7 +5,7 @@
       usernameAlternative = "byronogis";
       usernameFull = "Byron Ogis";
       useremail = "byronogis@outlook.com";
-      initialPassword = "123456";
+      # initialPassword = "123456";
       persistence = {
         directories = [
           "project"
