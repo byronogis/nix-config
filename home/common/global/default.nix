@@ -10,7 +10,8 @@
     shellAliases = {
       # nix
       check = "nix flake check --show-trace";
-      update = "sudo nixos-rebuild switch --show-trace --flake "; # add path when using, example `update .`
+      build = "sudo nixos-rebuild switch --show-trace --flake "; # add path when using, example `build .`
+      update = "nix flake update";
       history = "nix profile history --profile /nix/var/nix/profiles/system";
       clean = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than"; # add time when using, example `clear 7d`
       gc = "sudo nix store gc --debug";
