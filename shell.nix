@@ -27,6 +27,7 @@
     ];
     shellHook = ''
       hello -g "You are now in a flake-enabled nix shell!"
+      exec zsh
     '';
   };
 }
