@@ -50,12 +50,11 @@
   outputs =
     { self
     , nixpkgs
-    , home-manager
     , ...
     } @ inputs:
     let
       inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib;
+      lib = nixpkgs.lib // inputs.home-manager.lib // inputs.flake-utils.lib;
 
       settings = import ./settings.nix { inherit lib; };
 
