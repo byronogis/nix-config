@@ -12,7 +12,7 @@ creation_rules:
       - *mynixos
       pgp:
       - *byron
-  - path_regex: hosts/common/secrets.ya?ml$
+  - path_regex: hosts/secrets.ya?ml$
     key_groups:
     - age:
       - *mynixos

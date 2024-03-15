@@ -22,11 +22,12 @@
         };
 
         imports = [
-          ../../../home/${username}
+          ../../home/__global
+          ../../home/${username}
 
           (
             let
-              hostSpecialPath = ../../../home/${username}/${host.hostname}.nix;
+              hostSpecialPath = ../../home/${username}/${host.hostname}.nix;
             in
             if (builtins.pathExists hostSpecialPath) then hostSpecialPath else { }
           )

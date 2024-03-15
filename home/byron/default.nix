@@ -7,8 +7,7 @@
 , ...
 }: {
   imports = [
-    ../common/global
-    ../common/optional/cli
+    ../__optional/cli
   ];
 
   home = {

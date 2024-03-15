@@ -6,7 +6,7 @@
 , ...
 }:
 let
-  pgpPublicKeyFile = ../../../${user.username}/pgp-public-key.asc;
+  pgpPublicKeyFile = ../../${user.username}/pgp-public-key.asc;
   pinentry =
     if config.gtk.enable then {
       packages = [ pkgs.pinentry-gnome pkgs.gcr ];

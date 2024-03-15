@@ -100,7 +100,7 @@ Add new [user](#user) inside [userAttrs](./settings.nix). And then add user nix 
 
 {inputs, outputs, host, user, pkgs, ... }: {
   imports = [
-    ../common/global
+    ../__optional/cli
   ];
 }
 ```
@@ -124,8 +124,7 @@ Like this:
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../common/global
-    ../common/optional/systemd-boot.nix
+    ../__optional/systemd-boot.nix
   ];
 
   # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .

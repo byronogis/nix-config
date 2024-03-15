@@ -80,7 +80,10 @@
       nixosConfigurations = lib.genAttrs
         (map (host: host.hostname) settings.osGroupAttrs.nixos)
         (hostname: lib.nixosSystem {
-          modules = [ ./hosts/${hostname}/configuration.nix ];
+          modules = [ 
+            ./hosts/__global
+            ./hosts/${hostname}/configuration.nix
+           ];
           specialArgs = {
             inherit inputs outputs;
             host = settings.hostAttrs.${hostname};

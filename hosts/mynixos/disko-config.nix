@@ -4,7 +4,7 @@
 }: {
   imports = [
     inputs.disko.nixosModules.disko
-    ../common/optional/ephemeral-btrfs.nix
+    ../__optional/ephemeral-btrfs.nix
   ];
 
   disko.devices = {
@@ -26,7 +26,7 @@
                 mountpoint = "/boot";
               };
             };
-            Primary = import ../common/optional/ephemeral-btrfs.partition.nix { inherit host; };
+            Primary = import ../__optional/ephemeral-btrfs.partition.nix { inherit host; };
           };
         };
       };
