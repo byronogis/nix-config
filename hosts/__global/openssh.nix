@@ -5,13 +5,7 @@
 , ...
 }:
 let
-  inherit (config.networking) hostName;
-  hosts = outputs.nixosConfigurations;
   pubKey = hostname: ./../${hostname}/ssh_host_ed25519_key.pub;
-
-  # Sops needs acess to the keys before the persist dirs are even mounted; so
-  # just persisting the keys won't work, we must point at ${host.persistencePath}
-  hasOptinPersistence = lib.hasAttrByPath [ "persistence" host.persistencePath ] config.environment;
 in
 {
   services.openssh = {
@@ -23,11 +17,11 @@ in
     hostKeys = [
       {
         bits = 4096;
-        path = "${lib.optionalString hasOptinPersistence host.persistencePath}/etc/ssh/ssh_host_rsa_key";
+        path = "${lib.optionalString host.impermanence host.persistencePath}/etc/ssh/ssh_host_rsa_key";
         type = "rsa";
       }
       {
-        path = "${lib.optionalString hasOptinPersistence host.persistencePath}/etc/ssh/ssh_host_ed25519_key";
+        path = "${lib.optionalString host.impermanence host.persistencePath}/etc/ssh/ssh_host_ed25519_key";
         type = "ed25519";
       }
     ];
@@ -42,8 +36,9 @@ in
           extraHostNames =
             lib.optional
               (
-                hostname == config.networking.hostName
-              ) "localhost"; # Alias for localhost if it's the same host
+                hostname == host.hostname
+              ) 
+              "localhost"; # Alias for localhost if it's the same host
         })
         outputs.nixosConfigurations;
   };
