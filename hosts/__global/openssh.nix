@@ -37,7 +37,7 @@ in
             lib.optional
               (
                 hostname == host.hostname
-              ) 
+              )
               "localhost"; # Alias for localhost if it's the same host
         })
         outputs.nixosConfigurations;
