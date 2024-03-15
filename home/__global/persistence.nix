@@ -12,10 +12,10 @@
     "${host.persistencePath}/home/${user.username}" = {
       directories = [
         # ...
-      ] ++ lib.optionals (lib.hasAttrByPath [ "persistence" "directories" ] user) user.persistence.directories;
+      ] ++ (lib.attrByPath [ "persistence" "directories" ] [] user);
       files = [
         # ...
-      ] ++ lib.optionals (lib.hasAttrByPath [ "persistence" "files" ] user) user.persistence.files;
+      ] ++ (lib.attrByPath [ "persistence" "files" ] [] user);
       allowOther = true;
     };
   };
