@@ -56,6 +56,7 @@
       inherit (self) outputs;
       lib = nixpkgs.lib // inputs.home-manager.lib // inputs.flake-utils.lib;
 
+      localLib = import ./lib { inherit lib; };
       settings = import ./settings.nix { inherit lib; };
 
       forEachSystem = f: lib.genAttrs settings.systems (system: f pkgsFor.${system});
@@ -85,7 +86,7 @@
             ./hosts/${hostname}/configuration.nix
           ];
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs outputs localLib;
             host = settings.hostAttrs.${hostname};
           };
         });

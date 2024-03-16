@@ -4,6 +4,7 @@
 , outputs
 , host
 , pkgs
+, localLib
 , ...
 }: {
   imports = [
@@ -12,7 +13,7 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = { inherit inputs outputs host; };
+  home-manager.extraSpecialArgs = { inherit inputs outputs localLib host; };
 
   home-manager.users =
     builtins.mapAttrs
