@@ -5,7 +5,7 @@
    */
   importAllFromPath = path:
     lib.attrsets.mapAttrsToList
-      (name: _: (lib.path.append path "./${name}" ))
+      (name: _: (lib.path.append path "./${name}"))
       (
         lib.attrsets.filterAttrs
           (name: type: (

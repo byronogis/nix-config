@@ -1,5 +1,5 @@
 { user, lib, localLib, ... }: {
-  imports = [] ++ localLib.importAllFromPath ./.;
+  imports = [ ] ++ localLib.importAllFromPath ./.;
 
   home = {
     stateVersion = "23.11";

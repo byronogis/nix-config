@@ -1,3 +1,3 @@
 { lib, localLib, ... }: {
-  imports = [] ++ localLib.importAllFromPath ./.;
+  imports = [ ] ++ localLib.importAllFromPath ./.;
 }

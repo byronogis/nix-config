@@ -6,7 +6,7 @@
 , localLib
 , ...
 }: {
-  imports = [] ++ localLib.importAllFromPath ./.;
+  imports = [ ] ++ localLib.importAllFromPath ./.;
 
   networking.hostName = host.hostname;
 
