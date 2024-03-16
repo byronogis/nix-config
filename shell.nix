@@ -16,7 +16,6 @@
       nix
       git
       disko
-      hello
 
       sops
       ssh-to-age
@@ -26,7 +25,7 @@
 
     ];
     shellHook = ''
-      hello -g "You are now in a flake-enabled nix shell!"
+      echo "You are now in a flake-enabled nix shell! (default)"
     '';
   };
 }
