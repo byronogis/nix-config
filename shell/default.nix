@@ -18,4 +18,7 @@ in
   js = defineDev [
     ./js.nix
   ];
+  python = defineDev [
+    ./python.nix
+  ];
 }
