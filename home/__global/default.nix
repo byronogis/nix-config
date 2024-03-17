@@ -5,17 +5,18 @@
     stateVersion = "23.11";
     shellAliases = {
       # nix
-      check = "nix flake check --show-trace --impure";
-      build = "sudo nixos-rebuild switch --show-trace --flake "; # add path when using, example `build .`
-      update = "nix flake update";
-      history = "nix profile history --profile /nix/var/nix/profiles/system";
-      clean = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than"; # add time when using, example `clear 7d`
-      gc = "sudo nix store gc --debug";
+      CHECK = "nix flake check --show-trace --impure --flake NCP";
+      BUILD = "sudo nixos-rebuild switch --show-trace --flake NCP";
+      UPDATE = "nix flake update --flake NCP";
+      HISTORY = "nix profile history --profile /nix/var/nix/profiles/system";
+      CLEAN = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than"; # add time when using, example `clear 7d`
+      GC = "sudo nix store gc --debug";
+      DEV = "nix develop --impure NCP";
 
       # service
-      stop = "sudo systemctl stop";
-      start = "sudo systemctl start";
-      status = "systemctl status";
+      STOP = "sudo systemctl stop";
+      START = "sudo systemctl start";
+      STATUS = "systemctl status";
     };
   };
   programs = {

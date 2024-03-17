@@ -18,9 +18,13 @@
     sessionPath = [ ];
     sessionVariables = { };
     shellAliases = {
-      p = "cd ~/project";
-      pp = "cd ~/project/personal";
-      pd = "cd ~/project/demo";
+      P = "cd ~/project";
+      PP = "cd ~/project/personal";
+      PD = "cd ~/project/demo";
     };
+  };
+
+  programs.zsh.shellGlobalAliases = {
+    NCP = "~/project/personal/nix-config";
   };
 }

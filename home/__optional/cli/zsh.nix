@@ -28,7 +28,7 @@
         searchUpKey = [ "$terminfo[kcuu1]" ];
       };
       shellAliases = {
-        sp = "set_proxy";
+        SP = "set_proxy";
       };
       initExtra = ''
         # NOTE Fixme fnm can not completions postinstall
