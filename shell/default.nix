@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }:
 let
   devenv = inputs.devenv;
+  defineDev = modules: devenv.lib.mkShell { inherit inputs pkgs modules; };
 in
 {
   hello = devenv.lib.mkShell {
@@ -14,4 +15,7 @@ in
       }
     ];
   };
+  js = defineDev [
+    ./js.nix
+  ];
 }
