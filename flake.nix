@@ -95,7 +95,7 @@
       });
     in
     {
-      inherit lib;
+      lib = lib // localLib;
 
       nixosModules = import ./modules/nixos;
       darwinModules = import ./modules/darwin;
