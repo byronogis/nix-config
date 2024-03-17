@@ -21,4 +21,7 @@ in
   python = defineDev [
     ./python.nix
   ];
+  go = defineDev [
+    ./go.nix
+  ];
 }
