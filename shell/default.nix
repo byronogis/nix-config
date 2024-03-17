@@ -4,6 +4,8 @@ let
   defineDev = modules: devenv.lib.mkShell { inherit inputs pkgs modules; };
 in
 {
+  default = (import ../default.nix { inherit pkgs; }).default;
+
   hello = devenv.lib.mkShell {
     inherit inputs pkgs;
     modules = [
