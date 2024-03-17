@@ -20,7 +20,6 @@
             else config.sops.secrets."${username}-password".path;
           # https://nixos.org/manual/nixos/stable/options#opt-users.users._name_.isNormalUser
           isNormalUser = true;
-          shell = pkgs.zsh;
           openssh.authorizedKeys.keys = [
             (
               let
@@ -33,7 +32,7 @@
       )
       host.userAttrs;
 
-  # necessary because of user.shell choose it
+  users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
   sops.secrets = lib.mapAttrs'
