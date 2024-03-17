@@ -23,6 +23,7 @@ A nix config based flakes.
 - home manage by [home-manager](https://github.com/nix-community/home-manager)
 - manage user and host info by [settings](./settings.nix) file
 - can set different ability to different host for single user
+- manage development environment by [devenv](https://github.com/cachix/devenv)
 - ...
 
 ## Structure
@@ -52,7 +53,8 @@ A nix config based flakes.
 │   ├── darwin
 │   └── nixos
 ├── overlays
-└── pkgs
+├── pkgs
+└── shell                              # shell managed with devenv
 ```
 
 ## Usage
