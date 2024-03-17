@@ -11,7 +11,6 @@
       HISTORY = "nix profile history --profile /nix/var/nix/profiles/system";
       CLEAN = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than"; # add time when using, example `clear 7d`
       GC = "sudo nix store gc --debug";
-      DEV = "nix develop --impure NCP";
 
       # service
       STOP = "sudo systemctl stop";
