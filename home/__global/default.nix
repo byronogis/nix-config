@@ -5,7 +5,7 @@
     stateVersion = "23.11";
     shellAliases = {
       # nix
-      check = "nix flake check --show-trace";
+      check = "nix flake check --show-trace --impure";
       build = "sudo nixos-rebuild switch --show-trace --flake "; # add path when using, example `build .`
       update = "nix flake update";
       history = "nix profile history --profile /nix/var/nix/profiles/system";
