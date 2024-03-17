@@ -17,6 +17,10 @@
     file = { };
     sessionPath = [ ];
     sessionVariables = { };
-    shellAliases = { };
+    shellAliases = {
+      p = "cd ~/project";
+      pp = "cd ~/project/personal";
+      pd = "cd ~/project/demo";
+    };
   };
 }
