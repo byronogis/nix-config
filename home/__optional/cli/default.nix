@@ -1,7 +1,7 @@
-{ lib, localLib, ... }: {
+{ pkgs, lib, localLib, ... }: {
   imports = [ ] ++ localLib.importAllFromPath ./.;
 
-  packages = with pkgs; [
+  home.packages = with pkgs; [
     tree
     wget
   ];
