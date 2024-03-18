@@ -11,14 +11,11 @@
   ];
 
   home = {
-    packages = with pkgs; [
-      tree
-    ];
+    packages = with pkgs; [ ];
     file = { };
     sessionPath = [ ];
     sessionVariables = { };
-    shellAliases = {
-    };
+    shellAliases = { };
   };
 
   programs.zsh.shellGlobalAliases = {
