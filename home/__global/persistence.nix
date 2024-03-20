@@ -15,6 +15,7 @@
       ] ++ (lib.attrByPath [ "persistence" "directories" ] [ ] user);
       files = [
         # ...
+        ".local/share/nix/trusted-settings.json"
       ] ++ (lib.attrByPath [ "persistence" "files" ] [ ] user);
       allowOther = true;
     };
