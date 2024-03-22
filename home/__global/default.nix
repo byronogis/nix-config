@@ -5,9 +5,9 @@
     stateVersion = "23.11";
     shellAliases = {
       # nix
-      CHECK = "nix flake check --show-trace --impure --flake NCP";
+      CHECK = "nix flake check --show-trace --impure NCP";
       BUILD = "sudo nixos-rebuild switch --show-trace --flake NCP";
-      UPDATE = "nix flake update --flake NCP";
+      UPDATE = "nix flake update NCP";
       HISTORY = "nix profile history --profile /nix/var/nix/profiles/system";
       CLEAN = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than"; # add time when using, example `clear 7d`
       GC = "sudo nix store gc --debug";

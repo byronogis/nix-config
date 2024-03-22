@@ -32,8 +32,6 @@
     nix-ld-rs = {
       url = "github:/nix-community/nix-ld-rs";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.flake-compat.follows = "flake-compat";
     };
 
     # sop
@@ -46,27 +44,7 @@
     # devenv
     devenv = {
       url = "github:cachix/devenv";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.pre-commit-hooks.follows = "pre-commit-hooks";
     };
-
-    /**
-     * mainly for other inputs to follow
-     */
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
-    };
-    flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-    };
-    systems.url = "github:nix-systems/default";
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
@@ -83,7 +61,7 @@
     } @ inputs:
     let
       inherit (self) outputs;
-      lib = nixpkgs.lib // inputs.home-manager.lib // inputs.flake-utils.lib;
+      lib = nixpkgs.lib // inputs.home-manager.lib;
 
       localLib = import ./lib { inherit lib; };
       settings = import ./settings.nix { inherit lib; };
