@@ -22,6 +22,7 @@
     P = "~/project";
     PP = "~/project/personal";
     PD = "~/project/demo";
+    PC = "~/project/clone";
     NCP = "~/project/personal/nix-config";
   };
 }
