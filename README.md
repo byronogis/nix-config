@@ -63,13 +63,18 @@ A nix config based flakes.
 
 1. Boot from nixos live cd
 
+2. Clone this repo
+
 2. CD to current repo dir
 
 3. Enable flakes environment
 
 ```bash
+# enable flakes in live
+export NIX_CONFIG="experimental-features = nix-command flakes"
+
 # enable flakes environment
-nix-shell
+nix develop
 ```
 
 4. [Config new user and host](#add-new-user-and-host)
