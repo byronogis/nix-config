@@ -117,7 +117,13 @@ Then copy `hardware-configuration.nix` to `host/<hostname>/` dir. And import it 
 
 ```bash
 # install 
-nixos-install --flake .#<hostname> --show-trace
+nixos-install --flake .#<hostname> --show-trace --no-root-passwd
+```
+
+8. Reboot
+
+```bash
+reboot
 ```
 
 ### Rebuild(Update) After
