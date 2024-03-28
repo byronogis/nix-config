@@ -10,14 +10,8 @@
         username: user: {
           extraGroups = [ "wheel" ];
           # `hashedPassword` > `password` > `hashedPasswordFile` > `initialPassword` > `initialHashedPassword`
-          initialPassword =
-            if (user ? "initialPassword")
-            then user.initialPassword
-            else null;
-          hashedPasswordFile =
-            if (user ? "initialPassword")
-            then null
-            else config.sops.secrets."${username}-password".path;
+          initialPassword = user.initialPassword;
+          hashedPasswordFile = lib.attrByPath [ "${username}-password" "path" ] null config.sops.secrets;
           # https://nixos.org/manual/nixos/stable/options#opt-users.users._name_.isNormalUser
           isNormalUser = true;
           openssh.authorizedKeys.keys = [
@@ -42,7 +36,5 @@
         neededForUsers = true;
       }
     )
-    (lib.attrsets.filterAttrs
-      (username: user: !(user ? "initialPassword"))
-      host.userAttrs);
+    host.userAttrs;
 }
