@@ -10,6 +10,7 @@
     ../__optional/systemd-boot.nix
     ../__optional/nix-ld.nix
     ../__optional/vsftpd.nix
+    ../__optional/vm.nix
   ];
 
   # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
