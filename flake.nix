@@ -87,6 +87,7 @@
 
       nixosModules = import ./modules/nixos;
       darwinModules = import ./modules/darwin;
+      homeManagerModules = import ./modules/home-manager;
 
       overlays = import ./overlays { inherit inputs outputs; };
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
