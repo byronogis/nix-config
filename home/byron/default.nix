@@ -8,6 +8,8 @@
 }: {
   imports = [
     ../__optional/cli
+
+    ../__optional/desktop/hyprland
   ];
 
   home = {
