@@ -1,4 +1,4 @@
-{host, ...}: {
+{ host, ... }: {
   services.vsftpd = {
     enable = true;
     writeEnable = true;
@@ -13,7 +13,7 @@
 
   networking.firewall = {
     allowedTCPPorts = [ 20 21 ];
-    allowedTCPPortRanges = [ { from = 56250; to = 56260; } ];
+    allowedTCPPortRanges = [{ from = 56250; to = 56260; }];
     connectionTrackingModules = [ "ftp" ];
   };
 }
