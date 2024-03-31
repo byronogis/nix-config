@@ -27,30 +27,14 @@
       hostname = "mynixos";
       os = "nixos";
       system = "x86_64-linux";
-      device = "sda"; # used by disko 
-      impermanence = true; # whether to use impermanence
-      persistencePath = "/persist"; # used by impermanence, absolute path
+      device = "sda";
+      impermanence = true;
+      persistencePath = "/persist";
       userAttrs = {
         inherit (userAttrs) byron;
       };
-      allowedPorts = [ ]; # used by firewall
+      allowedPorts = [ ];
     };
-    # mynixos2 = {
-    #   hostname = "mynixos2";
-    #   os = "nixos";
-    #   system = "x86_64-linux";
-    #   userAttrs = {
-    #     inherit (userAttrs) byron;
-    #   };
-    # };
-    # mydarwin = {
-    #   hostname = "mydarwin";
-    #   os = "darwin";
-    #   system = "x86_64-darwin";
-    #   userAttrs = {
-    #     inherit (userAttrs) byron;
-    #   };
-    # };
   };
 
   # ==> [ "mydarwin" "mynixos" "mynixos2" ]
@@ -59,7 +43,7 @@
   # ==> [ { ... } { ... } { ... } ]
   hostvalues = builtins.attrValues hostAttrs;
 
-  # ==> [ "x86_64-darwin" "x86_64-linux" ]
+  # ==> [ "x86_64-darwin" "x86_64-linux" ... ]
   systems = lib.lists.unique (
     lib.attrsets.mapAttrsToList
       (
