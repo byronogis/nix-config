@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, config, ... }: {
   wayland.windowManager.hyprland.settings = {
     workspace = map
       (m:
