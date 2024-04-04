@@ -12,6 +12,7 @@
     ../__optional/vsftpd.nix
 
     ../__optional/vm.nix
+    ../__optional/font.nix
     ../__optional/desktop/hyprland
   ];
 
