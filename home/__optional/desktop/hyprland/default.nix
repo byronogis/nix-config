@@ -8,6 +8,7 @@
 
     ../../gui/foot.nix
     ../../gui/wofi.nix
+    ../../gui/waybar.nix
   ];
 
   xdg.portal = {
@@ -21,6 +22,7 @@
   home.sessionVariables = {
     __TERMINAL = "foot";
     __LAUNCHER = "wofi -S drun -x 10 -y 10 -W 25% -H 60%";
+    __STATUS_BAR = "waybar";
 
   };
 
