@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ lib, config, ... }: {
   wayland.windowManager.hyprland.settings = {
     bindm = [
       "SUPER,mouse:272,movewindow"
@@ -11,19 +11,23 @@
           [ "F1" "F2" "F3" "F4" "F5" "F6" "F7" "F8" "F9" "F10" "F11" "F12" ];
       in
       [
-        "SUPER,Return,exec,${config.home.sessionVariables.TERMINAL}"
+        "SUPER,Return,exec,${config.home.sessionVariables.__TERMINAL}"
+        "SUPER,X,exec,${config.home.sessionVariables.__LAUNCHER}"
       ] ++
+
       # Change workspace
       (map
         (n:
           "SUPER,${n},workspace,name:${n}"
         )
         workspaces) ++
+
       # Move window to workspace
       (map
         (n:
           "SUPERSHIFT,${n},movetoworkspacesilent,name:${n}"
         )
-        workspaces);
+        workspaces)
+    ;
   };
 }

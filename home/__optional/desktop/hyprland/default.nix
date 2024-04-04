@@ -1,17 +1,27 @@
 { config, pkgs, lib, inputs, ... }: {
   imports = [
+    ../__base
+
     ./binds.nix
-    ../../gui/kitty.nix
+    ./monitors.nix
+    ./workspace.nix
+
+    ../../gui/foot.nix
+    ../../gui/wofi.nix
   ];
 
   xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.inputs.hyprland.xdg-desktop-portal-hyprland ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.inputs.hyprland.xdg-desktop-portal-hyprland
+    ];
     configPackages = [ config.wayland.windowManager.hyprland.package ];
   };
 
   home.sessionVariables = {
-    TERMINAL = "kitty";
+    __TERMINAL = "foot";
+    __LAUNCHER = "wofi";
+
   };
 
   wayland.windowManager.hyprland = {
@@ -26,29 +36,7 @@
       ];
     };
     plugins = [ ];
-    settings = {
-      monitor = map
-        (m:
-          let
-            resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-            position = "${toString m.x}x${toString m.y}";
-          in
-          "${m.name},${if m.enabled then "${resolution},${position},1" else "disable"}"
-        )
-        (config.monitors);
-
-      workspace = map
-        (m:
-          "${m.name},${m.workspace}"
-        )
-        (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
-    };
+    settings = { };
     extraConfig = "";
   };
-
-  # home.packages = with pkgs; [
-  #   waybar
-  #   swaylock
-  #   wlogout
-  # ];
 }
