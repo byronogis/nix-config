@@ -20,7 +20,7 @@
 
   home.sessionVariables = {
     __TERMINAL = "foot";
-    __LAUNCHER = "wofi";
+    __LAUNCHER = "wofi -S drun -x 10 -y 10 -W 25% -H 60%";
 
   };
 
