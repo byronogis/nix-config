@@ -11,6 +11,7 @@
     };
     animations = { };
     input = {
+      follow_mouse = 2; # just focus on click
       touchpad = { };
       touchdevice = { };
       tablet = { };
