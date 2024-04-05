@@ -13,6 +13,7 @@
     ../../gui/foot.nix
     ../../gui/wofi.nix
     ../../gui/waybar.nix
+    ../../gui/mako.nix
   ];
 
   xdg.portal = {
