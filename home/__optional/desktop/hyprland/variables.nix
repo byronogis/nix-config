@@ -3,7 +3,7 @@
 { lib, config, ... }: {
   wayland.windowManager.hyprland.settings = {
     general = {
-      layout = "master";
+      layout = "dwindle"; # master dwindle
       resize_on_border = true;
     };
     decoration = {
