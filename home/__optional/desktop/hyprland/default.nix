@@ -28,6 +28,7 @@
     __WM_STATUS_BAR = "waybar";
     __WM_NOTIFICATION_DAEMON = "mako";
     __WM_LOGOUT_DIALOGUE = "wlogout";
+    __WM_BROWSER = "firefox";
 
   };
 

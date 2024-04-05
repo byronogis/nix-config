@@ -42,6 +42,7 @@
 
         "$MOD,Return,exec,${config.home.sessionVariables.__WM_TERMINAL}"
         "$MOD,x,exec,${config.home.sessionVariables.__WM_LAUNCHER}"
+        "$MOD,b,exec,${config.home.sessionVariables.__WM_BROWSER}"
       ]
 
       # Change workspace

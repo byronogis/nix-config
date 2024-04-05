@@ -10,6 +10,7 @@
     ../__optional/cli
 
     ../__optional/desktop/hyprland
+    ../__optional/gui/firefox.nix
   ];
 
   home = {
