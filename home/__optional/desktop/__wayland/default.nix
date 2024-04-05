@@ -8,6 +8,6 @@
   ];
 
   xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-wlr
+    pkgs.xdg-desktop-portal-wlr # for compositors based wlroots
   ];
 }

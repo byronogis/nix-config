@@ -13,6 +13,7 @@ let
 
   systemctl = "${pkgs.systemd}/bin/systemctl";
   journalctl = "${pkgs.systemd}/bin/journalctl";
+  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
 
   hasHyprland = config.wayland.windowManager.hyprland.enable;
 in
@@ -44,6 +45,7 @@ in
           "custom/gpu"
           "memory"
           "clock"
+          "pulseaudio"
           "battery"
         ];
         modules-right = [
@@ -81,6 +83,17 @@ in
         memory = {
           format = "  {}%";
           interval = 5;
+        };
+        pulseaudio = {
+          format = "{icon}  {volume}%";
+          format-muted = "   0%";
+          format-icons = {
+            headphone = "󰋋";
+            headset = "󰋎";
+            portable = "";
+            default = [ "" "" "" ];
+          };
+          on-click = pavucontrol; # need pkgs.pavucontrol
         };
         battery = {
           bat = "BAT0";
