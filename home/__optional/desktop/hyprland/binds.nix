@@ -19,7 +19,7 @@
       in
       [
         "$MOD_SHIFT,q,killactive"
-        "$MOD_SHIFT,e,exit"
+        "$MOD_SHIFT,backspace,exec,${config.home.sessionVariables.__WM_LOGOUT_DIALOGUE}"
 
         "$MOD,s,togglesplit" # dwindle layout
         "$MOD,f,fullscreen,1"

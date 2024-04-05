@@ -14,6 +14,7 @@
     ../../gui/wofi.nix # launcher
     ../../gui/waybar.nix # status bar
     ../../gui/mako.nix # notification daemon
+    ../../gui/wlogout.nix # logout dialogue
   ];
 
   xdg.portal = {
@@ -26,6 +27,7 @@
     __WM_LAUNCHER = "wofi -S drun -x 10 -y 10 -W 25% -H 60%";
     __WM_STATUS_BAR = "waybar";
     __WM_NOTIFICATION_DAEMON = "mako";
+    __WM_LOGOUT_DIALOGUE = "wlogout";
 
   };
 
