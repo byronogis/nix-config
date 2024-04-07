@@ -146,4 +146,8 @@ in
       }
     '';
   };
+
+  systemd.user.services.waybar = {
+    Unit.StartLimitBurst = 30;
+  };
 }
