@@ -14,6 +14,7 @@
     ../__optional/vmware.nix
     ../__optional/font.nix
     ../__optional/pipware.nix
+    ../__optional/greetd.nix
     ../__optional/desktop/hyprland
   ];
 
