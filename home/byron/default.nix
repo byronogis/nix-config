@@ -4,6 +4,7 @@
 , host
 , user
 , pkgs
+, lib
 , ...
 }: {
   imports = [
@@ -26,6 +27,6 @@
     PP = "~/project/personal";
     PD = "~/project/demo";
     PC = "~/project/clone";
-    NCP = "~/project/personal/nix-config";
+    NCP = lib.mkForce "~/project/personal/nix-config";
   };
 }
