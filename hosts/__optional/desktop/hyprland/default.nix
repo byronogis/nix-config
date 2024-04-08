@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ../__base
-    ../../greetd.nix
+    # ../../greetd.nix
   ];
 
   programs.hyprland.enable = true;
