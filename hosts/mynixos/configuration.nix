@@ -13,7 +13,7 @@
     ../__optional/v2raya.nix
 
     ../__optional/vmware.nix
-    ../__optional/desktop/hyprland
+    ../__optional/desktop/kde
   ];
 
   # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .

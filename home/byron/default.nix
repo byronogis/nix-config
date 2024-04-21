@@ -10,7 +10,7 @@
   imports = [
     ../__optional/cli
 
-    ../__optional/desktop/hyprland
+    ../__optional/desktop/kde
     ../__optional/gui/firefox.nix
   ];
 

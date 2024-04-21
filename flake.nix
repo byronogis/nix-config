@@ -56,6 +56,13 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    # KDE Plasma Manager (unofficial)
+    plasma-manager = {
+      url = "github:pjones/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
 
