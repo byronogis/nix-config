@@ -18,6 +18,10 @@ let
   hasHyprland = config.wayland.windowManager.hyprland.enable;
 in
 {
+  imports = [
+    ./pavucontrol.nix
+  ];
+
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oldAttrs: {
