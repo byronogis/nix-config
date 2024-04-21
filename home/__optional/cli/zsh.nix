@@ -29,6 +29,7 @@
       };
       shellAliases = {
         SP = "set_proxy";
+        DEV = "dev_function";
       };
       initExtra = ''
         # NOTE Fixme fnm can not completions postinstall
@@ -60,6 +61,11 @@
 
             echo "Proxy set to: $proxy_url"
           fi
+        }
+
+        # nix 开发环境
+        dev_function() {
+          nix develop --impure ~/project/personal/nix-config#$1
         }
       '';
     };
