@@ -14,7 +14,7 @@
     ../__optional/ollama.nix
 
     ../__optional/vmware.nix
-    ../__optional/desktop/kde
+    ../__optional/desktop/hyprland
   ];
 
   # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .

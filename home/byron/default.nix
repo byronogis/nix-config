@@ -11,7 +11,7 @@
     ../__optional/cli
     ../__optional/fcitx5
 
-    ../__optional/desktop/kde
+    ../__optional/desktop/hyprland
     ../__optional/gui/firefox.nix
   ];
 
