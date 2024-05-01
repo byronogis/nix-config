@@ -35,13 +35,4 @@
   };
 
   programs.zsh.enable = true;
-
-  sops.secrets = lib.mapAttrs'
-    (username: user: lib.nameValuePair
-      "${username}-password"
-      {
-        neededForUsers = true;
-      }
-    )
-    host.userAttrs;
 }

@@ -45,11 +45,4 @@
     # This lets nix2 commands still use <nixpkgs>
     nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
   };
-
-  sops.secrets = lib.mapAttrs'
-    (username: user: lib.nameValuePair
-      "${username}-github-access-token"
-      { }
-    )
-    host.userAttrs;
 }
