@@ -1,6 +1,8 @@
 { inputs
 , lib
 , pkgs
+, config
+, host
 , ...
 }: {
   nix = {
@@ -26,6 +28,13 @@
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
       trusted-users = [ "root" "@wheel" ];
+      access-tokens = [ ] ++
+        # TODO  current need --impure flag when using build
+        lib.attrsets.mapAttrsToList
+          (
+            username: _: "github.com=${builtins.readFile (lib.attrByPath [ "${username}-github-access-token" "path" ] null config.sops.secrets)}"
+          )
+          host.userAttrs;
     };
 
     # Add each flake input as a registry
@@ -36,4 +45,11 @@
     # This lets nix2 commands still use <nixpkgs>
     nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
   };
+
+  sops.secrets = lib.mapAttrs'
+    (username: user: lib.nameValuePair
+      "${username}-github-access-token"
+      { }
+    )
+    host.userAttrs;
 }
