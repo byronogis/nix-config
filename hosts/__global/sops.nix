@@ -6,13 +6,19 @@
   sops = {
     defaultSopsFile = ../secrets.yaml;
 
-    secrets = lib.attrsets.concatMapAttrs
-      (username: user: {
-        "${username}-password" = {
-          neededForUsers = true;
-        };
-        "${username}-github-access-token" = { };
-      })
-      host.userAttrs;
+    secrets =
+      let
+        user-secrets = lib.attrsets.concatMapAttrs
+          (username: user: {
+            "${username}-password" = {
+              neededForUsers = true;
+            };
+            "${username}-github-access-token" = { };
+          })
+          host.userAttrs;
+      in
+      {
+        nix-extra-access-tokens = { };
+      } // user-secrets;
   };
 }

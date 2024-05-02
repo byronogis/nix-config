@@ -28,14 +28,10 @@
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
       trusted-users = [ "root" "@wheel" ];
-      access-tokens = [ ] ++
-        # TODO  current need --impure flag when using build
-        lib.attrsets.mapAttrsToList
-          (
-            username: _: "github.com=${builtins.readFile (lib.attrByPath [ "${username}-github-access-token" "path" ] null config.sops.secrets)}"
-          )
-          host.userAttrs;
     };
+    extraOptions = ''
+      !include ${config.sops.secrets.nix-extra-access-tokens.path}
+    '';
 
     # Add each flake input as a registry
     # To make nix3 commands consistent with the flake
