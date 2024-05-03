@@ -31,7 +31,7 @@
         # nix
         CHECK = "nix flake check --show-trace --impure NCP";
         BUILD = "sudo nixos-rebuild switch --show-trace --flake NCP";
-        UPDATE = "nix flake update NCP";
+        UPDATE = "sudo nix flake update NCP"; # need sudo to read `sop.secrets.nix-extra-access-tokens.path` file
         HISTORY = "nix profile history --profile /nix/var/nix/profiles/system";
         CLEAN = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than"; # add time when using, example `clear 7d`
         GC = "sudo nix store gc --debug";
