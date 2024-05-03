@@ -48,13 +48,13 @@
 
     # Hyprland
     hyprland = {
-      url = "github:hyprwm/hyprland";
+      url = "github:hyprwm/hyprland/v0.39.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     # KDE Plasma Manager (unofficial)
     plasma-manager = {
@@ -101,7 +101,7 @@
       devShells = forEachSystem (pkgs: import ./shell { inherit inputs pkgs; });
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
-      # Nixos 
+      # Nixos
       # TODO is there has a simply way: [attr ...] ==> { attr.x: attr; ... } ?
       nixosConfigurations = lib.genAttrs
         (map (host: host.hostname) settings.osGroupAttrs.nixos)
