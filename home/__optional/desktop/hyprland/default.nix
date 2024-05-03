@@ -18,7 +18,6 @@
   ];
 
   xdg.portal = {
-    extraPortals = [ pkgs.inputs.hyprland.xdg-desktop-portal-hyprland ];
     configPackages = [ config.wayland.windowManager.hyprland.package ];
   };
 
@@ -34,15 +33,6 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.inputs.hyprland.hyprland.override { wrapRuntimeDeps = false; };
-    systemd = {
-      enable = true;
-      # Same as default, but stop graphical-session too
-      extraCommands = lib.mkBefore [
-        "systemctl --user stop graphical-session.target"
-        "systemctl --user start hyprland-session.target"
-      ];
-    };
     plugins = [ ];
     # @see https://wiki.hyprland.org/Configuring
     settings = {

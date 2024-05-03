@@ -46,16 +46,6 @@
       url = "github:cachix/devenv";
     };
 
-    # Hyprland
-    hyprland = {
-      url = "github:hyprwm/hyprland/v0.39.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-
     # KDE Plasma Manager (unofficial)
     plasma-manager = {
       url = "github:pjones/plasma-manager";
