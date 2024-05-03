@@ -13,9 +13,11 @@
     ../__optional/v2raya.nix
     ../__optional/ollama.nix
 
-    ../__optional/vmware.nix
-    ../__optional/desktop/hyprland
+    # ../__optional/vmware.nix
+    # ../__optional/desktop/hyprland
   ];
+
+  networking.firewall.enable = lib.mkForce false;
 
   # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?

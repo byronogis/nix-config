@@ -9,10 +9,10 @@
 }: {
   imports = [
     ../__optional/cli
-    ../__optional/fcitx5
+    # ../__optional/fcitx5
 
-    ../__optional/desktop/hyprland
-    ../__optional/gui/firefox.nix
+    # ../__optional/desktop/hyprland
+    # ../__optional/gui/firefox.nix
   ];
 
   home = {
