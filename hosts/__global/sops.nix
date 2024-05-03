@@ -11,6 +11,7 @@
         user-secrets = lib.attrsets.concatMapAttrs
           (username: user: {
             "${username}-password" = {
+              # neededForUsers cannot be used for secrets that are not root-owned
               neededForUsers = true;
             };
             "${username}-github-access-token" = { };
