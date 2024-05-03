@@ -1,3 +1,7 @@
+# edit secret file:
+# sudo SOPS_AGE_KEY_FILE=/run/secrets.d/age-keys.txt sops ./hosts/secrets.yaml
+# see: https://github.com/getsops/sops?tab=readme-ov-file#encrypting-using-age
+
 { inputs, lib, config, host, ... }: {
   imports = [
     inputs.sops-nix.nixosModules.sops
