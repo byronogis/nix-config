@@ -26,4 +26,10 @@ in
   go = defineDev [
     ./go.nix
   ];
+
+  byron = defineDev [
+    ./js.nix
+    ./python.nix
+    ./go.nix
+  ];
 }

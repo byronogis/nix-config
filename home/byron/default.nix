@@ -17,7 +17,9 @@
 
   home = {
     packages = with pkgs; [ ];
-    file = { };
+    file = {
+      "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --impure";
+    };
     sessionPath = [ ];
     sessionVariables = { };
     shellAliases = { };
