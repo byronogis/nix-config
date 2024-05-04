@@ -14,6 +14,7 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = { inherit inputs outputs localLib host; };
+  home-manager.backupFileExtension = "backup";
 
   home-manager.users =
     builtins.mapAttrs
