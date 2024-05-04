@@ -28,6 +28,18 @@
         "/etc/ssh/ssh_host_ed25519_key"
         "/etc/ssh/ssh_host_ed25519_key.pub"
       ];
+      users =
+        builtins.mapAttrs
+          (username: user: (lib.recursiveUpdate
+            {
+              directories = [ ];
+              files = [
+                ".local/share/nix/trusted-settings.json"
+              ];
+            }
+            user.persistence
+          ))
+          host.userAttrs;
     };
   };
   programs.fuse.userAllowOther = true;

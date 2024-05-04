@@ -10,8 +10,12 @@
         directories = [
           "project"
           ".vscode-server"
+          ".local/share/fnm"
+          ".local/share/direnv"
+          ".ssh"
         ];
         files = [
+          ".zsh_history"
           # ...
         ];
       }; # used by impermanence

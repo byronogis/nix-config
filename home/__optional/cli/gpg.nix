@@ -9,7 +9,6 @@ let
   pgpPublicKeyFile = ../../${user.username}/pgp-public-key.asc;
 in
 
-lib.recursiveUpdate
 {
   services.gpg-agent = {
     enable = true;
@@ -30,11 +29,3 @@ lib.recursiveUpdate
   };
 
 }
-{ }
-# (lib.optionalAttrs host.impermanence {
-#   home.persistence."${host.persistencePath}/home/${user.username}" = {
-#     directories = [
-#       ".gnupg"
-#     ];
-#   };
-# })
