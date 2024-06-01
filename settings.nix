@@ -39,6 +39,18 @@
       };
       allowedPorts = [ ];
     };
+    itx-nixos = {
+      hostname = "itx-nixos";
+      os = "nixos";
+      system = "x86_64-linux";
+      device = "sda";
+      impermanence = true;
+      persistencePath = "/persist";
+      userAttrs = {
+        inherit (userAttrs) byron;
+      };
+      allowedPorts = [ ];
+    };
   };
 
   # ==> [ "mydarwin" "mynixos" "mynixos2" ]

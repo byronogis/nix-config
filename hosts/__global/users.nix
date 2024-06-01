@@ -20,13 +20,14 @@
               # https://nixos.org/manual/nixos/stable/options#opt-users.users._name_.isNormalUser
               isNormalUser = true;
               openssh.authorizedKeys.keys = [
-                (
-                  let
-                    sshAuthorizedKeysFile = ../../home/${username}/ssh-authorized-keys.pub;
-                  in
-                  if (builtins.pathExists sshAuthorizedKeysFile) then (builtins.readFile sshAuthorizedKeysFile) else ""
-                )
-              ];
+                # ...
+              ] ++ (
+                let
+                  sshAuthorizedKeysFile = ../../home/${username}/ssh-authorized-keys.pub;
+                  isExit = builtins.pathExists sshAuthorizedKeysFile;
+                in
+                if (isExit) then (lib.splitString "\n" (builtins.readFile sshAuthorizedKeysFile)) else ""
+              );
             }
         )
         host.userAttrs;

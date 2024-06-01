@@ -5,6 +5,7 @@ keys:
   # Hosts
   - &hosts:
     - &mynixos age1ssz4a0gyy6vt99cad22pgq9dp888htyplmchry9hc57xy7q4l9gs7lcz7s
+    - &itx-nixos age1x9w6endjxpt9jyfjj52tnrs7xg6phf3hys4tdqf565877m2cta3shu2tjt
 creation_rules:
   - path_regex: hosts/mynixos/secrets.ya?ml$
     key_groups:
@@ -12,9 +13,16 @@ creation_rules:
       - *mynixos
       pgp:
       - *byron
+  - path_regex: hosts/itx-nixos/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *itx-nixos
+      pgp:
+      - *byron
   - path_regex: hosts/secrets.ya?ml$
     key_groups:
     - age:
       - *mynixos
+      - *itx-nixos
       pgp:
       - *byron
