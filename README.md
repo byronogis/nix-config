@@ -24,6 +24,7 @@ A nix config based flakes.
 - manage user and host info by [settings](./settings.nix) file
 - can set different ability to different host for single user
 - manage development environment by [devenv](https://github.com/cachix/devenv)
+- manage secert by [sops](https://github.com/Mic92/sops-nix)
 - ...
 
 ## Structure
@@ -60,6 +61,23 @@ A nix config based flakes.
 ## Usage
 
 ### First Time Install
+
+<details>
+<summary><b>0. Manage keys for sops (optional)</b></summary>
+
+Generate ssh keys, name as:
+
+`ssh_host_rsa_key` `ssh_host_ed25519_key`
+
+copy these keys to right position (eg: `/etc/ssh`) after install and before first reboot, 
+
+change key (not include pub) file mode, `chmod 0600 /path/to/key`
+
+> use another key.txt file when decrypting, like:
+>
+> `sudo SOPS_AGE_KEY_FILE=/run/secrets.d/age-keys.txt sops hosts/secrets.yaml`
+
+</details>
 
 1. Boot from nixos live cd
 
