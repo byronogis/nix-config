@@ -28,7 +28,8 @@ in
   ];
 
   byron = defineDev [
-    ./js.nix
+    # I use fnm to manage node
+    # ./js.nix 
     ./python.nix
     ./go.nix
   ];
