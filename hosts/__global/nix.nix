@@ -19,7 +19,7 @@
       trusted-substituters = [
         "https://mirror.nju.edu.cn/nix-channels/store"
         "https://mirrors.ustc.edu.cn/nix-channels/store"
-        "https://mirror.sjtu.edu.cn/nix-channels/store"
+        # "https://mirror.sjtu.edu.cn/nix-channels/store"
         "https://nix-community.cachix.org"
         "https://devenv.cachix.org"
       ];
