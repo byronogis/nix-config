@@ -30,6 +30,14 @@
     PP = "~/project/personal";
     PD = "~/project/demo";
     PC = "~/project/clone";
+    PW = "~/project/work";
     NCP = lib.mkForce "~/project/personal/nix-config";
   };
+
+  programs.git.includes = [
+    {
+      path = "~/project/work/.gitconfig";
+      condition = "gitdir:~/project/work/";
+    }
+  ];
 }
