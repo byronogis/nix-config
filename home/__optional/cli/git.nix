@@ -10,6 +10,7 @@
       extraConfig = {
         init.defaultBranch = "main";
         push.autoSetupRemote = true;
+        diff.algorithm = "histogram";
       };
     };
   };
