@@ -50,6 +50,9 @@
         inherit (userAttrs) byron;
       };
       allowedPorts = [ ];
+      allowedPortRanges = [
+        { from = 5173; to = 5179; }
+      ];
     };
   };
 

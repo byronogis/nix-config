@@ -13,7 +13,7 @@
     ../__optional/v2raya.nix
   ];
 
-  networking.firewall.enable = lib.mkForce false;
+  networking.firewall.enable = lib.mkForce true;
 
   swapDevices = [
     {
