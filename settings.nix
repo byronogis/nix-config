@@ -39,7 +39,7 @@
       };
       allowedPorts = [ ];
       allowedPortRanges = [
-        { from = 5173; to = 5179; }
+        { from = 3000; to = 5999; }
       ];
     };
   };
