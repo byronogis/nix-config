@@ -27,18 +27,6 @@
   usernames = builtins.attrNames userAttrs;
 
   hostAttrs = {
-    mynixos = {
-      hostname = "mynixos";
-      os = "nixos";
-      system = "x86_64-linux";
-      device = "sda";
-      impermanence = true;
-      persistencePath = "/persist";
-      userAttrs = {
-        inherit (userAttrs) byron;
-      };
-      allowedPorts = [ ];
-    };
     itx-nixos = {
       hostname = "itx-nixos";
       os = "nixos";
