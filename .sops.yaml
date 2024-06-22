@@ -1,7 +1,7 @@
 keys:
   # Users
   - &users:
-    - &byron 0F544E22FBAB0CE27F1023773B5E97E08FD4F86A
+    - &byron C946B9667B15865746391841AEBF14525A95C379
   # Hosts
   - &hosts:
     - &mynixos age1ssz4a0gyy6vt99cad22pgq9dp888htyplmchry9hc57xy7q4l9gs7lcz7s
