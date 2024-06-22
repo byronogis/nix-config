@@ -29,8 +29,8 @@ in
 
   byron = defineDev [
     # I use fnm to manage node
-    # ./js.nix 
-    ./python.nix
-    ./go.nix
+    # ./js.nix
+    # ./python.nix
+    # ./go.nix
   ];
 }
