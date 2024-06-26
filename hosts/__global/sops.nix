@@ -19,6 +19,7 @@
               neededForUsers = true;
             };
             "${username}-github-access-token" = { };
+            "${username}-zerotierone-net" = { };
           })
           host.userAttrs;
       in

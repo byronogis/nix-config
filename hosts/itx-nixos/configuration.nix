@@ -11,6 +11,7 @@
     ../__optional/nix-ld.nix
     ../__optional/vsftpd.nix
     ../__optional/v2raya.nix
+    ../__optional/zerotierone.nix
   ];
 
   networking.firewall.enable = lib.mkForce true;
