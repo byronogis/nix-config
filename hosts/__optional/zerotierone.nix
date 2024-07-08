@@ -12,6 +12,10 @@
       directories = [
         # ...
       ];
+      files = [
+        "/var/lib/zerotier-one/identity.public"
+        "/var/lib/zerotier-one/identity.secret"
+      ];
     };
   };
 }
