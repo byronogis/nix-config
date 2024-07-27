@@ -9,6 +9,8 @@
       persistence = {
         directories = [
           "project"
+          "Document"
+          "Downloads"
           ".vscode-server"
           ".local/share/fnm"
           ".local/share/direnv"
