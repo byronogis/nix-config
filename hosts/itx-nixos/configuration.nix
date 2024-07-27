@@ -27,6 +27,16 @@
     "fs.inotify.max_user_watches" = 524288;
   };
 
+  services.openvpn = {
+    servers = {
+      # systemctl status openvpn-byron
+      byron = {
+        config = "config /home/byron/Document/openvpn/byron.ovpn";
+        autoStart = false;
+      };
+    };
+  };
+
   # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
 }
