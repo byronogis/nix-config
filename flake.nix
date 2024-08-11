@@ -28,12 +28,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nix-ld
-    nix-ld-rs = {
-      url = "github:/nix-community/nix-ld-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # sop
     sops-nix = {
       url = "github:Mic92/sops-nix";
