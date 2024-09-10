@@ -1,0 +1,5 @@
+{
+  languages.dart = {
+    enable = true;
+  };
+}

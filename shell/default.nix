@@ -26,6 +26,9 @@ in
   go = defineDev [
     ./go.nix
   ];
+  dart = defineDev [
+    ./dart.nix
+  ];
 
   byron = defineDev [
     # I use fnm to manage node
