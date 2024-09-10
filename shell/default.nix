@@ -26,8 +26,8 @@ in
   go = defineDev [
     ./go.nix
   ];
-  dart = defineDev [
-    ./dart.nix
+  flutter = defineDev [
+    ./flutter.nix
   ];
 
   byron = defineDev [
