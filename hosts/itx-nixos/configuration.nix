@@ -14,7 +14,7 @@
     ../__optional/zerotierone.nix
   ];
 
-  networking.firewall.enable = lib.mkForce true;
+  networking.firewall.enable = lib.mkForce false;
 
   swapDevices = [
     {
