@@ -15,7 +15,8 @@
     nativeBuildInputs = with pkgs; [
       nix
       git
-      disko
+      # TODO enable under nixos
+      # disko
 
       sops
       ssh-to-age

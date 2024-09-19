@@ -99,6 +99,22 @@
         (hostname: lib.nixosSystem {
           modules = [
             ./hosts/__global
+            ./hosts/__global/nixos
+            ./hosts/${hostname}/configuration.nix
+          ];
+          specialArgs = {
+            inherit inputs outputs localLib;
+            host = settings.hostAttrs.${hostname};
+          };
+        });
+
+      # Darwin
+      darwinConfigurations = lib.genAttrs
+        (map (host: host.hostname) settings.osGroupAttrs.darwin)
+        (hostname: inputs.nix-darwin.lib.darwinSystem {
+          modules = [
+            ./hosts/__global
+            ./hosts/__global/darwin
             ./hosts/${hostname}/configuration.nix
           ];
           specialArgs = {

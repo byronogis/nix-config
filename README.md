@@ -14,6 +14,7 @@ A nix config based flakes.
   - [Settings](#settings)
     - [User](#user)
     - [Host](#host)
+  - [TODO](#todo)
   - [References](#references)
 
 ## Highlight
@@ -65,6 +66,9 @@ A nix config based flakes.
 <details>
 <summary><b>0. Manage keys for sops (optional)</b></summary>
 
+> [Generating a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
+>
+
 Generate ssh keys, name as:
 
 `ssh_host_rsa_key` `ssh_host_ed25519_key`
@@ -83,9 +87,9 @@ change key (not include pub) file mode, `chmod 0600 /path/to/key`
 
 2. Clone this repo
 
-2. CD to current repo dir
+3. CD to current repo dir
 
-3. Enable flakes environment
+4. Enable flakes environment
 
 ```bash
 # enable flakes in live
@@ -238,6 +242,11 @@ A attr inside `hostAttrs` in [settings](./settings.nix) file. Key is hostname, v
 | allowedPortRanges | list   | false    | used by firewall                                                  |
 
 [^user]: [User](#user)
+
+## TODO
+
+- [ ]  docs for darwin usage
+- [ ]  manage sops with system-wide under darwin
 
 
 ## References

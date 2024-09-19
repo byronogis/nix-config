@@ -8,7 +8,7 @@
   ];
 
   sops = {
-    defaultSopsFile = ../secrets.yaml;
+    defaultSopsFile = ../../secrets.yaml;
 
     secrets =
       let

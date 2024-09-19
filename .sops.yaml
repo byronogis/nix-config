@@ -5,6 +5,7 @@ keys:
   # Hosts
   - &hosts:
     - &itx-nixos age1x9w6endjxpt9jyfjj52tnrs7xg6phf3hys4tdqf565877m2cta3shu2tjt
+    - &Byrons-MacBook-Pro age1expdwhwhvvkmqclaeu75sfpfeq7vw8xv7ym6m4q57wql7r6s635s8u5gy0
 creation_rules:
   - path_regex: hosts/itx-nixos/secrets.ya?ml$
     key_groups:
@@ -12,9 +13,16 @@ creation_rules:
       - *itx-nixos
       pgp:
       - *byron
+  - path_regex: hosts/Byrons-MacBook-Pro/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *Byrons-MacBook-Pro
+      pgp:
+      - *byron
   - path_regex: hosts/secrets.ya?ml$
     key_groups:
     - age:
       - *itx-nixos
+      - *Byrons-MacBook-Pro
       pgp:
       - *byron

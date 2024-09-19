@@ -8,7 +8,6 @@
   nix = {
     gc = {
       automatic = true;
-      dates = "weekly";
       # Keep the last 3 generations
       options = "--delete-older-than +3";
     };
@@ -27,7 +26,7 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [ "root" "@wheel" ] ++ builtins.attrNames host.userAttrs;
     };
     extraOptions = ''
       !include ${config.sops.secrets.nix-extra-access-tokens.path}

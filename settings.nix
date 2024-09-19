@@ -44,6 +44,15 @@
         { from = 3000; to = 5999; }
       ];
     };
+
+    Byrons-MacBook-Pro = {
+      hostname = "Byrons-MacBook-Pro";
+      os = "darwin";
+      system = "aarch64-darwin";
+      userAttrs = {
+        inherit (userAttrs) byron;
+      };
+    };
   };
 
   # ==> [ "mydarwin" "mynixos" "mynixos2" ]
