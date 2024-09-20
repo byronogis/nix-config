@@ -6,7 +6,7 @@
 , ...
 }:
 let
-  pubKey = hostname: ./../${hostname}/ssh_host_ed25519_key.pub;
+  pubKey = hostname: ./../../${hostname}/ssh_host_ed25519_key.pub;
 in
 {
   programs.ssh = {
@@ -15,7 +15,7 @@ in
       builtins.mapAttrs
         (hostname: _: {
           publicKeyFile = pubKey hostname;
-          extraHostNames =
+          hostNames =
             lib.optional
               (
                 hostname == host.hostname
