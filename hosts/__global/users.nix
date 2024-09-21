@@ -19,6 +19,7 @@
                 in
                 if (isExit) then (lib.splitString "\n" (builtins.readFile sshAuthorizedKeysFile)) else ""
               );
+              shell = pkgs.zsh;
             }
         )
         host.userAttrs;

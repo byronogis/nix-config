@@ -9,8 +9,8 @@
       builtins.mapAttrs
         (
           username: user: {
-              home = "/Users/${username}";
-            }
+            home = "/Users/${username}";
+          }
         )
         host.userAttrs;
   };

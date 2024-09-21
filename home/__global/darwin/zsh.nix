@@ -8,8 +8,8 @@
   programs = {
     zsh = {
       shellAliases = {
-        #  TODO https://github.com/LnL7/nix-darwin?tab=readme-ov-file#updating
-        BUILD = "sudo darwin-rebuild switch --option eval-cache false --show-trace --flake NCP";
+        BUILD = "darwin-rebuild switch --option eval-cache false --show-trace --flake NCP";
+        UPDATE = "nix flake update NCP";
       };
     };
   };

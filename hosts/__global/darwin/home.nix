@@ -10,4 +10,13 @@
   imports = [
     inputs.home-manager.darwinModules.home-manager
   ];
+
+  home-manager.users =
+    builtins.mapAttrs
+      (username: user: {
+        imports = [
+          ../../../home/__global/darwin
+        ];
+      })
+      host.userAttrs;
 }

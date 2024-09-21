@@ -22,7 +22,5 @@
             }
         )
         host.userAttrs;
-
-    defaultUserShell = pkgs.zsh;
   };
 }

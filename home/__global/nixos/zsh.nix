@@ -9,6 +9,7 @@
     zsh = {
       shellAliases = {
         BUILD = "sudo nixos-rebuild switch --option eval-cache false --show-trace --flake NCP";
+        UPDATE = "sudo nix flake update NCP"; # need sudo to read `sop.secrets.nix-extra-access-tokens.path` file
       };
     };
   };

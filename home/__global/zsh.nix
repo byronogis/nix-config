@@ -23,16 +23,21 @@
       };
       historySubstringSearch = {
         enable = true;
-        searchDownKey = [ "$terminfo[kcud1]" ];
-        searchUpKey = [ "$terminfo[kcuu1]" ];
+        searchDownKey = [
+          "$terminfo[kcud1]"
+          "^[[B"
+        ];
+        searchUpKey = [
+          "$terminfo[kcuu1]"
+          "^[[A"
+        ];
       };
       shellAliases = {
         # nix
         CHECK = "nix flake check --show-trace --impure NCP";
-        UPDATE = "sudo nix flake update NCP"; # need sudo to read `sop.secrets.nix-extra-access-tokens.path` file
         HISTORY = "nix profile history --profile /nix/var/nix/profiles/system";
-        CLEAN = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than"; # add time when using, example `clear 7d`
-        GC = "sudo nix store gc --debug";
+        CLEAN = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d";
+        GC = "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 7d";
 
         # service
         STOP = "sudo systemctl stop";

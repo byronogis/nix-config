@@ -1,0 +1,126 @@
+{ host
+, lib
+, config
+, pkgs
+, ...
+}: {
+  system = {
+    defaults = {
+      smb.NetBIOSName = host.hostname;
+
+      dock = {
+        orientation = "bottom";
+        tilesize = 48;
+        autohide = false;
+        show-recents = true;
+        mineffect = "genie";
+        static-only = false;
+        persistent-apps = [
+          "/System/Applications/Launchpad.app"
+          "/System/Applications/System Settings.app"
+          "/System/Applications/App Store.app"
+          "/Applications/Safari.app"
+          "/System/Applications/Calendar.app"
+          "/System/Applications/Utilities/Terminal.app"
+        ];
+        persistent-others = [
+          #
+        ];
+        # Disable hot corners
+        wvous-bl-corner = 1;
+        wvous-br-corner = 1;
+        wvous-tl-corner = 1;
+        wvous-tr-corner = 1;
+      };
+
+      finder = {
+        FXPreferredViewStyle = "clmv";
+        FXDefaultSearchScope = "SCcf";
+        ShowPathbar = true;
+        ShowStatusBar = true;
+      };
+
+      menuExtraClock = {
+        Show24Hour = true;
+        ShowDate = 1;
+        # TODO showweek
+      };
+
+      screencapture = {
+        disable-shadow = true;
+        location = "~/Desktop";
+      };
+
+
+      screensaver = {
+        askForPassword = true;
+        askForPasswordDelay = 30; # seconds
+      };
+
+      trackpad = {
+        ActuationStrength = 1;
+        Clicking = true;
+        TrackpadRightClick = true;
+
+      };
+
+      SoftwareUpdate = {
+        AutomaticallyInstallMacOSUpdates = false;
+      };
+
+      CustomUserPreferences = {
+        NSGlobalDomain = {
+          AppleShowAllExtensions = true;
+          AppleICUForce24HourTime = true;
+          AppleInterfaceStyleSwitchesAutomatically = true;
+          AppleMeasurementUnits = "Centimeters";
+          AppleMetricUnits = 1;
+          AppleTemperatureUnit = "Celsius";
+          NSAutomaticCapitalizationEnabled = false;
+          NSAutomaticDashSubstitutionEnabled = false;
+          NSAutomaticPeriodSubstitutionEnabled = false;
+          NSAutomaticQuoteSubstitutionEnabled = false;
+          NSAutomaticSpellingCorrectionEnabled = true;
+          NSNavPanelExpandedStateForSaveMode = true;
+          NSNavPanelExpandedStateForSaveMode2 = true;
+        };
+
+        "com.apple.AdLib" = {
+          allowApplePersonalizedAdvertising = false;
+        };
+
+        "com.apple.controlcenter" = {
+          BatteryShowPercentage = true;
+        };
+
+        "com.apple.desktopservices" = {
+          # Avoid creating .DS_Store files on network or USB volumes
+          DSDontWriteNetworkStores = true;
+          DSDontWriteUSBStores = true;
+        };
+
+        # Prevent Photos from opening automatically when devices are plugged in
+        "com.apple.ImageCapture".disableHotPlug = true;
+
+        "com.apple.dock" = {
+          scroll-to-open = true;
+        };
+
+        "com.apple.finder" = {
+          AppleShowAllFiles = true;
+          ShowExternalHardDrivesOnDesktop = true;
+          ShowHardDrivesOnDesktop = true;
+          ShowMountedServersOnDesktop = true;
+          ShowRemovableMediaOnDesktop = true;
+          _FXShowPosixPathInTitle = true;
+          _FXSortFoldersFirst = true;
+        };
+
+        "com.apple.Safari" = {
+          # TODO not working under Sequoia(15.0)
+          # ShowFullURLInSmartSearchField = true;
+        };
+      };
+    };
+  };
+}
