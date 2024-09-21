@@ -21,7 +21,7 @@
           "/System/Applications/App Store.app"
           "/Applications/Safari.app"
           "/System/Applications/Calendar.app"
-          "/System/Applications/Utilities/Terminal.app"
+          "/System/Applications/Calculator.app"
         ];
         persistent-others = [
           #

@@ -11,24 +11,37 @@
     ];
 
     brews = [
+      "v2ray"
       "v2raya"
-      "openvpn"
     ];
 
     casks = [
       "visual-studio-code"
-      "windterm"
+      "cursor"
+
+      "obsidian"
+
+      "ollama"
+
+      "openvpn-connect"
+      "zerotier-one"
       "clash-verge-rev"
+
       "firefox"
       "google-chrome"
       "microsoft-edge"
+
       "discord"
       "feishu"
       "lark"
+
+      "obs"
+      "iina"
+      "stats"
     ];
 
     masApps = {
-      # Xcode = 497799835;
+      Xcode = 497799835;
     };
   };
 }
