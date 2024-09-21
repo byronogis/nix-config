@@ -2,6 +2,8 @@
 
 A nix config based flakes.
 
+**NixOS config is already, Darwin config is processing.**
+
 - [nix-config](#nix-config)
   - [Highlight](#highlight)
   - [Structure](#structure)
