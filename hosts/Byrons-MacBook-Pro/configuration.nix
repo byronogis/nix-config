@@ -5,6 +5,8 @@
 }: {
   imports = [
     # ...
+    ./homebrew.nix
+    ./system-defaults.nix
   ];
 
   # Used for backwards compatibility, please read the changelog before changing.
