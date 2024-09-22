@@ -10,5 +10,6 @@
   imports = [
     ../__optional/desktop/__base/font.nix
     ../__optional/gui/kitty.nix
+    ../__optional/gui/zellij.nix
   ];
 }
