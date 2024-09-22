@@ -38,6 +38,7 @@
       "obs"
       "iina"
       "stats"
+      "utools"
     ];
 
     masApps = {
