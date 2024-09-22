@@ -23,6 +23,7 @@
 
       window = {
         startup_mode = "Maximized";
+        option_as_alt = "Both";
       };
     };
   };

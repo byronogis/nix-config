@@ -26,4 +26,8 @@
       ];
     };
   };
+
+  home.sessionVariables = {
+    SOPS_AGE_KEY_FILE = "/User/${user.username}/.config/sops/age/keys.txt";
+  };
 }
