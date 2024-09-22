@@ -90,7 +90,7 @@
         };
 
         "com.apple.controlcenter" = {
-          BatteryShowPercentage = true;
+          BatteryShowPercentage = false;
         };
 
         "com.apple.desktopservices" = {
