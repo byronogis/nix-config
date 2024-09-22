@@ -8,7 +8,7 @@
     defaults = {
       dock = {
         persistent-apps = lib.mkAfter [
-          "${pkgs.kitty}/Applications/kitty.app"
+          "${pkgs.alacritty}/Applications/alacritty.app"
           "/Applications/Obsidian.app"
           "/Applications/Microsoft Edge.app"
           "/Applications/Google Chrome.app"

@@ -13,6 +13,6 @@
       macos_option_as_alt = true;
     };
 
-    darwinLaunchOptions = ["--start-as=maximized"];
+    darwinLaunchOptions = [ "--start-as=maximized" ];
   };
 }
