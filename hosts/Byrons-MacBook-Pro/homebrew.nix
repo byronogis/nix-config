@@ -19,6 +19,8 @@
       "visual-studio-code"
       "cursor"
 
+      "android-studio"
+
       "obsidian"
 
       "ollama"
