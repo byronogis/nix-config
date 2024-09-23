@@ -22,12 +22,12 @@
 
     age = {
       sshKeyPaths = [
-        "/User/${user.username}/.ssh/id_ed25519"
+        "${config.home.homeDirectory}/.ssh/id_ed25519"
       ];
     };
   };
 
   home.sessionVariables = {
-    SOPS_AGE_KEY_FILE = "/User/${user.username}/.config/sops/age/keys.txt";
+    SOPS_AGE_KEY_FILE = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
   };
 }
