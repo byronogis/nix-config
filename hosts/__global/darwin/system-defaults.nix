@@ -27,10 +27,10 @@
           #
         ];
         # Disable hot corners
-        wvous-bl-corner = 1;
-        wvous-br-corner = 1;
-        wvous-tl-corner = 1;
-        wvous-tr-corner = 1;
+        wvous-bl-corner = 2;
+        wvous-br-corner = 4;
+        wvous-tl-corner = 11;
+        wvous-tr-corner = 12;
       };
 
       finder = {
