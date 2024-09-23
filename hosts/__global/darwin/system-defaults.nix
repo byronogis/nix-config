@@ -9,7 +9,7 @@
       smb.NetBIOSName = host.hostname;
 
       dock = {
-        orientation = "bottom";
+        orientation = "left";
         tilesize = 48;
         autohide = false;
         show-recents = true;
