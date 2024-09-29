@@ -3,7 +3,8 @@
   #   enable = true;
   # };
   android = {
-    enable = true;
-    flutter.enable = true;
-  };
+      enable = true;
+      flutter.enable = true;
+    };
+  stdenv = pkgs.stdenvNoCC;
 }
