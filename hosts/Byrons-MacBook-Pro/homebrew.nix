@@ -41,6 +41,7 @@
       "iina"
       "stats"
       "utools"
+      "karabiner-elements"
     ];
 
     masApps = {
