@@ -36,6 +36,7 @@
       "discord"
       "feishu"
       "lark"
+      "wechat"
 
       "obs"
       "iina"
