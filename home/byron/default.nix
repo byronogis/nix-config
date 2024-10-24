@@ -19,7 +19,6 @@
     packages = with pkgs; [ ];
     file = {
       "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --impure";
-      "project/demo/flutter/.envrc".text = "use flake ~/project/personal/nix-config#flutter --impure";
     };
     sessionPath = [ ];
     sessionVariables = { };
