@@ -53,6 +53,16 @@
         inherit (userAttrs) byron;
       };
     };
+
+    h14air-nixos = {
+      hostname = "h14air-nixos";
+      os = "nixos";
+      system = "x86_64-linux";
+      impermanence = false;
+      userAttrs = {
+        inherit (userAttrs) byron;
+      };
+    };
   };
 
   # ==> [ "mydarwin" "mynixos" "mynixos2" ]
