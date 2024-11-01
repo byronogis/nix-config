@@ -58,7 +58,9 @@
       hostname = "h14air-nixos";
       os = "nixos";
       system = "x86_64-linux";
-      impermanence = false;
+      device = "sda";
+      impermanence = true;
+      persistencePath = "/persist";
       userAttrs = {
         inherit (userAttrs) byron;
       };
