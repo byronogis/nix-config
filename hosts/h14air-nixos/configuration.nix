@@ -7,7 +7,7 @@
   imports = [
     ../__optional/wsl.nix
     ../__optional/nix-ld.nix
-    ../__optional/v2raya.nix
+    # ../__optional/v2raya.nix
     # ../__optional/zerotierone.nix
   ];
 
