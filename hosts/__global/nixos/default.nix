@@ -7,6 +7,4 @@
 , ...
 }: {
   imports = [ ] ++ localLib.importAllFromPath ./.;
-
-  services.fstrim.enable = true;
 }

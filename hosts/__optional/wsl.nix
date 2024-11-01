@@ -15,6 +15,4 @@
       enable = true;
     };
   };
-
-  services.fstrim.enable = lib.mkForce false;
 }
