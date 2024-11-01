@@ -146,6 +146,8 @@ nixos-install --flake .#<hostname> --show-trace --no-root-passwd
 
 8. Reboot
 
+NOTE: Before reboot, make sure you have copied ssh keys to right position and change file mode if needed (see step 0).
+
 ```bash
 reboot
 ```
