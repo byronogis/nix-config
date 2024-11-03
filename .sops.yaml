@@ -6,7 +6,7 @@ keys:
   - &hosts:
     - &itx-nixos age1x9w6endjxpt9jyfjj52tnrs7xg6phf3hys4tdqf565877m2cta3shu2tjt
     - &Byrons-MacBook-Pro age1expdwhwhvvkmqclaeu75sfpfeq7vw8xv7ym6m4q57wql7r6s635s8u5gy0
-    - &h14air-nixos age1pe9ulhjfhkh62w0gk9uujfhag0m4pt29c9veuxxwzxa9hh8ckuss6umq04
+    - &h14air-nixos age1myqs4rfnsu202gzwgd4dm3jq3jwj8z5uqxyyl8zmr2ps6fzhgfgscw6vp9
 creation_rules:
   - path_regex: hosts/itx-nixos/secrets.ya?ml$
     key_groups:
