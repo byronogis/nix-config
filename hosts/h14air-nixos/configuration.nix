@@ -11,6 +11,7 @@
     ../__optional/systemd-boot.nix
     ../__optional/nix-ld.nix
     ../__optional/v2raya.nix
+    ../__optional/podman.nix
     # ../__optional/zerotierone.nix
   ];
 
