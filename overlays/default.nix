@@ -25,7 +25,6 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-    _7zz = prev._7zz.override { useUasm = true; };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
