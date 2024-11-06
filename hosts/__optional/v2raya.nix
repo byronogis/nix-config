@@ -2,18 +2,26 @@
 , config
 , pkgs
 , host
+, localLib
 , ...
-}: {
-  services.v2raya.enable = true;
-  networking.firewall.allowedTCPPorts = [
-    2017 # default web ui
-  ];
-
-  environment = lib.optionalAttrs (config.environment ? "persistence") {
-    persistence."${host.persistencePath}" = {
+}:
+let
+  persistence = localLib.setHostPersistence {
+    inherit host;
+    settings = {
       directories = [
         "/etc/v2raya"
       ];
     };
   };
+in
+{
+  imports = [
+    persistence
+  ];
+
+  services.v2raya.enable = true;
+  networking.firewall.allowedTCPPorts = [
+    2017 # default web ui
+  ];
 }
