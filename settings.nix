@@ -14,6 +14,7 @@
           ".vscode-server"
           ".local/share/fnm"
           ".local/share/direnv"
+          ".local/share/containers"
           ".ssh"
         ];
         files = [
