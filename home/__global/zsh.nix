@@ -34,7 +34,7 @@
       };
       shellAliases = {
         # nix
-        CHECK = "nix flake check --show-trace --impure NCP";
+        CHECK = "nix flake check --show-trace --no-pure-eval NCP";
         HISTORY = "nix profile history --profile /nix/var/nix/profiles/system";
         CLEAN = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d";
         GC = "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 7d";
@@ -85,7 +85,7 @@
 
         # nix 开发环境
         dev_function() {
-          nix develop --impure ~/project/personal/nix-config#$1
+          nix develop --no-pure-eval ~/project/personal/nix-config#$1
         }
       '';
     };
