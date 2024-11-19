@@ -19,7 +19,7 @@
       );
 
   setHostPersistence = { host, settings, ... }:
-    lib.optionalAttrs (host ? "impermanence") {
+    lib.optionalAttrs (host ? "impermanence" && host.impermanence) {
       environment.persistence."${host.persistencePath}" = settings;
     };
 }
