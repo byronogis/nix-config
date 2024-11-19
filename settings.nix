@@ -60,7 +60,7 @@
       os = "nixos";
       system = "x86_64-linux";
       device = "sda";
-      impermanence = true;
+      impermanence = false;
       persistencePath = "/persist";
       userAttrs = {
         inherit (userAttrs) byron;
