@@ -18,7 +18,7 @@
   home = {
     packages = with pkgs; [ ];
     file = {
-      "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --no-pure-eval";
+      # "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --no-pure-eval";
     };
     sessionPath = [ ];
     sessionVariables = { };
