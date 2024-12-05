@@ -1,7 +1,17 @@
 { pkgs, inputs, ... }:
 let
   devenv = inputs.devenv;
-  defineDev = modules: devenv.lib.mkShell { inherit inputs pkgs modules; };
+  defineDev = modules: devenv.lib.mkShell {
+    inherit inputs pkgs;
+    modules = [
+      {
+        packages = with pkgs; [ zsh ];
+        enterShell = ''
+          zsh
+        '';
+      }
+    ] ++ modules;
+  };
 in
 {
   default = (import ../default.nix { inherit pkgs; }).default;
