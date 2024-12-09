@@ -103,7 +103,7 @@
         (hostname: lib.nixosSystem {
           modules = [
             ./hosts/__global
-            ./hosts/__global/nixos
+            ./hosts/__global/__nixos
             ./hosts/${hostname}/configuration.nix
           ];
           specialArgs = {
@@ -118,7 +118,7 @@
         (hostname: inputs.nix-darwin.lib.darwinSystem {
           modules = [
             ./hosts/__global
-            ./hosts/__global/darwin
+            ./hosts/__global/__darwin
             ./hosts/${hostname}/configuration.nix
           ];
           specialArgs = {

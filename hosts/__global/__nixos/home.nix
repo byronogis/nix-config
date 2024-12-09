@@ -8,14 +8,14 @@
 , ...
 }: {
   imports = [
-    inputs.home-manager.darwinModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   home-manager.users =
     builtins.mapAttrs
       (username: user: {
         imports = [
-          ../../../home/__global/darwin
+          ../../../home/__global/__nixos
         ];
       })
       host.userAttrs;

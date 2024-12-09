@@ -2,8 +2,6 @@
 
 A nix config based flakes.
 
-**NixOS config is already, Darwin config is processing.**
-
 - [nix-config](#nix-config)
   - [Highlight](#highlight)
   - [Structure](#structure)
@@ -21,20 +19,23 @@ A nix config based flakes.
 
 ## Highlight
 
-- [impermanence](https://github.com/nix-community/impermanence) with btrfs
-- disk manage by [disko](https://github.com/nix-community/disko)
-- home manage by [home-manager](https://github.com/nix-community/home-manager)
-- manage user and host info by [settings](./settings.nix) file
+- nixos, [darwin][darwin] and [wsl2][wsl2] support
+- [impermanence][impermanence] with btrfs
+- disk manage by [disko][disko]
+- home manage by [home-manager][home-manager]
+- manage user and host info by [settings][settings] file
 - can set different ability to different host for single user
-- manage development environment by [devenv](https://github.com/cachix/devenv)
-- manage secert by [sops](https://github.com/Mic92/sops-nix)
+- manage development environment by [devenv][devenv]
+- manage secert by [sops][sops]
 - ...
 
 ## Structure
 
 ```
 ├── home                               # home manage
-│   ├── __global                       # global config for user
+│   └── __global                       # global config for user
+|    ├── __darwin                      # darwin config specific for user
+|    └── __nixos                       # nixos config specific for user
 │   ├── __optional                     # optional config for user
 │   └── *                              # user dir
 │    ├── default.nix                   # user config
@@ -42,7 +43,9 @@ A nix config based flakes.
 │    ├── ssh-authorized-keys.pub       # ssh authorized keys
 │    └── <hostname>.nix                # special host config for user
 ├── hosts                              # host manage
-│   ├── __global                       # global config for host
+│   └── __global                       # global config for host
+|    ├── __darwin                      # darwin config specific for host
+|    └── __nixos                       # nixos config specific for host
 │   ├── __optional                     # optional config for host
 │   └── *                              # host dir
 │    ├── configuration.nix             # host config
@@ -58,7 +61,11 @@ A nix config based flakes.
 │   └── nixos
 ├── overlays
 ├── pkgs
-└── shell                              # shell managed with devenv
+├── shell                              # shell managed with devenv
+├── .envrc                             # env file for direnv
+├── default.nix                        # entry point
+├── flake.nix                          # flake config
+├── settings.nix                       # settings for user and host
 ```
 
 ## Usage
@@ -105,25 +112,25 @@ nix develop
 
 5. Manage disk and partition
 
-By disko:
+   - By disko:
 
-Need add disko config file in `host/<hostname>/` and import in `host/<hostname>/configuration.nix` file  before.
-More disko config example, see [github:nix-community/disko/example](https://github.com/nix-community/disko/blob/master/example/)
+      Need add disko config file in `host/<hostname>/` and import in `host/<hostname>/configuration.nix` file  before.
+      More disko config example, see [github:nix-community/disko/example](https://github.com/nix-community/disko/blob/master/example/)
 
-```bash
-## **Be aware of data**
-disko --mode disko --flake /absolute/path/to/current/repo#<hostname>
+      ```bash
+      ## **Be aware of data**
+      disko --mode disko --flake /absolute/path/to/current/repo#<hostname>
 
-# check label,
-lsblk -o name,fstype,label,mountpoints,parttypename,partlabel,size
+      # check label,
+      lsblk -o name,fstype,label,mountpoints,parttypename,partlabel,size
 
-# set manually if not exit or not same with hostname
-btrfs filesystem label /dev/<part> <hostname>
-```
+      # set manually if not exit or not same with hostname
+      btrfs filesystem label /dev/<part> <hostname>
+      ```
 
-By hand:
+   - By hand:
 
-Just like a regular linux installation. Partition, format, and mount.
+      Just like a regular linux installation. Partition, format, and mount.
 
 6. Generate `hardware-configuration.nix`
 
@@ -162,50 +169,50 @@ sudo nixos-rebuild switch --flake .#<hostname> --show-trace
 
 ### Add new user
 
-Add new [user](#user) inside [userAttrs](./settings.nix). And then add user nix file in `home/<username>/`.
+Add new [user](#user) inside [userAttrs][settings]. And then add user nix file in `home/<username>/`.
 
 1. `default.nix` is needed. Like this:
 
-```nix
-# See https://nix-community.github.io/home-manager/options.xhtml
+    ```nix
+    # See https://nix-community.github.io/home-manager/options.xhtml
 
-{inputs, outputs, host, user, pkgs, ... }: {
-  imports = [
-    ../__optional/cli
-  ];
-}
-```
+    {inputs, outputs, host, user, pkgs, ... }: {
+      imports = [
+        ../__optional/cli
+      ];
+    }
+    ```
 
 2. `<hostname>.nix` is optional. Just create and config it if you want to set extra for target host.
 
 ### Add new host
 
-Add new [host](#host) inside [hostAttrs](./settings.nix). And then add host nix files in `host/<hostname>/`.
+Add new [host](#host) inside [hostAttrs][settings]. And then add host nix files in `host/<hostname>/`.
 
 1. `configuration.nix` is needed.
 
-Like this:
+    Like this:
 
-```nix
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  imports = [
-    ./hardware-configuration.nix
-    ../__optional/systemd-boot.nix
-  ];
+    ```nix
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }: {
+      imports = [
+        ./hardware-configuration.nix
+        ../__optional/systemd-boot.nix
+      ];
 
-  # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "23.11"; # Did you read the comment?
-}
-```
+      # See https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+      system.stateVersion = "23.11"; # Did you read the comment?
+    }
+    ```
 
 2. `hardware-configuration.nix` is needed.
 
-This is be generated by nix command when you install above. Just copy it to here.
+    This is be generated by nix command when you install above. Just copy it to here.
 
 3. `ssh_host_ed25519_key.pub` is optional.
 
@@ -215,37 +222,35 @@ This is be generated by nix command when you install above. Just copy it to here
 
 ### User
 
-A attr inside `userAttrs` in [settings](./settings.nix) file. Key is username, value is a attrset.
+A attr inside `userAttrs` in [settings][settings] file. Key is username, value is a attrset.
 
-| Key                 | Type   | Required | Description                                                   |
-| ------------------- | ------ | -------- | ------------------------------------------------------------- |
-| username            | string | true     | username                                                      |
-| usernameAlternative | string | false    | alternative username                                          |
-| usernameFull        | string | false    | full name                                                     |
-| useremail           | string | false    | email                                                         |
-| initialPassword     | string | true     | initial password                                              |
-| persistence         | set    | false    | persistence config, reference the impermanence[^impermanence] |
-| usernameKeyForGit   | string | false    | key for git. If not set, use `username`                       |
+| Key                 | Type   | Required | Description                                                                |
+| ------------------- | ------ | -------- | -------------------------------------------------------------------------- |
+| username            | string | true     | username                                                                   |
+| usernameAlternative | string | false    | alternative username                                                       |
+| usernameFull        | string | false    | full name                                                                  |
+| useremail           | string | false    | email                                                                      |
+| initialPassword     | string | true     | initial password                                                           |
+| persistence         | set    | false    | persistence config, reference the [impermanence][impermanence-persistence] |
+| usernameKeyForGit   | string | false    | key for git. If not set, use `username`                                    |
 
-[^impermanence]: [impermanence](https://github.com/nix-community/impermanence?tab=readme-ov-file#home-manager)
 
 ### Host
 
-A attr inside `hostAttrs` in [settings](./settings.nix) file. Key is hostname, value is a attrset.
+A attr inside `hostAttrs` in [settings][settings] file. Key is hostname, value is a attrset.
 
-| Key                | Type   | Required | Description                                                       |
-| ------------------ | ------ | -------- | ----------------------------------------------------------------- |
-| hostname           | string | true     | hostname                                                          |
-| os                 | string | true     | os                                                                |
-| system             | string | true     | system                                                            |
-| device             | string | false    | device                                                            |
-| impermanence       | bool   | false    | whether to use impermanence                                       |
-| persistencePath    | string | false    | used by impermanence, absolute path                               |
-| userAttrs          | set    | true     | user config, reference the user[^user], also can inherit directly |
-| allowedPorts       | list   | false    | used by firewall                                                  |
-| allowedPortRanges | list   | false    | used by firewall                                                  |
+| Key               | Type   | Required | Description                                                         |
+| ----------------- | ------ | -------- | ------------------------------------------------------------------- |
+| hostname          | string | true     | hostname                                                            |
+| os                | string | true     | os                                                                  |
+| system            | string | true     | system                                                              |
+| device            | string | false    | device                                                              |
+| impermanence      | bool   | false    | whether to use impermanence                                         |
+| persistencePath   | string | false    | used by impermanence, absolute path                                 |
+| userAttrs         | set    | true     | user config, reference the [user](#user), also can inherit directly |
+| allowedPorts      | list   | false    | used by firewall                                                    |
+| allowedPortRanges | list   | false    | used by firewall                                                    |
 
-[^user]: [User](#user)
 
 ## TODO
 
@@ -256,3 +261,13 @@ A attr inside `hostAttrs` in [settings](./settings.nix) file. Key is hostname, v
 ## References
 
 [Misterio77/nix-config: Personal nixos and home-manager configurations. (github.com)](https://github.com/Misterio77/nix-config)
+
+[darwin]: https://github.com/LnL7/nix-darwin
+[wsl2]: https://github.com/nix-community/NixOS-WSL
+[impermanence]: https://github.com/nix-community/impermanence
+[impermanence-persistence]: https://github.com/nix-community/impermanence?tab=readme-ov-file#home-manager
+[disko]: https://github.com/nix-community/disko
+[home-manager]: https://github.com/nix-community/home-manager
+[devenv]: https://github.com/cachix/devenv
+[sops]: https://github.com/Mic92/sops-nix
+[settings]: ./settings.nix
