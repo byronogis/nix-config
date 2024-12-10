@@ -19,6 +19,7 @@
         ];
         files = [
           ".zsh_history"
+          ".npmrc"
           # ...
         ];
       }; # used by impermanence
