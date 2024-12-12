@@ -16,7 +16,11 @@
   ];
 
   home = {
-    packages = with pkgs; [ ];
+    packages = with pkgs; [
+      # nodejs-slim # managed by fnm
+      deno
+      bun
+    ];
     file = {
       # "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --no-pure-eval";
     };
