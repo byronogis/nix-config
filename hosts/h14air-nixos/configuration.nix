@@ -7,10 +7,11 @@
   imports = [
     ./hardware-configuration.nix
     ./disko-config.nix
+    ./hyperv.nix
 
     ../__optional/systemd-boot.nix
     ../__optional/nix-ld.nix
-    ../__optional/v2raya.nix
+    # ../__optional/v2raya.nix
     ../__optional/podman.nix
     # ../__optional/zerotierone.nix
   ];
