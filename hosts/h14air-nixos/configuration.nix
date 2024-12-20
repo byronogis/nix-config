@@ -14,6 +14,8 @@
     # ../__optional/v2raya.nix
     ../__optional/podman.nix
     # ../__optional/zerotierone.nix
+
+    ../__optional/desktop/kde
   ];
 
   networking.firewall.enable = lib.mkForce false;

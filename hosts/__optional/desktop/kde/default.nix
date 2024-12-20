@@ -8,13 +8,13 @@
   };
 
   services.displayManager = {
-    enable = true;
+    defaultSession = "plasma";
     sddm = {
       enable = true;
       wayland.enable = true;
       enableHidpi = true;
       settings = {
-        # 
+        #
       };
     };
   };
