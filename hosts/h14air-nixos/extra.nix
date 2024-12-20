@@ -6,8 +6,6 @@
 }: {
   boot.initrd.availableKernelModules = lib.mkForce [ "sd_mod" "sr_mod" ];
 
-  virtualisation.hypervGuest.enable = true;
-
   networking = {
     interfaces.eth0.ipv4.addresses = [
       {
@@ -23,6 +21,16 @@
     nameservers = [
       "192.168.100.1"
     ];
+  };
+
+  # x11 for kde
+  services.xserver.enable = true;
+  services.displayManager = {
+    defaultSession = lib.mkForce "plasmax11";
+    sddm = {
+      wayland.enable = lib.mkForce false;
+      enableHidpi = lib.mkForce false;
+    };
   };
 
 }

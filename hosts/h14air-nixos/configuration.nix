@@ -7,15 +7,14 @@
   imports = [
     ./hardware-configuration.nix
     ./disko-config.nix
-    ./hyperv.nix
 
     ../__optional/systemd-boot.nix
     ../__optional/nix-ld.nix
-    # ../__optional/v2raya.nix
     ../__optional/podman.nix
-    # ../__optional/zerotierone.nix
 
     ../__optional/desktop/kde
+    ../__optional/hyperv.nix
+    ./extra.nix
   ];
 
   networking.firewall.enable = lib.mkForce false;
