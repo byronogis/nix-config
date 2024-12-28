@@ -22,7 +22,11 @@
     };
     sessionPath = [ ];
     sessionVariables = { };
-    shellAliases = { };
+    shellAliases = {
+      # TODO flag to enable/disable
+      deno = "deno --allow-env --unstable-sloppy-imports";
+      gitap = "git add --patch";
+    };
   };
 
   programs.zsh.shellGlobalAliases = {
