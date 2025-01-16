@@ -39,14 +39,15 @@
       "wechat"
 
       "obs"
-      "iina"
-      "stats"
+      "iina" # video player
+      "stats" # system monitor
       "utools"
       "karabiner-elements"
     ];
 
     masApps = {
       Xcode = 497799835;
+      iBar = 6443843900; # manage menu bar icons
     };
   };
 }
