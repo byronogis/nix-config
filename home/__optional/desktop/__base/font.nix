@@ -3,7 +3,7 @@
     enable = true;
     monospace = {
       family = "Hack Nerd Font";
-      package = pkgs.nerdfonts.override { fonts = [ "Hack" ]; };
+      package = pkgs.nerd-fonts.hack;
     };
     regular = {
       family = "Noto Sans";
