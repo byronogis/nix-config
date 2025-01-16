@@ -22,6 +22,8 @@
       "android-studio"
 
       "obsidian"
+      "nutstore" # 坚果云
+      "keepassxc"
 
       "ollama"
 
