@@ -7,6 +7,8 @@ A nix config based flakes.
   - [Structure](#structure)
   - [Usage](#usage)
     - [First Time Install](#first-time-install)
+      - [nixos](#nixos)
+      - [darwin](#darwin)
     - [Rebuild(Update) After](#rebuildupdate-after)
   - [Add New User and Host](#add-new-user-and-host)
     - [Add new user](#add-new-user)
@@ -71,6 +73,8 @@ A nix config based flakes.
 ## Usage
 
 ### First Time Install
+
+#### nixos
 
 <details>
 <summary><b>0. Manage keys for sops (optional)</b></summary>
@@ -159,10 +163,49 @@ NOTE: Before reboot, make sure you have copied ssh keys to right position and ch
 reboot
 ```
 
+#### darwin
+
+1. Install nix and homebrew
+
+> https://nixos.org/download/#nix-install-macos
+>
+> https://brew.sh/
+
+`sh <(curl -L https://nixos.org/nix/install)`
+
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)”`
+
+2. Clone this repo
+
+3. CD to current repo dir
+
+4. Enable flakes environment
+
+```bash
+# enable flakes in live
+export NIX_CONFIG="experimental-features = nix-command flakes"
+
+# enable flakes environment
+nix develop
+```
+
+5. [Config new user and host](#add-new-user-and-host)
+
+6. Install
+
+```bash
+# install
+nix run nix-darwin -- switch --flake .#<hostname> --show-trace
+```
+
 ### Rebuild(Update) After
 
 ```bash
+# nixos
 sudo nixos-rebuild switch --flake .#<hostname> --show-trace
+
+# darwin
+darwin-rebuild switch --flake .#<hostname> --show-trace
 ```
 
 ## Add New User and Host
@@ -254,7 +297,6 @@ A attr inside `hostAttrs` in [settings][settings] file. Key is hostname, value i
 
 ## TODO
 
-- [ ]  docs for darwin usage
 - [ ]  manage sops with system-wide under darwin
 
 
