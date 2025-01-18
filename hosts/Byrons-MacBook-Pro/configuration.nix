@@ -7,6 +7,7 @@
     # ...
     ./homebrew.nix
     ./system-defaults.nix
+    ./quicker.nix
   ];
 
   environment.systemPackages = with pkgs; [
