@@ -20,6 +20,7 @@
       "cursor"
 
       "android-studio"
+      "wechatwebdevtools"
 
       "obsidian"
       "nutstore" # 坚果云
