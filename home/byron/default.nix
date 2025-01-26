@@ -24,7 +24,7 @@
     sessionVariables = { };
     shellAliases = {
       # TODO flag to enable/disable
-      deno = "deno --allow-env --unstable-sloppy-imports";
+      denoo = "deno run --allow-all --unstable-sloppy-imports --unstable-byonm";
       gitap = "git add --patch";
     };
   };
