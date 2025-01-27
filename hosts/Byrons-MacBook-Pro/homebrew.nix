@@ -26,8 +26,6 @@
       "nutstore" # 坚果云
       "keepassxc"
 
-      "ollama"
-
       "openvpn-connect"
       "zerotier-one"
       "clash-verge-rev"
