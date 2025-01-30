@@ -39,6 +39,9 @@ in
   flutter = defineDev [
     ./flutter.nix
   ];
+  rust = defineDev [
+    ./rust.nix
+  ];
 
   byron = defineDev [
     # I use fnm to manage node
