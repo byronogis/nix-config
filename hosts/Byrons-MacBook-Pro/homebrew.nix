@@ -7,12 +7,12 @@
 }: {
   homebrew = {
     taps = [
-      "v2raya/v2raya"
+      # "v2raya/v2raya"
     ];
 
     brews = [
-      "v2ray"
-      "v2raya"
+      # "v2ray"
+      # "v2raya"
     ];
 
     casks = [
@@ -26,8 +26,8 @@
       "nutstore" # 坚果云
       "keepassxc"
 
-      "openvpn-connect"
-      "zerotier-one"
+      # "openvpn-connect"
+      # "zerotier-one"
       "clash-verge-rev"
 
       "firefox"
@@ -43,12 +43,12 @@
       "iina" # video player
       "stats" # system monitor
       "utools"
-      "karabiner-elements"
+      # "karabiner-elements"
     ];
 
     masApps = {
       Xcode = 497799835;
-      iBar = 6443843900; # manage menu bar icons
+      # iBar = 6443843900; # manage menu bar icons
     };
   };
 }
