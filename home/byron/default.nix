@@ -26,6 +26,7 @@
       # TODO flag to enable/disable
       denoo = "deno run --allow-all --unstable-sloppy-imports --unstable-byonm";
       gitap = "git add --patch";
+      ll = "ls -la";
     };
   };
 
