@@ -36,6 +36,7 @@
     PC = "~/project/clone";
     PW = "~/project/work";
     NCP = lib.mkForce "~/project/personal/nix-config";
+    DL = "~/Downloads";
   };
 
   programs.git.includes = [
