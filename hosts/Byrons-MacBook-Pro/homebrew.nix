@@ -44,11 +44,11 @@
       "stats" # system monitor
       "utools"
       # "karabiner-elements"
+      "jordanbaird-ice" # manage menu bar icons
     ];
 
     masApps = {
       Xcode = 497799835;
-      # iBar = 6443843900; # manage menu bar icons
     };
   };
 }
