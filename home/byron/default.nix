@@ -19,6 +19,10 @@
     ];
     file = {
       # "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --no-pure-eval";
+      "project/demo/go/.envrc".text = "use flake ~/project/personal/nix-config#go --no-pure-eval";
+      "project/demo/rust/.envrc".text = "use flake ~/project/personal/nix-config#rust --no-pure-eval";
+      "project/demo/python/.envrc".text = "use flake ~/project/personal/nix-config#python --no-pure-eval";
+      "project/demo/flutter/.envrc".text = "use flake ~/project/personal/nix-config#flutter --no-pure-eval";
     };
     sessionPath = [ ];
     sessionVariables = { };
