@@ -45,7 +45,6 @@
       "utools"
       # "karabiner-elements"
       "jordanbaird-ice" # manage menu bar icons
-      "mos" # smooth scrolling
     ];
 
     masApps = {
