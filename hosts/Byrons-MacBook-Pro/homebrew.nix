@@ -43,7 +43,7 @@
       "iina" # video player
       "stats" # system monitor
       "utools"
-      # "karabiner-elements"
+      "karabiner-elements"
       "jordanbaird-ice" # manage menu bar icons
     ];
 
