@@ -10,11 +10,8 @@
 
   networking.computerName = host.hostname;
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-
   # Enable TouchID for sudo authentication
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = host.system;
