@@ -34,7 +34,7 @@
       };
       shellAliases = {
         # nix
-        CHECK = "nix flake check --show-trace --no-pure-eval NCP";
+        CHECK = "nix flake check --show-trace --no-pure-eval --all-systems NCP";
         HISTORY = "nix profile history --profile /nix/var/nix/profiles/system";
         CLEAN = "sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d";
         GC = "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 7d";
