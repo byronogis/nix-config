@@ -49,6 +49,7 @@
       "karabiner-elements"
       "jordanbaird-ice" # manage menu bar icons
       "pearcleaner" # app cleaner
+      "switchhosts" # hosts manager
     ];
 
     masApps = {
