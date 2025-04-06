@@ -19,6 +19,7 @@
     casks = [
       "android-studio"
       "wechatwebdevtools"
+      "hbuilderx"
 
       "nutstore" # 坚果云
       "keepassxc"
