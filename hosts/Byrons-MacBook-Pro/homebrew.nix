@@ -35,8 +35,9 @@
       "microsoft-edge"
 
       "discord"
-      "feishu"
-      "lark"
+      # "feishu"
+      # "lark"
+      "wechatwork"
       "wechat"
 
       "obs"
@@ -45,6 +46,7 @@
       "utools"
       "karabiner-elements"
       "jordanbaird-ice" # manage menu bar icons
+      "pearcleaner" # app cleaner
     ];
 
     masApps = {
