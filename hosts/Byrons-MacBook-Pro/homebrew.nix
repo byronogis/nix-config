@@ -1,5 +1,6 @@
 { inputs
 , lib
+, localLib
 , pkgs
 , config
 , host
@@ -16,15 +17,21 @@
     ];
 
     casks = [
-      "visual-studio-code"
-      "cursor"
-
       "android-studio"
       "wechatwebdevtools"
 
-      "obsidian"
       "nutstore" # 坚果云
       "keepassxc"
+
+      "discord"
+      # "feishu"
+      # "lark"
+      "wechatwork"
+      "wechat"
+    ] ++ map localLib.mkCaskGreedy [
+      "visual-studio-code"
+      "cursor"
+      "obsidian"
 
       # "openvpn-connect"
       # "zerotier-one"
@@ -33,12 +40,6 @@
       "firefox"
       "google-chrome"
       "microsoft-edge"
-
-      "discord"
-      # "feishu"
-      # "lark"
-      "wechatwork"
-      "wechat"
 
       "obs"
       "iina" # video player

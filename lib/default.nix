@@ -22,4 +22,10 @@
     lib.optionalAttrs (host ? "impermanence" && host.impermanence) {
       environment.persistence."${host.persistencePath}" = settings;
     };
+
+  /**
+   * Make a cask with greedy option for homebrew
+   * See https://github.com/nix-darwin/nix-darwin/issues/935
+   */
+  mkCaskGreedy = caskName: { name = caskName; greedy = true; };
 }
