@@ -61,7 +61,7 @@
         ActuationStrength = 1;
         Clicking = true;
         TrackpadRightClick = true;
-
+        TrackpadThreeFingerDrag = true;
       };
 
       SoftwareUpdate = {
