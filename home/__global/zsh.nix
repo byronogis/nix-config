@@ -51,7 +51,7 @@
       shellGlobalAliases = {
         NCP = lib.mkDefault "/etc/nixos";
       };
-      initExtra = ''
+      initContent = ''
         # NOTE Fixme fnm can not completions postinstall
         eval "$(fnm env --use-on-cd)"
 
