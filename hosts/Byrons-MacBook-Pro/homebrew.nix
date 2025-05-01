@@ -32,6 +32,7 @@
       "pearcleaner" # app cleaner
       "switchhosts" # hosts manager
       "raycast"
+      "shottr" # screenshot tool
 
       "nutstore" # 坚果云
       "keepassxc"
