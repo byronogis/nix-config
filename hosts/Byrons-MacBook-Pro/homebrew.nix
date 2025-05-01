@@ -20,20 +20,28 @@
       "android-studio"
       "wechatwebdevtools"
       "hbuilderx"
+      "visual-studio-code"
+      "cursor"
+
+      "obs"
+      "iina" # video player
+      "stats" # system monitor
+      # "utools"
+      "karabiner-elements"
+      "jordanbaird-ice" # manage menu bar icons
+      "pearcleaner" # app cleaner
+      "switchhosts" # hosts manager
+      "raycast"
 
       "nutstore" # 坚果云
       "keepassxc"
-      "raycast"
+      "obsidian"
 
       "discord"
       # "feishu"
       # "lark"
       "wechatwork"
       "wechat"
-    ] ++ map localLib.mkCaskGreedy [
-      "visual-studio-code"
-      "cursor"
-      "obsidian"
 
       # "openvpn-connect"
       # "zerotier-one"
@@ -42,15 +50,7 @@
       "firefox"
       "google-chrome"
       "microsoft-edge"
-
-      "obs"
-      "iina" # video player
-      "stats" # system monitor
-      "utools"
-      "karabiner-elements"
-      "jordanbaird-ice" # manage menu bar icons
-      "pearcleaner" # app cleaner
-      "switchhosts" # hosts manager
+    ] ++ map localLib.mkCaskGreedy [
     ];
 
     masApps = {
