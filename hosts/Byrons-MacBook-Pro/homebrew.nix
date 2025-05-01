@@ -23,6 +23,7 @@
 
       "nutstore" # 坚果云
       "keepassxc"
+      "raycast"
 
       "discord"
       # "feishu"
