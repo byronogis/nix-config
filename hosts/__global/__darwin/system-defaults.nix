@@ -38,6 +38,7 @@
         FXDefaultSearchScope = "SCcf";
         ShowPathbar = true;
         ShowStatusBar = true;
+        _FXSortFoldersFirst = true;
       };
 
       menuExtraClock = {
@@ -76,6 +77,7 @@
           AppleMeasurementUnits = "Centimeters";
           AppleMetricUnits = 1;
           AppleTemperatureUnit = "Celsius";
+          AppleScrollerPagingBehavior = true; # Jump to the spot that’s clicked on the scroll bar
           NSAutomaticCapitalizationEnabled = false;
           NSAutomaticDashSubstitutionEnabled = false;
           NSAutomaticPeriodSubstitutionEnabled = false;
