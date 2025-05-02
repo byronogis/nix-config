@@ -33,6 +33,7 @@
       "switchhosts" # hosts manager
       "raycast"
       "shottr" # screenshot tool
+      "cryptomator" # encrypt files
 
       "nutstore" # 坚果云
       "keepassxc"
