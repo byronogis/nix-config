@@ -11,7 +11,7 @@
       dock = {
         orientation = "left";
         tilesize = 48;
-        autohide = false;
+        autohide = true;
         show-recents = true;
         mineffect = "genie";
         static-only = false;
