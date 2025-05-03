@@ -14,9 +14,6 @@
           "/Applications/Google Chrome.app"
           "/Applications/Visual Studio Code.app"
           "/Applications/WeChat.app"
-          "/Applications/企业微信.app"
-          # "/Applications/Feishu.app"
-          # "/Applications/LarkSuite.app"
         ];
         persistent-others = [
           #
