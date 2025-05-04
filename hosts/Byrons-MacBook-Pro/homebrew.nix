@@ -34,6 +34,7 @@
       "raycast"
       "shottr" # screenshot tool
       "cryptomator" # encrypt files
+      "squirrel"
 
       "nutstore" # 坚果云
       "keepassxc"
