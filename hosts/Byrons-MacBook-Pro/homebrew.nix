@@ -32,7 +32,6 @@
       "pearcleaner" # app cleaner
       "switchhosts" # hosts manager
       "raycast"
-      "shottr" # screenshot tool
       "cryptomator" # encrypt files
       "squirrel"
 
@@ -58,6 +57,8 @@
 
     masApps = {
       # Xcode = 497799835;
+      "Longshot - 截图 & OCR文字识别" = 6450262949;
+      "文件夹夹" = 6736857712;
     };
   };
 }
