@@ -19,6 +19,7 @@
 
     brews = [
       #
+      "mas" # Mac App Store CLI
     ];
 
     casks = [
