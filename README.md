@@ -205,7 +205,7 @@ nix run nix-darwin -- switch --flake .#<hostname> --show-trace
 sudo nixos-rebuild switch --flake .#<hostname> --show-trace
 
 # darwin
-darwin-rebuild switch --flake .#<hostname> --show-trace
+sudo darwin-rebuild switch --flake .#<hostname> --show-trace
 ```
 
 ## Add New User and Host
