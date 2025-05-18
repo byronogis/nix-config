@@ -15,7 +15,6 @@
 
     taps = [
       #
-      "homebrew/services"
     ];
 
     brews = [
