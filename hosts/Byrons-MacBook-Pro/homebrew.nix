@@ -14,6 +14,9 @@
     brews = [
       # "v2ray"
       # "v2raya"
+
+      "tesseract" # OCR
+      "tesseract-lang" # OCR
     ];
 
     casks = [
