@@ -291,9 +291,11 @@ A attr inside `hostAttrs` in [settings][settings] file. Key is hostname, value i
 | impermanence      | bool   | false    | whether to use impermanence                                         |
 | persistencePath   | string | false    | used by impermanence, absolute path                                 |
 | userAttrs         | set    | true     | user config, reference the [user](#user), also can inherit directly |
+| primaryUser       | string | true     | **just for nix-darwin**, [transition mechanism]                     |
 | allowedPorts      | list   | false    | used by firewall                                                    |
 | allowedPortRanges | list   | false    | used by firewall                                                    |
 
+[transition mechanism]: https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-system.primaryUser
 
 ## TODO
 

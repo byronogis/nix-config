@@ -54,6 +54,7 @@
       userAttrs = {
         inherit (userAttrs) byron;
       };
+      primaryUser = "byron";
     };
   };
 
