@@ -16,6 +16,7 @@
       # nodejs-slim # managed by fnm
       deno
       bun
+      uv
     ];
     file = {
       # "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --no-pure-eval";
