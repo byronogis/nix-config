@@ -36,7 +36,7 @@
       "switchhosts" # hosts manager
       "raycast"
       "cryptomator" # encrypt files
-      "squirrel"
+      "squirrel-app"
 
       "nutstore" # 坚果云
       "keepassxc"
