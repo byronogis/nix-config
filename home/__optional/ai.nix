@@ -21,6 +21,10 @@
   services = {
     ollama = {
       enable = true;
+      environmentVariables = {
+        # more can find by `ollama serve -h`
+        OLLAMA_ORIGINS = "*";
+      };
     };
   };
 }
