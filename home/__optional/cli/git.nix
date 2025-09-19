@@ -12,6 +12,8 @@
         push.autoSetupRemote = true;
         diff.algorithm = "histogram";
       };
+
+      lfs.enable = true;
     };
   };
 }
