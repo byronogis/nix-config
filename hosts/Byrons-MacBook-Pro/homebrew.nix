@@ -54,7 +54,7 @@
 
       "firefox"
       "google-chrome"
-      "microsoft-edge"
+      # "microsoft-edge"
     ] ++ map localLib.mkCaskGreedy [
     ];
 
