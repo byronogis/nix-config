@@ -37,7 +37,7 @@
       "raycast"
       "cryptomator" # encrypt files
       "squirrel-app"
-
+      "background-music" # per-app volume control
       "nutstore" # 坚果云
       "keepassxc"
       "obsidian"
