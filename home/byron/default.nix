@@ -17,6 +17,7 @@
       deno
       bun
       uv
+      gh
     ];
     file = {
       # "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --no-pure-eval";
