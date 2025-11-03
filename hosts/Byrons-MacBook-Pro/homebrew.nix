@@ -25,6 +25,7 @@
       "hbuilderx"
       "visual-studio-code"
       "cursor"
+      "podman-desktop"
 
       "obs"
       "iina" # video player
