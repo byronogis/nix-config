@@ -18,6 +18,7 @@
       bun
       uv
       gh
+      act # GitHub Actions locally
     ];
     file = {
       # "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --no-pure-eval";
