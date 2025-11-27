@@ -4,5 +4,7 @@
   home.packages = with pkgs; [
     tree
     wget
+    fd
+    ripgrep
   ];
 }
