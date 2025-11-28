@@ -27,6 +27,7 @@
       "$HOME/.local/bin" # for user installed binaries
       "$HOME/.bun/bin" # for bun global packages
       "$HOME/.deno/bin" # for deno global packages
+      "$HOME/.npm-global/bin" # for customed npm global packages
     ];
     sessionVariables = { };
     shellAliases = {
@@ -34,6 +35,13 @@
       denoo = "deno run --allow-all --unstable-sloppy-imports --unstable-byonm";
       gitap = "git add --patch";
       ll = "ls -la";
+
+      # fixed npm global packages location due to using fnm for node management currently
+      # see https://docs.npmjs.com/cli/v11/configuring-npm/folders#prefix-configuration
+      # see https://docs.npmjs.com/cli/v11/using-npm/config#prefix
+      # see https://docs.npmjs.com/cli/v11/commands/npm-install#global
+      # see https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally#manually-change-npms-default-directory
+      npmg = "npm --global --prefix=$HOME/.npm-global";
     };
   };
 
