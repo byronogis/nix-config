@@ -41,7 +41,7 @@
       # see https://docs.npmjs.com/cli/v11/using-npm/config#prefix
       # see https://docs.npmjs.com/cli/v11/commands/npm-install#global
       # see https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally#manually-change-npms-default-directory
-      npmg = "npm --global --prefix=$HOME/.npm-global";
+      ng = "npm --global --prefix=$HOME/.npm-global";
     };
   };
 
