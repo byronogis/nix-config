@@ -53,9 +53,6 @@
         NCP = lib.mkDefault "/etc/nixos";
       };
       initContent = ''
-        # NOTE Fixme fnm can not completions postinstall
-        eval "$(fnm env --use-on-cd)"
-
         # Define a function to set or unset proxy
         set_proxy() {
           local proxy_url="$1"
