@@ -3,7 +3,6 @@
 {
   programs.yazi = {
     enable = true;
-    enableZshIntegration = true;
     settings = {
       mgr = {
         sort_by = "natural";
