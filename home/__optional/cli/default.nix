@@ -1,5 +1,5 @@
 { pkgs, lib, localLib, ... }: {
-  imports = [ ] ++ localLib.importAllFromPath ./.;
+  imports = [ ] ++ localLib.import ./. { };
 
   home.packages = with pkgs; [
     tree

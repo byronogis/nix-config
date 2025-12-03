@@ -1,5 +1,5 @@
 { outputs, user, lib, localLib, ... }: {
-  imports = [ ] ++ localLib.importAllFromPath ./.;
+  imports = [ ] ++ localLib.import ./. { };
 
   home = {
     homeDirectory = "/home/${user.username}";

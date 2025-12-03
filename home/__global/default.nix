@@ -1,6 +1,6 @@
 { outputs, user, lib, localLib, ... }: {
   imports = [ ] ++
-    localLib.importAllFromPath ./. ++
+    localLib.import ./. { } ++
     (builtins.attrValues outputs.homeManagerModules);
 
   home = {

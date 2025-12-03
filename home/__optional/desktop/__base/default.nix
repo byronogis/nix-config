@@ -1,5 +1,5 @@
 { pkgs, localLib, ... }: {
-  imports = [ ] ++ localLib.importAllFromPath ./.;
+  imports = [ ] ++ localLib.import ./. { };
 
   home.packages = with pkgs; [
     libnotify # notify-send (currently used for test notification)
