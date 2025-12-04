@@ -24,10 +24,10 @@
       # "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --no-pure-eval";
     };
     sessionPath = [
-      "$HOME/.local/bin" # for user installed binaries
       "$HOME/.bun/bin" # for bun global packages
       "$HOME/.deno/bin" # for deno global packages
       "$HOME/.npm-global/bin" # for customed npm global packages
+      "$HOME/.local/bin" # for user installed binaries
     ];
     sessionVariables = { };
     shellAliases = {
