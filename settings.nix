@@ -13,6 +13,7 @@
           "Downloads"
           ".vscode-server"
           ".local/share/fnm"
+          ".local/share/mise"
           ".local/share/direnv"
           ".local/share/containers"
           ".ssh"

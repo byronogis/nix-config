@@ -6,8 +6,15 @@
 }: {
   programs.mise = {
     enable = true;
-    globalConfig = {};
-    settings = {};
+    globalConfig = {
+      settings = {
+        status = {
+          show_env = true;
+          show_tools = true;
+          truncate = false;
+        };
+      };
+    };
   };
 
 }
