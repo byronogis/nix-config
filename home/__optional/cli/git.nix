@@ -10,11 +10,9 @@
             else user.fullname;
           email = user.useremail;
         };
-        extraConfig = {
-          init.defaultBranch = "main";
-          push.autoSetupRemote = true;
-          diff.algorithm = "histogram";
-        };
+        init.defaultBranch = "main";
+        push.autoSetupRemote = true;
+        diff.algorithm = "histogram";
       };
 
       lfs.enable = true;
