@@ -26,6 +26,7 @@
       "visual-studio-code"
       "cursor"
       "podman-desktop"
+      "gitbutler"
 
       "obs"
       "iina" # video player
