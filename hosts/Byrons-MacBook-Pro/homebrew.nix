@@ -49,6 +49,7 @@
       # "lark"
       "wechatwork"
       "wechat"
+      "tencent-meeting"
 
       # "openvpn-connect"
       # "zerotier-one"
