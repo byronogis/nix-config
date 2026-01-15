@@ -31,6 +31,7 @@
       "obs"
       "iina" # video player
       "stats" # system monitor
+      "keka" # archive utility
       # "utools"
       "karabiner-elements"
       "jordanbaird-ice" # manage menu bar icons
