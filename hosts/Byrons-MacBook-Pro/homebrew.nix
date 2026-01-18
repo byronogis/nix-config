@@ -9,6 +9,7 @@
   homebrew = {
     taps = [
       # "v2raya/v2raya"
+      "fastrepl/hyprnote"
     ];
 
     brews = [
