@@ -44,6 +44,7 @@
       "nutstore" # 坚果云
       "keepassxc"
       "obsidian"
+      "fastrepl/hyprnote/hyprnote@nightly"
 
       "discord"
       # "feishu"
