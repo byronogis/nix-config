@@ -15,6 +15,13 @@
     cocoapods
   ];
 
+  environment.variables = {
+    PATH = [
+      "/opt/podman/bin" # From podman-desktop cask
+      "$PATH"
+    ];
+  };
+
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 5;
