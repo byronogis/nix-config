@@ -33,6 +33,6 @@
 
   programs.zsh.shellInit = ''
     # see https://docs.brew.sh/Installation#post-installation-steps
-    eval "$(${config.homebrew.brewPrefix}/brew shellenv)"
+    eval "$(${config.homebrew.prefix}/bin/brew shellenv)"
   '';
 }
