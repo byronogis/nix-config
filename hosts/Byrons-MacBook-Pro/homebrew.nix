@@ -18,6 +18,8 @@
 
       "tesseract" # OCR
       "tesseract-lang" # OCR
+
+      "mole"
     ];
 
     casks = [
