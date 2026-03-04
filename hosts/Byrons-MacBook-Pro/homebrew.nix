@@ -9,7 +9,7 @@
   homebrew = {
     taps = [
       # "v2raya/v2raya"
-      "fastrepl/hyprnote"
+      "fastrepl/fastrepl"
     ];
 
     brews = [
@@ -48,7 +48,7 @@
       "keepassxc"
       "obsidian"
       "calibre"
-      "fastrepl/hyprnote/hyprnote@nightly"
+      "fastrepl/fastrepl/char@nightly"
 
       "discord"
       # "feishu"
