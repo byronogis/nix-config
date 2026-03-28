@@ -28,6 +28,7 @@
       "hbuilderx"
       "visual-studio-code"
       "cursor"
+      "zed"
       "podman-desktop"
       "gitbutler"
 
@@ -56,6 +57,7 @@
       "wechatwork"
       "wechat"
       "tencent-meeting"
+      "dingtalk"
 
       # "openvpn-connect"
       # "zerotier-one"
