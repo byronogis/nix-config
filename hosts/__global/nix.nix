@@ -37,4 +37,9 @@
     # This lets nix2 commands still use <nixpkgs>
     nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
   };
+
+  environment.systemPackages = with pkgs; [
+    nixd
+    nil
+  ];
 }
