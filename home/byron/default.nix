@@ -26,7 +26,6 @@
     sessionPath = [
       "$HOME/.bun/bin" # for bun global packages
       "$HOME/.deno/bin" # for deno global packages
-      "$HOME/.npm-global/bin" # for customed npm global packages
       "$HOME/.local/bin" # for user installed binaries
     ];
     sessionVariables = { };
@@ -35,14 +34,6 @@
       denoo = "deno run --allow-all --unstable-sloppy-imports --unstable-byonm";
       gitap = "git add --patch";
       ll = "ls -la";
-
-      # fixed npm global packages location due to using fnm for node management currently
-      # see https://docs.npmjs.com/cli/v11/configuring-npm/folders#prefix-configuration
-      # see https://docs.npmjs.com/cli/v11/using-npm/config#prefix
-      # see https://docs.npmjs.com/cli/v11/commands/npm-install#global
-      # see https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally#manually-change-npms-default-directory
-      ng = "npm --global --prefix=$HOME/.npm-global";
-      ngup = "find $(ng ls | head -1) -name '.DS_Store' -type f -delete && ng update";
     };
   };
 
