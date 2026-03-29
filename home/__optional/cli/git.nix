@@ -14,7 +14,7 @@
         push.autoSetupRemote = true;
         diff.algorithm = "histogram";
       };
-      signing.format = "opengpg";
+      signing.format = "openpgp";
 
       lfs.enable = true;
     };
