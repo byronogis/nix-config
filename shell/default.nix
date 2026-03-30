@@ -36,9 +36,9 @@ in
   go = defineDev [
     ./go.nix
   ];
-  flutter = defineDev [
-    ./flutter.nix
-  ];
+  # flutter = defineDev [
+  #   ./flutter.nix
+  # ];
   rust = defineDev [
     ./rust.nix
   ];
