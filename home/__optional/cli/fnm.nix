@@ -6,7 +6,7 @@
 }: {
   home.packages = [ pkgs.fnm ];
   home.sessionVariables = {
-    FNM_COREPACK_ENABLED = "false";
+    FNM_COREPACK_ENABLED = "true";
     FNM_VERSION_FILE_STRATEGY = "recursive";
   };
   programs.zsh.initContent = ''
