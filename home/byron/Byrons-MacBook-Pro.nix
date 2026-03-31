@@ -12,7 +12,7 @@
     ../__optional/gui/alacritty.nix
     ../__optional/ai.nix
     # ../__optional/gui/kitty.nix
-    # ../__optional/gui/zellij/zellij.nix
+    ../__optional/gui/zellij/zellij.nix
   ];
 
   home.sessionVariables = {
