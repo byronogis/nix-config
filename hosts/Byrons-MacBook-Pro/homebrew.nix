@@ -64,7 +64,7 @@
       # "openvpn-connect"
       # "zerotier-one"
       "clash-verge-rev"
-      "wireshark"
+      "wireshark-app"
 
       "firefox"
       "google-chrome"
