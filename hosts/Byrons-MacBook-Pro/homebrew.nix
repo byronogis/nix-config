@@ -21,6 +21,7 @@
 
       "mole"
       "jupyterlab"
+      "rtk"
     ];
 
     casks = [
@@ -53,7 +54,7 @@
       "fastrepl/fastrepl/char@nightly"
 
       "discord"
-      # "feishu"
+      "feishu"
       # "lark"
       "wechatwork"
       "wechat"
@@ -63,6 +64,7 @@
       # "openvpn-connect"
       # "zerotier-one"
       "clash-verge-rev"
+      "wireshark"
 
       "firefox"
       "google-chrome"
