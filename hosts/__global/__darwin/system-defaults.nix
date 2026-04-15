@@ -114,10 +114,10 @@
           };
         in {
           scroll-to-open = true;
-          wvous-tl-modifier = modifiers.cmd;
-          wvous-bl-modifier = modifiers.cmd;
-          wvous-tr-modifier = modifiers.cmd;
-          wvous-br-modifier = modifiers.cmd;
+          # wvous-tl-modifier = modifiers.cmd;
+          # wvous-bl-modifier = modifiers.cmd;
+          # wvous-tr-modifier = modifiers.cmd;
+          # wvous-br-modifier = modifiers.cmd;
         };
 
         "com.apple.finder" = {
