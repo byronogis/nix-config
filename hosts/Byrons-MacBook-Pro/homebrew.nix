@@ -10,6 +10,7 @@
     taps = [
       # "v2raya/v2raya"
       "fastrepl/fastrepl"
+      "tw93/tap"
     ];
 
     brews = [
@@ -33,6 +34,7 @@
       "zed"
       "podman-desktop"
       "gitbutler"
+      "tw93/tap/kakuku"
 
       "obs"
       "iina" # video player
