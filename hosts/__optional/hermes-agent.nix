@@ -38,6 +38,7 @@ in
     };
 
     container = {
+      enable = true;
       backend = "podman";
     };
   };
