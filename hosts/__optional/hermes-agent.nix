@@ -33,8 +33,9 @@ in
     environmentFiles = [ config.sops.secrets."hermes-agent-env".path ];
 
     settings.model = {
+      provider = "custom";
       default = "deepseek-v4-flash";
-      base_url = "https://api.deepseek.com/v1";
+      base_url = "https://api.deepseek.com";
       api_key = "\${PLATFORM_DEEPSEEK_API_KEY}";
     };
 
