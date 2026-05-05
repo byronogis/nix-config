@@ -9,6 +9,6 @@
     tree
     wget
     fd
-    ripgrep
+    ripgrep # rg
   ];
 }
