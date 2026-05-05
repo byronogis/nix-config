@@ -33,7 +33,7 @@ in
     environmentFiles = [ config.sops.secrets."hermes-agent-env".path ];
 
     settings.model = {
-      provider = "deekseek";
+      provider = "deepseek";
       default = "deepseek-v4-flash";
     };
 
