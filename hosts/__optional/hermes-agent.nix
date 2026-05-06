@@ -32,19 +32,26 @@ in
     addToSystemPackages = true;
     environmentFiles = [ config.sops.secrets."hermes-agent-env".path ];
 
-    settings.model = {
-      provider = "deepseek";
-      default = "deepseek-v4-flash";
+    settings = {
+      model = {
+        provider = "deepseek";
+        default = "deepseek-v4-flash";
+      };
+      terminal.cwd = "/home/hermes/project";
     };
 
     container = {
       enable = true;
       backend = "podman";
+      hostUsers = [ "byron" ];
+      extraVolumes = [
+        "/home/byron/project:/home/hermes/project"
+      ];
     };
   };
 
   security.sudo.extraRules = [{
-    users = [ "hermes" ];
+    users = [ "byron" ];
     commands = [
       {
         command = "/run/current-system/sw/bin/podman";
