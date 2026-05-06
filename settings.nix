@@ -47,6 +47,21 @@
         { from = 3000; to = 5999; }
       ];
     };
+    mv-nixos = {
+      hostname = "mv-nixos";
+      os = "nixos";
+      system = "aarch64-linux";
+      device = "sda";
+      impermanence = true;
+      persistencePath = "/persist";
+      userAttrs = {
+        inherit (userAttrs) byron;
+      };
+      allowedPorts = [ ];
+      allowedPortRanges = [
+        { from = 3000; to = 5999; }
+      ];
+    };
 
     Byrons-MacBook-Pro = {
       hostname = "Byrons-MacBook-Pro";
