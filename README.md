@@ -76,26 +76,6 @@ A nix config based flakes.
 
 #### nixos
 
-<details>
-<summary><b>0. Manage keys for sops (optional)</b></summary>
-
-> [Generating a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
->
-
-Generate ssh keys, name as:
-
-`ssh_host_rsa_key` `ssh_host_ed25519_key`
-
-copy these keys to right position (eg: `/etc/ssh`) after install and before first reboot,
-
-change key (not include pub) file mode, `chmod 0600 /path/to/key`
-
-> use another key.txt file when decrypting, like:
->
-> `sudo SOPS_AGE_KEY_FILE=/run/secrets.d/age-keys.txt sops hosts/secrets.yaml`
-
-</details>
-
 1. Boot from nixos live cd
 
 2. Clone this repo
@@ -155,9 +135,27 @@ Then copy `hardware-configuration.nix` to `host/<hostname>/` dir. And import it 
 nixos-install --flake .#<hostname> --show-trace --no-root-passwd
 ```
 
-8. Reboot
+<details>
+<summary><b>7.5. Manage keys for sops (optional)</b></summary>
 
-NOTE: Before reboot, make sure you have copied ssh keys to right position and change file mode if needed (see step 0).
+> [Generating a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
+>
+
+- Generate ssh keys, name as: `ssh_host_rsa_key` `ssh_host_ed25519_key`
+- copy these keys to right position (eg: `/mnt/etc/ssh` or `/mnt/persist/etc/ssh`) after install and before first reboot,
+- change key (not include pub) file mode, `chmod 0600 /path/to/key`
+- run `nixos-enter` to chroot to new system
+- clone newest nix-config repo to new system, and cd to repo dir
+- edit `.sops.yaml` then run `sops updatekeys path/to/secrets.yaml` to update key info in secrets file
+- run `nixos-rebuild boot --flake .#<hostname> --show-trace` to update system config
+
+> use another key.txt file when decrypting, like:
+>
+> `sudo SOPS_AGE_KEY_FILE=/run/secrets.d/age-keys.txt sops hosts/secrets.yaml`
+
+</details>
+
+1. Reboot
 
 ```bash
 reboot
