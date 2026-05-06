@@ -146,7 +146,7 @@ nixos-install --flake .#<hostname> --show-trace --no-root-passwd
 - change key (not include pub) file mode, `chmod 0600 /path/to/key`
 - run `nixos-enter` to chroot to new system
 - clone newest nix-config repo to new system, and cd to repo dir
-- edit `.sops.yaml` then run `sops updatekeys path/to/secrets.yaml` to update key info in secrets file
+- (this step maybe need to excute on existing system before) edit `.sops.yaml` then run `sops updatekeys path/to/secrets.yaml` to update key info in secrets file
 - run `nixos-rebuild boot --flake .#<hostname> --show-trace` to update system config
 
 > use another key.txt file when decrypting, like:
