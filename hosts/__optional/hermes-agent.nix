@@ -43,6 +43,16 @@ in
     };
   };
 
+  security.sudo.extraRules = [{
+    users = [ "hermes" ];
+    commands = [
+      {
+        command = "/run/current-system/sw/bin/podman";
+        options = [ "NOPASSWD" ];
+      }
+    ];
+  }];
+
   sops = {
     secrets = {
       hermes-agent-env = { };
