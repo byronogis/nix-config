@@ -1,8 +1,8 @@
-{ lib
-, host
-, user
-, ...
-}: {
+{
+  ctx,
+  ...
+}:
+{
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;

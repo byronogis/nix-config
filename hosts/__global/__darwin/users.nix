@@ -1,17 +1,13 @@
-{ host
-, lib
-, config
-, pkgs
-, ...
-}: {
+{
+  ctx,
+  config,
+  pkgs,
+  ...
+}:
+{
   users = {
-    users =
-      builtins.mapAttrs
-        (
-          username: user: {
-            home = "/Users/${username}";
-          }
-        )
-        host.userAttrs;
+    users = builtins.mapAttrs (username: user: {
+      home = "/Users/${username}";
+    }) ctx.host.userAttrs;
   };
 }

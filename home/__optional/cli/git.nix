@@ -1,14 +1,16 @@
-{ lib, user, ... }: {
+{ ctx, ... }:
+{
   programs = {
     git = {
       enable = true;
       settings = {
         user = {
           name =
-            if (user ? "usernameKeyForGit")
-            then user.${user.usernameKeyForGit}
-            else user.fullname;
-          email = user.useremail;
+            if (ctx.user ? "usernameKeyForGit") then
+              ctx.user.${ctx.user.usernameKeyForGit}
+            else
+              ctx.user.fullname;
+          email = ctx.user.useremail;
         };
         init.defaultBranch = "main";
         push.autoSetupRemote = true;

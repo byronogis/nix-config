@@ -1,12 +1,13 @@
-{ host
-, lib
-, config
-, pkgs
-, ...
-}: {
+{
+  ctx,
+  config,
+  pkgs,
+  ...
+}:
+{
   system = {
     defaults = {
-      smb.NetBIOSName = host.hostname;
+      smb.NetBIOSName = ctx.host.hostname;
 
       dock = {
         orientation = "left";
@@ -51,7 +52,6 @@
         disable-shadow = true;
         location = "~/Desktop";
       };
-
 
       screensaver = {
         askForPassword = true;
@@ -104,21 +104,23 @@
         # Prevent Photos from opening automatically when devices are plugged in
         "com.apple.ImageCapture".disableHotPlug = true;
 
-        "com.apple.dock" = let
-          # for modifier support, check https://github.com/LnL7/nix-darwin/issues/998
-          modifiers = {
-            none = 0;
-            option = 524288;
-            cmd = 1048576;
-            "option+cmd" = 1573864;
+        "com.apple.dock" =
+          let
+            # for modifier support, check https://github.com/LnL7/nix-darwin/issues/998
+            modifiers = {
+              none = 0;
+              option = 524288;
+              cmd = 1048576;
+              "option+cmd" = 1573864;
+            };
+          in
+          {
+            scroll-to-open = true;
+            # wvous-tl-modifier = modifiers.cmd;
+            # wvous-bl-modifier = modifiers.cmd;
+            # wvous-tr-modifier = modifiers.cmd;
+            # wvous-br-modifier = modifiers.cmd;
           };
-        in {
-          scroll-to-open = true;
-          # wvous-tl-modifier = modifiers.cmd;
-          # wvous-bl-modifier = modifiers.cmd;
-          # wvous-tr-modifier = modifiers.cmd;
-          # wvous-br-modifier = modifiers.cmd;
-        };
 
         "com.apple.finder" = {
           AppleShowAllFiles = true;

@@ -1,6 +1,7 @@
 # Can use in desktop environment
 # See https://nixos.wiki/wiki/Fonts
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   fonts = {
     packages = with pkgs; [
       noto-fonts

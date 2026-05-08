@@ -1,8 +1,9 @@
-{ host, ... }: {
+{ ctx, ... }:
+{
   services.vsftpd = {
     enable = true;
     writeEnable = true;
-    userlist = builtins.attrNames host.userAttrs;
+    userlist = builtins.attrNames ctx.host.userAttrs;
     userlistEnable = true;
     localUsers = true;
     extraConfig = ''
@@ -12,8 +13,16 @@
   };
 
   networking.firewall = {
-    allowedTCPPorts = [ 20 21 ];
-    allowedTCPPortRanges = [{ from = 56250; to = 56260; }];
+    allowedTCPPorts = [
+      20
+      21
+    ];
+    allowedTCPPortRanges = [
+      {
+        from = 56250;
+        to = 56260;
+      }
+    ];
     connectionTrackingModules = [ "ftp" ];
   };
 }

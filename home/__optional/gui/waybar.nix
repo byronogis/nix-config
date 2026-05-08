@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  outputs,
+  pkgs,
+  config,
+  ...
+}:
 let
   cat = "${pkgs.coreutils}/bin/cat";
   cut = "${pkgs.coreutils}/bin/cut";
@@ -25,7 +30,7 @@ in
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = (oldAttrs.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
+      mesonFlags = (oldAttrs.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
     });
     systemd.enable = true;
     # @see https://github.com/Alexays/Waybar/wiki/Configuration
@@ -39,7 +44,8 @@ in
         margin = "4";
         spacing = 4;
         modules-left = [
-        ] ++ (lib.optionals hasHyprland [
+        ]
+        ++ (outputs.lib.optionals hasHyprland [
           "hyprland/workspaces"
           "hyprland/submap"
           "hyprland/language"
@@ -95,14 +101,29 @@ in
             headphone = "󰋋";
             headset = "󰋎";
             portable = "";
-            default = [ "" "" "" ];
+            default = [
+              ""
+              ""
+              ""
+            ];
           };
           on-click = pavucontrol; # need pkgs.pavucontrol
         };
         battery = {
           bat = "BAT0";
           interval = 10;
-          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
           onclick = "";

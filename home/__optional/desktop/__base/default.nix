@@ -1,5 +1,11 @@
-{ pkgs, localLib, ... }: {
-  imports = [ ] ++ localLib.import ./. { };
+{
+  outputs,
+  ctx,
+  pkgs,
+  ...
+}:
+{
+  imports = [ ] ++ outputs.lib._local.import ./. { };
 
   home.packages = with pkgs; [
     libnotify # notify-send (currently used for test notification)

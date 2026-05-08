@@ -1,6 +1,7 @@
 # See https://man.sr.ht/~kennylevinsen/greetd/
 
-{ ... }: {
+{ ... }:
+{
   services.greetd = {
     enable = true;
     settings = {

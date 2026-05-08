@@ -1,6 +1,7 @@
 # @see https://wiki.hyprland.org/Configuring/Variables/
 
-{ lib, config, ... }: {
+{ config, ... }:
+{
   wayland.windowManager.hyprland.settings = {
     general = {
       layout = "dwindle"; # master dwindle

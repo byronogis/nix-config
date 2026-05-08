@@ -1,12 +1,13 @@
-{ config
-, host
-, localLib
-, ...
+{
+  config,
+  outputs,
+  ctx,
+  ...
 }:
 let
   dockerEnabled = config.virtualisation.docker.enable;
-  persistence = localLib.setHostPersistence {
-    inherit host;
+  persistence = outputs.lib._local.setHostPersistence {
+    inherit (ctx) host;
     settings = {
       directories = [
         "/var/lib/containers"

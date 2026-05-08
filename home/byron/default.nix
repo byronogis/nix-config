@@ -1,12 +1,12 @@
 # See https://nix-community.github.io/home-manager/options.xhtml
-{ inputs
-, outputs
-, host
-, user
-, pkgs
-, lib
-, ...
-}: {
+{
+  inputs,
+  outputs,
+  ctx,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ../__optional/cli
   ];
@@ -44,7 +44,7 @@
     PD = "~/project/demo";
     PC = "~/project/clone";
     PW = "~/project/work";
-    NCP = lib.mkForce "~/project/personal/nix-config";
+    NCP = outputs.lib.mkForce "~/project/personal/nix-config";
     DL = "~/Downloads";
   };
 

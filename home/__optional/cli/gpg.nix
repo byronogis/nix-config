@@ -1,12 +1,12 @@
-{ lib
-, pkgs
-, config
-, host
-, user
-, ...
+{
+  ctx,
+  outputs,
+  pkgs,
+  config,
+  ...
 }:
 let
-  pgpPublicKeyFile = ../../${user.username}/pgp-public-key.asc;
+  pgpPublicKeyFile = ../../${ctx.user.username}/pgp-public-key.asc;
 in
 
 {
@@ -22,10 +22,14 @@ in
   programs.gpg = {
     enable = true;
     settings = { };
-    publicKeys = [ ] ++ lib.optionals (builtins.pathExists pgpPublicKeyFile) [{
-      source = pgpPublicKeyFile;
-      trust = 5;
-    }];
+    publicKeys =
+      [ ]
+      ++ outputs.lib.optionals (builtins.pathExists pgpPublicKeyFile) [
+        {
+          source = pgpPublicKeyFile;
+          trust = 5;
+        }
+      ];
   };
 
   home.packages = [ pkgs.ccid ];

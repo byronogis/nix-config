@@ -1,4 +1,5 @@
-{ lib }: rec {
+{ lib }:
+rec {
   userAttrs = {
     byron = {
       username = "byron";
@@ -44,7 +45,10 @@
       };
       allowedPorts = [ ];
       allowedPortRanges = [
-        { from = 3000; to = 5999; }
+        {
+          from = 3000;
+          to = 5999;
+        }
       ];
     };
     mv-nixos = {
@@ -59,7 +63,10 @@
       };
       allowedPorts = [ ];
       allowedPortRanges = [
-        { from = 3000; to = 5999; }
+        {
+          from = 3000;
+          to = 5999;
+        }
       ];
     };
 
@@ -81,13 +88,7 @@
   hostvalues = builtins.attrValues hostAttrs;
 
   # ==> [ "x86_64-darwin" "x86_64-linux" ... ]
-  systems = lib.lists.unique (
-    lib.attrsets.mapAttrsToList
-      (
-        name: value: value.system
-      )
-      hostAttrs
-  );
+  systems = lib.lists.unique (lib.attrsets.mapAttrsToList (name: value: value.system) hostAttrs);
 
   # ==> { darwin = [ ... ]; nixos = [ ... ]; }
   osGroupAttrs = lib.lists.groupBy (hostvalue: hostvalue.os) hostvalues;

@@ -1,8 +1,9 @@
-{ lib
-, host
-, user
-, ...
-}: {
+{
+  outputs,
+  ctx,
+  ...
+}:
+{
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;

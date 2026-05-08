@@ -1,8 +1,9 @@
-{ config
-, lib
-, pkgs
-, ...
-}: {
+{
+  config,
+  pkgs,
+  ...
+}:
+{
   imports = [
     # ...
     ./homebrew.nix

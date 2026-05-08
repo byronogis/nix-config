@@ -2,7 +2,14 @@
 # sudo SOPS_AGE_KEY_FILE=/run/secrets.d/age-keys.txt sops ./hosts/secrets.yaml
 # see: https://github.com/getsops/sops?tab=readme-ov-file#encrypting-using-age
 
-{ inputs, lib, config, host, ... }: {
+{
+  inputs,
+  outputs,
+  config,
+  ctx,
+  ...
+}:
+{
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -12,19 +19,18 @@
 
     secrets =
       let
-        user-secrets = lib.attrsets.concatMapAttrs
-          (username: user: {
-            "${username}-password" = {
-              # neededForUsers cannot be used for secrets that are not root-owned
-              neededForUsers = true;
-            };
-            "${username}-github-access-token" = { };
-            "${username}-zerotierone-net" = { };
-          })
-          host.userAttrs;
+        user-secrets = outputs.lib.attrsets.concatMapAttrs (username: user: {
+          "${username}-password" = {
+            # neededForUsers cannot be used for secrets that are not root-owned
+            neededForUsers = true;
+          };
+          "${username}-github-access-token" = { };
+          "${username}-zerotierone-net" = { };
+        }) ctx.host.userAttrs;
       in
       {
         nix-extra-access-tokens = { };
-      } // user-secrets;
+      }
+      // user-secrets;
   };
 }

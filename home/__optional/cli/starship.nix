@@ -3,7 +3,7 @@
     starship = {
       enable = true;
       settings = {
-        format = ''$all'';
+        format = "$all";
         username = {
           show_always = true;
           format = "[$user]($style)";

@@ -1,12 +1,12 @@
 # See https://nix-community.github.io/home-manager/options.xhtml
-{ inputs
-, outputs
-, host
-, user
-, pkgs
-, lib
-, ...
-}: {
+{
+  ctx,
+  inputs,
+  outputs,
+  pkgs,
+  ...
+}:
+{
   home = {
     shellAliases = {
       # see https://docs.openwebui.com/#installation-with-uv-recommended

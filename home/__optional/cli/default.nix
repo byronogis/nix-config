@@ -1,9 +1,17 @@
-{ pkgs, lib, localLib, ... }: {
-  imports = [ ] ++ localLib.import ./. {
-    exclude = [
-      "mise\\.nix"
-    ];
-  };
+{
+  outputs,
+  ctx,
+  pkgs,
+  ...
+}:
+{
+  imports =
+    [ ]
+    ++ outputs.lib._local.import ./. {
+      exclude = [
+        "mise\\.nix"
+      ];
+    };
 
   home.packages = with pkgs; [
     tree

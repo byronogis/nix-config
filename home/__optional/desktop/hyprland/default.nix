@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   imports = [
     ../__wayland
 

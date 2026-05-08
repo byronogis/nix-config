@@ -1,13 +1,14 @@
-{ host
-, lib
-, config
-, pkgs
-, ...
-}: {
+{
+  ctx,
+  config,
+  pkgs,
+  ...
+}:
+{
   system = {
     # transition mechanism
     # see https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-system.primaryUser
-    primaryUser = host.primaryUser;
+    primaryUser = ctx.host.primaryUser;
 
     # TODO `system.activationScripts.postUserActivation` option has been removed
     # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.

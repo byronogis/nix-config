@@ -1,8 +1,10 @@
-{ config
-, lib
-, pkgs
-, ...
-}: {
+{
+  config,
+  outputs,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./disko-config.nix
@@ -13,7 +15,7 @@
     ../__optional/hermes-agent.nix
   ];
 
-  networking.firewall.enable = lib.mkForce false;
+  networking.firewall.enable = outputs.lib.mkForce false;
 
   swapDevices = [
     {
@@ -25,7 +27,6 @@
   boot.kernel.sysctl = {
     "fs.inotify.max_user_watches" = 524288;
   };
-
 
   # TODO cloudflared
   # services.cloudflared.enable = true;

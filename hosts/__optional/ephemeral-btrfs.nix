@@ -1,11 +1,12 @@
 # This file contains an ephemeral btrfs root configuration
-{ lib
-, config
-, host
-, ...
+{
+  outputs,
+  config,
+  ctx,
+  ...
 }:
 let
-  hostname = host.hostname;
+  hostname = ctx.host.hostname;
   wipeScript = ''
     mkdir /tmp -p
     MNTPOINT=$(mktemp -d)
@@ -14,7 +15,7 @@ let
       trap 'umount "$MNTPOINT"' EXIT
 
       echo "Creating needed directories"
-      mkdir -p "$MNTPOINT"${host.persistencePath}/var/{log,lib/{nixos,systemd}}
+      mkdir -p "$MNTPOINT"${ctx.host.persistencePath}/var/{log,lib/{nixos,systemd}}
 
       echo "Cleaning @ subvolume"
       btrfs subvolume list -o "$MNTPOINT/@" | cut -f9 -d ' ' |
@@ -31,8 +32,8 @@ in
 {
   boot.initrd = {
     supportedFilesystems = [ "btrfs" ];
-    postDeviceCommands = lib.mkIf (!phase1Systemd) (lib.mkBefore wipeScript);
-    systemd.services.restore-root = lib.mkIf phase1Systemd {
+    postDeviceCommands = outputs.lib.mkIf (!phase1Systemd) (outputs.lib.mkBefore wipeScript);
+    systemd.services.restore-root = outputs.lib.mkIf phase1Systemd {
       description = "Rollback btrfs rootfs";
       wantedBy = [ "initrd.target" ];
       requires = [

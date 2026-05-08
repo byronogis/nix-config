@@ -1,10 +1,11 @@
-{ inputs
-, lib
-, pkgs
-, config
-, host
-, ...
-}: {
+{
+  inputs,
+  pkgs,
+  config,
+  ctx,
+  ...
+}:
+{
   # quicker for macos
   # https://www.yuque.com/quicker-community/help/intro
   environment.systemPackages = with pkgs; [

@@ -1,13 +1,13 @@
-{ lib
-, config
-, pkgs
-, host
-, localLib
-, ...
+{
+  config,
+  pkgs,
+  outputs,
+  ctx,
+  ...
 }:
 let
-  persistence = localLib.setHostPersistence {
-    inherit host;
+  persistence = outputs.lib._local.setHostPersistence {
+    inherit (ctx) host;
     settings = {
       directories = [
         "/etc/v2raya"

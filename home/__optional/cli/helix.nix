@@ -1,10 +1,10 @@
-{ lib
-, pkgs
-, config
-, host
-, user
-, ...
-}: {
+{
+  ctx,
+  pkgs,
+  config,
+  ...
+}:
+{
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -20,7 +20,10 @@
       };
       keys.normal = {
         # [auto wrap](https://github.com/helix-editor/helix/issues/136#issuecomment-1925898113)
-        space.W = [ ":toggle soft-wrap.enable" ":redraw" ];
+        space.W = [
+          ":toggle soft-wrap.enable"
+          ":redraw"
+        ];
       };
     };
   };

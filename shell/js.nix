@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }:
+{
   # languages.javascript = {
   #   enable = true;
   #   bun.enable = true;

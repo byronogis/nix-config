@@ -1,52 +1,51 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  devenvRoot ? null,
+  ...
+}:
 let
   devenv = inputs.devenv;
-  defineDev = modules: devenv.lib.mkShell {
-    inherit inputs pkgs;
-    modules = [
-      {
-        packages = with pkgs; [ zsh ];
-        enterShell = ''
-          zsh
-        '';
-      }
-    ] ++ modules;
-  };
+  # Common devenv configuration with optional root
+  mkDevenvShell =
+    modules:
+    devenv.lib.mkShell {
+      inherit inputs pkgs;
+      modules = [
+        ({
+          # Set devenv root if provided
+          devenv.root = devenvRoot;
+
+          packages = with pkgs; [ zsh ];
+          enterShell = ''
+            zsh
+          '';
+        })
+      ]
+      ++ modules;
+    };
 in
 {
   default = (import ../default.nix { inherit pkgs; }).default;
 
-  hello = devenv.lib.mkShell {
-    inherit inputs pkgs;
-    modules = [
-      {
-        packages = with pkgs; [ hello ];
-        enterShell = ''
-          hello -g "You are now in a nix shell with hello!"
-        '';
-      }
-    ];
-  };
-  js = defineDev [
-    ./js.nix
+  hello = mkDevenvShell [
+    {
+      packages = with pkgs; [ hello ];
+      enterShell = ''
+        hello -g "You are now in a nix shell with hello!"
+      '';
+    }
   ];
-  python = defineDev [
-    ./python.nix
-  ];
-  go = defineDev [
-    ./go.nix
-  ];
-  # flutter = defineDev [
-  #   ./flutter.nix
-  # ];
-  rust = defineDev [
-    ./rust.nix
-  ];
+  js = mkDevenvShell [ (import ./js.nix) ];
+  python = mkDevenvShell [ (import ./python.nix) ];
+  go = mkDevenvShell [ (import ./go.nix) ];
+  # flutter = mkDevenvShell [ (import ./flutter.nix) ];
+  rust = mkDevenvShell [ (import ./rust.nix) ];
 
-  byron = defineDev [
+  byron = mkDevenvShell [
     # I use fnm to manage node
-    # ./js.nix
-    # ./python.nix
-    # ./go.nix
+    # (import ./js.nix)
+    # (import ./python.nix)
+    # (import ./go.nix)
   ];
 }

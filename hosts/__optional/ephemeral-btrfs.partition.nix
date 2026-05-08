@@ -1,10 +1,14 @@
 # power by disko
-{ host, ... }: {
+{ ctx, ... }:
+{
   size = "100%";
   content = {
     type = "btrfs";
     # TODO why --label or -L not take effect both ?
-    extraArgs = [ "-f" "--label ${host.hostname}" ];
+    extraArgs = [
+      "-f"
+      "--label ${ctx.host.hostname}"
+    ];
     subvolumes = {
       "@" = {
         mountpoint = "/";
@@ -16,10 +20,13 @@
       };
       "@nix" = {
         mountpoint = "/nix";
-        mountOptions = [ "compress=zstd" "noatime" ];
+        mountOptions = [
+          "compress=zstd"
+          "noatime"
+        ];
       };
       "@persist" = {
-        mountpoint = "${host.persistencePath}";
+        mountpoint = "${ctx.host.persistencePath}";
         mountOptions = [ "compress=zstd" ];
       };
       "@swap" = {

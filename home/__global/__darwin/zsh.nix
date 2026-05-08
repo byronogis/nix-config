@@ -1,10 +1,10 @@
 # See https://zsh.sourceforge.io/Doc/Release/Options.html
-{ lib
-, pkgs
-, host
-, user
-, ...
-}: {
+{
+  ctx,
+  pkgs,
+  ...
+}:
+{
   programs = {
     zsh = {
       shellAliases = {

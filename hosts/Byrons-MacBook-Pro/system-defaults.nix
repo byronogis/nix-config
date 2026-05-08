@@ -1,13 +1,15 @@
-{ host
-, lib
-, config
-, pkgs
-, ...
-}: {
+{
+  ctx,
+  outputs,
+  config,
+  pkgs,
+  ...
+}:
+{
   system = {
     defaults = {
       dock = {
-        persistent-apps = lib.mkAfter [
+        persistent-apps = outputs.lib.mkAfter [
           "${pkgs.alacritty}/Applications/alacritty.app"
           "/Applications/Obsidian.app"
           # "/Applications/Microsoft Edge.app"

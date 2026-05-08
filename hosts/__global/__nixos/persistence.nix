@@ -3,18 +3,20 @@
 # users' home persist dir exists and has the right permissions
 #
 # It works even if / is tmpfs, btrfs snapshot, or even not ephemeral at all.
-{ inputs
-, config
-, lib
-, host
-, ...
-}: lib.optionalAttrs host.impermanence {
+{
+  inputs,
+  config,
+  outputs,
+  ctx,
+  ...
+}:
+outputs.lib.optionalAttrs ctx.host.impermanence {
   imports = [
     inputs.impermanence.nixosModules.impermanence
   ];
 
   environment.persistence = {
-    "${host.persistencePath}" = {
+    "${ctx.host.persistencePath}" = {
       directories = [
         "/var/lib/systemd"
         "/var/lib/nixos"
@@ -28,32 +30,30 @@
         "/etc/ssh/ssh_host_ed25519_key"
         "/etc/ssh/ssh_host_ed25519_key.pub"
       ];
-      users =
-        builtins.mapAttrs
-          (username: user: (lib.recursiveUpdate
-            {
-              directories = [ ];
-              files = [
-                ".local/share/nix/trusted-settings.json"
-              ];
-            }
-            user.persistence
-          ))
-          host.userAttrs;
+      users = builtins.mapAttrs (
+        username: user:
+        (outputs.lib.recursiveUpdate {
+          directories = [ ];
+          files = [
+            ".local/share/nix/trusted-settings.json"
+          ];
+        } user.persistence)
+      ) ctx.host.userAttrs;
     };
   };
   programs.fuse.userAllowOther = true;
-  fileSystems."${host.persistencePath}".neededForBoot = true;
+  fileSystems."${ctx.host.persistencePath}".neededForBoot = true;
 
   system.activationScripts.persistent-dirs.text =
     let
-      mkHomePersist = user:
-        lib.optionalString user.createHome ''
-          mkdir -p ${host.persistencePath}/${user.home}
-          chown ${user.name}:${user.group} ${host.persistencePath}/${user.home}
-          chmod ${user.homeMode} ${host.persistencePath}/${user.home}
+      mkHomePersist =
+        user:
+        outputs.lib.optionalString user.createHome ''
+          mkdir -p ${ctx.host.persistencePath}/${user.home}
+          chown ${user.name}:${user.group} ${ctx.host.persistencePath}/${user.home}
+          chmod ${user.homeMode} ${ctx.host.persistencePath}/${user.home}
         '';
-      users = lib.attrValues config.users.users;
+      users = outputs.lib.attrValues config.users.users;
     in
-    lib.concatLines (map mkHomePersist users);
+    outputs.lib.concatLines (map mkHomePersist users);
 }

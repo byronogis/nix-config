@@ -1,9 +1,9 @@
-{ lib
-, pkgs
-, host
-, user
-, ...
-}: {
+{
+  ctx,
+  pkgs,
+  ...
+}:
+{
   programs.mise = {
     enable = true;
     globalConfig = {

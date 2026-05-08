@@ -1,6 +1,8 @@
-{ config
-, ...
-}: {
+{
+  config,
+  ...
+}:
+{
   programs.alacritty = {
     enable = true;
     # https://alacritty.org/config-alacritty.html

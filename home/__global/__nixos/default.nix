@@ -1,7 +1,8 @@
-{ outputs, user, lib, localLib, ... }: {
-  imports = [ ] ++ localLib.import ./. { };
+{ outputs, ctx, ... }:
+{
+  imports = [ ] ++ outputs.lib._local.import ./. { };
 
   home = {
-    homeDirectory = "/home/${user.username}";
+    homeDirectory = "/home/${ctx.user.username}";
   };
 }

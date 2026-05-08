@@ -1,12 +1,12 @@
-{ lib
-, config
-, host
-, localLib
-, ...
+{
+  config,
+  outputs,
+  ctx,
+  ...
 }:
 let
-  persistence = localLib.setHostPersistence {
-    inherit host;
+  persistence = outputs.lib._local.setHostPersistence {
+    inherit (ctx) host;
     settings = {
       directories = [
         # ...

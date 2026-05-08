@@ -1,16 +1,17 @@
 {
   description = "A nix config based flakes.";
 
-  # nixConfig = {
-  #   extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
-  #   extra-substituters = "https://devenv.cachix.org";
-  # };
-
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+
+    # Flake parts
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
     # Darwin
     nix-darwin = {
@@ -62,9 +63,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
-
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     nix-colors.url = "github:misterio77/nix-colors";
@@ -74,64 +72,99 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , ...
-    } @ inputs:
+    inputs@{
+      flake-parts,
+      nixpkgs,
+      home-manager,
+      ...
+    }:
     let
-      inherit (self) outputs;
-      lib = nixpkgs.lib // inputs.home-manager.lib;
-
-      localLib = import ./lib { inherit lib; };
+      inherit (nixpkgs) lib;
       settings = import ./settings.nix { inherit lib; };
+      localLib = import ./lib { inherit lib; };
 
-      forEachSystem = f: lib.genAttrs settings.systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs settings.systems (system: import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
+      # Build the ctx for a specific host
+      mkCtx = host: {
+        inherit settings;
+        hosts = settings.hostAttrs;
+        users = settings.userAttrs;
+        inherit host;
+        user = null; # Will be set in home-manager context
+      };
     in
-    {
-      lib = lib // localLib;
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = settings.systems;
 
-      nixosModules = import ./modules/nixos;
-      darwinModules = import ./modules/darwin;
-      homeManagerModules = import ./modules/home-manager;
+      perSystem =
+        { pkgs, ... }:
+        let
+          devenvRoot = builtins.toString ./.;
+        in
+        {
+          packages = import ./pkgs { inherit pkgs; };
+          devShells = import ./shell { inherit inputs pkgs devenvRoot; };
+          formatter = pkgs.nixfmt-tree;
+        };
 
-      overlays = import ./overlays { inherit inputs outputs; };
-      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-      devShells = forEachSystem (pkgs: import ./shell { inherit inputs pkgs; });
-      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
+      flake =
+        let
+          # This will be the full flake outputs (self-referential)
+          flakeOutputs = {
+            # Combined lib
+            lib = nixpkgs.lib // {
+              _hm = home-manager.lib.hm;
+              _local = localLib;
+            };
 
-      # Nixos
-      # TODO is there has a simply way: [attr ...] ==> { attr.x: attr; ... } ?
-      nixosConfigurations = lib.genAttrs
-        (map (host: host.hostname) settings.osGroupAttrs.nixos)
-        (hostname: lib.nixosSystem {
-          modules = [
-            ./hosts/__global
-            ./hosts/__global/__nixos
-            ./hosts/${hostname}/configuration.nix
-          ];
-          specialArgs = {
-            inherit inputs outputs localLib;
-            host = settings.hostAttrs.${hostname};
+            # Overlays
+            overlays = import ./overlays { inherit inputs; };
+
+            # Reusable modules
+            nixosModules = import ./modules/nixos;
+            darwinModules = import ./modules/darwin;
+            homeManagerModules = import ./modules/home-manager;
+
+            # NixOS configurations
+            nixosConfigurations = lib.genAttrs (map (host: host.hostname) (settings.osGroupAttrs.nixos or [ ])) (
+              hostname:
+              let
+                host = settings.hostAttrs.${hostname};
+              in
+              lib.nixosSystem {
+                modules = [
+                  ./hosts/__global
+                  ./hosts/__global/__nixos
+                  ./hosts/${hostname}/configuration.nix
+                ];
+                specialArgs = {
+                  inherit inputs;
+                  outputs = flakeOutputs;
+                  ctx = mkCtx host;
+                };
+              }
+            );
+
+            # Darwin configurations
+            darwinConfigurations = lib.genAttrs (map (host: host.hostname) (settings.osGroupAttrs.darwin or [ ])) (
+              hostname:
+              let
+                host = settings.hostAttrs.${hostname};
+              in
+              inputs.nix-darwin.lib.darwinSystem {
+                modules = [
+                  ./hosts/__global
+                  ./hosts/__global/__darwin
+                  ./hosts/${hostname}/configuration.nix
+                ];
+                specialArgs = {
+                  inherit inputs;
+                  outputs = flakeOutputs;
+                  ctx = mkCtx host;
+                };
+              }
+            );
           };
-        });
-
-      # Darwin
-      darwinConfigurations = lib.genAttrs
-        (map (host: host.hostname) settings.osGroupAttrs.darwin)
-        (hostname: inputs.nix-darwin.lib.darwinSystem {
-          modules = [
-            ./hosts/__global
-            ./hosts/__global/__darwin
-            ./hosts/${hostname}/configuration.nix
-          ];
-          specialArgs = {
-            inherit inputs outputs localLib;
-            host = settings.hostAttrs.${hostname};
-          };
-        });
+        in
+        flakeOutputs;
     };
 }

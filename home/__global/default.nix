@@ -1,7 +1,7 @@
-{ outputs, user, lib, localLib, ... }: {
-  imports = [ ] ++
-    localLib.import ./. { } ++
-    (builtins.attrValues outputs.homeManagerModules);
+{ outputs, ctx, ... }:
+{
+  imports =
+    [ ] ++ outputs.lib._local.import ./. { } ++ (builtins.attrValues outputs.homeManagerModules);
 
   home = {
     stateVersion = "23.11";

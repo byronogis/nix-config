@@ -1,10 +1,11 @@
-{ inputs
-, lib
-, pkgs
-, config
-, host
-, ...
-}: {
+{
+  inputs,
+  pkgs,
+  config,
+  ctx,
+  ...
+}:
+{
   nix = {
     gc = {
       interval.Day = 7;

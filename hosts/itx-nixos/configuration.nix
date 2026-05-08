@@ -1,8 +1,10 @@
-{ config
-, lib
-, pkgs
-, ...
-}: {
+{
+  config,
+  outputs,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./disko-config.nix
@@ -14,7 +16,7 @@
     ../__optional/zerotierone.nix
   ];
 
-  networking.firewall.enable = lib.mkForce false;
+  networking.firewall.enable = outputs.lib.mkForce false;
 
   swapDevices = [
     {
@@ -36,7 +38,6 @@
       };
     };
   };
-
 
   # TODO cloudflared
   # services.cloudflared.enable = true;

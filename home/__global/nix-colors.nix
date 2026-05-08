@@ -1,4 +1,5 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   imports = [
     inputs.nix-colors.homeManagerModule
   ];

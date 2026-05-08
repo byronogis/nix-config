@@ -1,10 +1,11 @@
-{ inputs
-, lib
-, pkgs
-, config
-, host
-, ...
-}: {
+{
+  inputs,
+  pkgs,
+  config,
+  ctx,
+  ...
+}:
+{
   homebrew = {
     enable = true;
     onActivation = {

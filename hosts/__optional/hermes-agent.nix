@@ -1,18 +1,18 @@
 # See https://hermes-agent.nousresearch.com/docs/getting-started/nix-setup#nixos-module
-{ inputs
-, outputs
-, host
-, pkgs
-, localLib
-, config
-, ...
+{
+  inputs,
+  outputs,
+  ctx,
+  pkgs,
+  config,
+  ...
 }:
 let
   hermes-agent = {
     stateDir = "/var/lib/hermes";
   };
-  persistence = localLib.setHostPersistence {
-    inherit host;
+  persistence = outputs.lib._local.setHostPersistence {
+    inherit (ctx) host;
     settings = {
       directories = [
         hermes-agent.stateDir
@@ -50,15 +50,17 @@ in
     };
   };
 
-  security.sudo.extraRules = [{
-    users = [ "byron" ];
-    commands = [
-      {
-        command = "/run/current-system/sw/bin/podman";
-        options = [ "NOPASSWD" ];
-      }
-    ];
-  }];
+  security.sudo.extraRules = [
+    {
+      users = [ "byron" ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/podman";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 
   sops = {
     secrets = {

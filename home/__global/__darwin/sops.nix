@@ -2,7 +2,13 @@
 # sudo SOPS_AGE_KEY_FILE=/run/secrets.d/age-keys.txt sops ./hosts/secrets.yaml
 # see: https://github.com/getsops/sops?tab=readme-ov-file#encrypting-using-age
 
-{ inputs, lib, config, host, user, ... }: {
+{
+  inputs,
+  ctx,
+  config,
+  ...
+}:
+{
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
@@ -13,12 +19,13 @@
     secrets =
       let
         user-secrets = {
-          "${user.username}-github-access-token" = { };
+          "${ctx.user.username}-github-access-token" = { };
         };
       in
       {
         nix-extra-access-tokens = { };
-      } // user-secrets;
+      }
+      // user-secrets;
 
     age = {
       sshKeyPaths = [

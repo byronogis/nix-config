@@ -1,11 +1,12 @@
-{ inputs
-, lib
-, localLib
-, pkgs
-, config
-, host
-, ...
-}: {
+{
+  inputs,
+  outputs,
+  ctx,
+  pkgs,
+  config,
+  ...
+}:
+{
   homebrew = {
     taps = [
       # "v2raya/v2raya"
@@ -71,7 +72,8 @@
       "firefox"
       "google-chrome"
       # "microsoft-edge"
-    ] ++ map localLib.mkCaskGreedy [
+    ]
+    ++ map outputs.lib._local.mkCaskGreedy [
     ];
 
     masApps = {

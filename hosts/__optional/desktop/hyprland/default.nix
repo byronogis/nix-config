@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [
     ../__base
     # ../../greetd.nix

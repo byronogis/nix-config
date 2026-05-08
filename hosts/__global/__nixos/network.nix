@@ -1,10 +1,13 @@
-{ lib
-, host
-, ...
+{
+  outputs,
+  ctx,
+  ...
 }:
 let
-  hostAllowedPorts = lib.optionals (host ? "allowedPorts") host.allowedPorts;
-  hostAllowedPortRanges = lib.optionals (host ? "allowedPortRanges") host.allowedPortRanges;
+  hostAllowedPorts = outputs.lib.optionals (ctx.host ? "allowedPorts") ctx.host.allowedPorts;
+  hostAllowedPortRanges = outputs.lib.optionals (
+    ctx.host ? "allowedPortRanges"
+  ) ctx.host.allowedPortRanges;
 in
 {
   networking.firewall = {

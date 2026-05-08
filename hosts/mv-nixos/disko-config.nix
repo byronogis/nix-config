@@ -1,7 +1,9 @@
-{ inputs
-, host
-, ...
-}: {
+{
+  inputs,
+  ctx,
+  ...
+}:
+{
   imports = [
     inputs.disko.nixosModules.disko
     ../__optional/ephemeral-btrfs.nix
@@ -9,9 +11,9 @@
 
   disko.devices = {
     disk = {
-      "${host.device}" = {
+      "${ctx.host.device}" = {
         type = "disk";
-        device = "/dev/${host.device}";
+        device = "/dev/${ctx.host.device}";
         content = {
           type = "gpt";
           partitions = {
@@ -26,7 +28,7 @@
                 mountpoint = "/boot";
               };
             };
-            Primary = import ../__optional/ephemeral-btrfs.partition.nix { inherit host; };
+            Primary = import ../__optional/ephemeral-btrfs.partition.nix { inherit ctx; };
           };
         };
       };

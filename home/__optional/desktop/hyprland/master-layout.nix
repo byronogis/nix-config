@@ -1,6 +1,7 @@
 # See https://wiki.hyprland.org/Configuring/Master-Layout/
 
-{ config, ... }: {
+{ config, ... }:
+{
   wayland.windowManager.hyprland.settings = {
     master = {
       mfact = 0.6;

@@ -1,12 +1,12 @@
 # See https://nix-community.github.io/home-manager/options.xhtml
-{ inputs
-, outputs
-, host
-, user
-, pkgs
-, lib
-, ...
-}: {
+{
+  inputs,
+  outputs,
+  ctx,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ../__optional/desktop/__base/font.nix
     ../__optional/gui/alacritty.nix

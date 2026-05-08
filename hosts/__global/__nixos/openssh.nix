@@ -1,8 +1,8 @@
-{ outputs
-, lib
-, config
-, host
-, ...
+{
+  outputs,
+  config,
+  ctx,
+  ...
 }:
 let
   pubKey = hostname: ./../../${hostname}/ssh_host_ed25519_key.pub;
@@ -10,18 +10,10 @@ in
 {
   programs.ssh = {
     # Each hosts public key
-    knownHosts =
-      builtins.mapAttrs
-        (hostname: _: {
-          publicKeyFile = pubKey hostname;
-          extraHostNames =
-            lib.optional
-              (
-                hostname == host.hostname
-              )
-              "localhost"; # Alias for localhost if it's the same host
-        })
-        outputs.nixosConfigurations;
+    knownHosts = builtins.mapAttrs (hostname: _: {
+      publicKeyFile = pubKey hostname;
+      extraHostNames = outputs.lib.optional (hostname == ctx.host.hostname) "localhost"; # Alias for localhost if it's the same host
+    }) outputs.nixosConfigurations;
   };
 
   services.openssh = {
@@ -33,11 +25,11 @@ in
     hostKeys = [
       {
         bits = 4096;
-        path = "${lib.optionalString host.impermanence host.persistencePath}/etc/ssh/ssh_host_rsa_key";
+        path = "${outputs.lib.optionalString ctx.host.impermanence ctx.host.persistencePath}/etc/ssh/ssh_host_rsa_key";
         type = "rsa";
       }
       {
-        path = "${lib.optionalString host.impermanence host.persistencePath}/etc/ssh/ssh_host_ed25519_key";
+        path = "${outputs.lib.optionalString ctx.host.impermanence ctx.host.persistencePath}/etc/ssh/ssh_host_ed25519_key";
         type = "ed25519";
       }
     ];
