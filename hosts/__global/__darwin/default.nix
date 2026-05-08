@@ -1,4 +1,4 @@
-# This file (and the nixos directory) holds config that i use on all nixos hosts
+# This file (and the nixos directory) holds config that i use on all darwin hosts
 {
   inputs,
   outputs,

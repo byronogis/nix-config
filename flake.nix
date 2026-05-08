@@ -123,46 +123,40 @@
         homeManagerModules = import ./modules/home-manager;
 
         # NixOS configurations
-        nixosConfigurations =
-          lib.genAttrs (map (host: host.hostname) (settings.osGroupAttrs.nixos or [ ]))
-            (
-              hostname:
-              let
-                host = settings.hostAttrs.${hostname};
-              in
-              lib.nixosSystem {
-                modules = [
-                  ./hosts/__global
-                  ./hosts/__global/__nixos
-                  ./hosts/${hostname}/configuration.nix
-                ];
-                specialArgs = {
-                  inherit inputs outputs;
-                  ctx = mkCtx host;
-                };
-              }
-            );
+        nixosConfigurations = lib.listToAttrs (
+          map (host: {
+            name = host.hostname;
+            value = lib.nixosSystem {
+              modules = [
+                ./hosts/__global
+                ./hosts/__global/__nixos
+                ./hosts/${host.hostname}/configuration.nix
+              ];
+              specialArgs = {
+                inherit inputs outputs;
+                ctx = mkCtx host;
+              };
+            };
+          }) (settings.osGroupAttrs.nixos or [ ])
+        );
 
         # Darwin configurations
-        darwinConfigurations =
-          lib.genAttrs (map (host: host.hostname) (settings.osGroupAttrs.darwin or [ ]))
-            (
-              hostname:
-              let
-                host = settings.hostAttrs.${hostname};
-              in
-              inputs.nix-darwin.lib.darwinSystem {
-                modules = [
-                  ./hosts/__global
-                  ./hosts/__global/__darwin
-                  ./hosts/${hostname}/configuration.nix
-                ];
-                specialArgs = {
-                  inherit inputs outputs;
-                  ctx = mkCtx host;
-                };
-              }
-            );
+        darwinConfigurations = lib.listToAttrs (
+          map (host: {
+            name = host.hostname;
+            value = inputs.nix-darwin.lib.darwinSystem {
+              modules = [
+                ./hosts/__global
+                ./hosts/__global/__darwin
+                ./hosts/${host.hostname}/configuration.nix
+              ];
+              specialArgs = {
+                inherit inputs outputs;
+                ctx = mkCtx host;
+              };
+            };
+          }) (settings.osGroupAttrs.darwin or [ ])
+        );
       };
     };
 }
