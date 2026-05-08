@@ -9,7 +9,7 @@
     zsh = {
       shellAliases = {
         BUILD = "sudo darwin-rebuild switch --option eval-cache false --show-trace --flake NCP";
-        UPDATE = "nix flake update --flake NCP";
+        UPDATE = "nix flake update --flake NCP --commit-lock-file";
       };
     };
   };
