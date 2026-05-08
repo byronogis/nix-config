@@ -73,12 +73,14 @@
 
   outputs =
     inputs@{
-      flake-parts,
+      self,
       nixpkgs,
+      flake-parts,
       home-manager,
       ...
     }:
     let
+      inherit (self) outputs;
       inherit (nixpkgs) lib;
       settings = import ./settings.nix { inherit lib; };
       localLib = import ./lib { inherit lib; };
@@ -91,80 +93,72 @@
         inherit host;
         user = null; # Will be set in home-manager context
       };
+
+      devenvRoot = builtins.toString ./.;
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = settings.systems;
 
       perSystem =
         { pkgs, ... }:
-        let
-          devenvRoot = builtins.toString ./.;
-        in
         {
           packages = import ./pkgs { inherit pkgs; };
           devShells = import ./shell { inherit inputs pkgs devenvRoot; };
           formatter = pkgs.nixfmt-tree;
         };
 
-      flake =
-        let
-          # This will be the full flake outputs (self-referential)
-          flakeOutputs = {
-            # Combined lib
-            lib = nixpkgs.lib // {
-              _hm = home-manager.lib.hm;
-              _local = localLib;
+      flake = {
+        # Combined lib
+        lib = nixpkgs.lib // {
+          _hm = home-manager.lib.hm;
+          _local = localLib;
+        };
+
+        # Overlays
+        overlays = import ./overlays { inherit inputs; };
+
+        # Reusable modules
+        nixosModules = import ./modules/nixos;
+        darwinModules = import ./modules/darwin;
+        homeManagerModules = import ./modules/home-manager;
+
+        # NixOS configurations
+        nixosConfigurations = lib.genAttrs (map (host: host.hostname) (settings.osGroupAttrs.nixos or [ ])) (
+          hostname:
+          let
+            host = settings.hostAttrs.${hostname};
+          in
+          lib.nixosSystem {
+            modules = [
+              ./hosts/__global
+              ./hosts/__global/__nixos
+              ./hosts/${hostname}/configuration.nix
+            ];
+            specialArgs = {
+              inherit inputs outputs;
+              ctx = mkCtx host;
             };
+          }
+        );
 
-            # Overlays
-            overlays = import ./overlays { inherit inputs; };
-
-            # Reusable modules
-            nixosModules = import ./modules/nixos;
-            darwinModules = import ./modules/darwin;
-            homeManagerModules = import ./modules/home-manager;
-
-            # NixOS configurations
-            nixosConfigurations = lib.genAttrs (map (host: host.hostname) (settings.osGroupAttrs.nixos or [ ])) (
-              hostname:
-              let
-                host = settings.hostAttrs.${hostname};
-              in
-              lib.nixosSystem {
-                modules = [
-                  ./hosts/__global
-                  ./hosts/__global/__nixos
-                  ./hosts/${hostname}/configuration.nix
-                ];
-                specialArgs = {
-                  inherit inputs;
-                  outputs = flakeOutputs;
-                  ctx = mkCtx host;
-                };
-              }
-            );
-
-            # Darwin configurations
-            darwinConfigurations = lib.genAttrs (map (host: host.hostname) (settings.osGroupAttrs.darwin or [ ])) (
-              hostname:
-              let
-                host = settings.hostAttrs.${hostname};
-              in
-              inputs.nix-darwin.lib.darwinSystem {
-                modules = [
-                  ./hosts/__global
-                  ./hosts/__global/__darwin
-                  ./hosts/${hostname}/configuration.nix
-                ];
-                specialArgs = {
-                  inherit inputs;
-                  outputs = flakeOutputs;
-                  ctx = mkCtx host;
-                };
-              }
-            );
-          };
-        in
-        flakeOutputs;
+        # Darwin configurations
+        darwinConfigurations = lib.genAttrs (map (host: host.hostname) (settings.osGroupAttrs.darwin or [ ])) (
+          hostname:
+          let
+            host = settings.hostAttrs.${hostname};
+          in
+          inputs.nix-darwin.lib.darwinSystem {
+            modules = [
+              ./hosts/__global
+              ./hosts/__global/__darwin
+              ./hosts/${hostname}/configuration.nix
+            ];
+            specialArgs = {
+              inherit inputs outputs;
+              ctx = mkCtx host;
+            };
+          }
+        );
+      };
     };
 }
