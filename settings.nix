@@ -9,7 +9,7 @@ rec {
       initialPassword = "123456";
       persistence = {
         directories = [
-          "project"
+          "projects"
           "Document"
           "Downloads"
           ".vscode-server"

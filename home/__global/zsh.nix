@@ -83,7 +83,7 @@
 
         # nix 开发环境
         dev_function() {
-          nix develop --no-pure-eval ~/project/personal/nix-config#$1
+          nix develop --no-pure-eval ~/projects/personal/nix-config#$1
         }
       '';
     };

@@ -37,7 +37,7 @@ in
         provider = "deepseek";
         default = "deepseek-v4-flash";
       };
-      terminal.cwd = "/home/hermes/project";
+      terminal.cwd = "/home/hermes/projects";
     };
 
     container = {
@@ -45,7 +45,7 @@ in
       backend = "podman";
       hostUsers = [ "byron" ];
       extraVolumes = [
-        "/home/byron/project:/home/hermes/project"
+        "/home/byron/projects:/home/hermes/projects"
       ];
     };
   };

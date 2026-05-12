@@ -21,7 +21,7 @@
       act # GitHub Actions locally
     ];
     file = {
-      # "project/.envrc".text = "use flake ~/project/personal/nix-config#byron --no-pure-eval";
+      # "projects/.envrc".text = "use flake ~/projects/personal/nix-config#byron --no-pure-eval";
     };
     sessionPath = [
       "$HOME/.vite-plus/bin" # for vite-plus binaries
@@ -39,19 +39,19 @@
   };
 
   programs.zsh.shellGlobalAliases = {
-    P = "~/project";
-    PP = "~/project/personal";
-    PD = "~/project/demo";
-    PC = "~/project/clone";
-    PW = "~/project/work";
-    NCP = outputs.lib.mkForce "~/project/personal/nix-config";
+    P = "~/projects";
+    PP = "~/projects/personal";
+    PD = "~/projects/demo";
+    PC = "~/projects/clone";
+    PW = "~/projects/work";
+    NCP = outputs.lib.mkForce "~/projects/personal/nix-config";
     DL = "~/Downloads";
   };
 
   programs.git.includes = [
     {
-      path = "~/project/work/.gitconfig";
-      condition = "gitdir:~/project/work/";
+      path = "~/projects/work/.gitconfig";
+      condition = "gitdir:~/projects/work/";
     }
   ];
 }
