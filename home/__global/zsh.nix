@@ -48,6 +48,7 @@
         # misc
         SP = "set_proxy";
         DEV = "dev_function";
+        RL = "source ~/.zshrc";
       };
       shellGlobalAliases = {
         NCP = outputs.lib.mkDefault "/etc/nixos";

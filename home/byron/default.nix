@@ -48,10 +48,17 @@
     DL = "~/Downloads";
   };
 
-  programs.git.includes = [
-    {
-      path = "~/projects/work/.gitconfig";
-      condition = "gitdir:~/projects/work/";
-    }
-  ];
+  programs.git = {
+    includes = [
+      {
+        path = "~/projects/work/.gitconfig";
+        condition = "gitdir:~/projects/work/";
+      }
+    ];
+    ignores = [
+      ".devenv"
+      ".direnv"
+      ".sisphus"
+    ];
+  };
 }
