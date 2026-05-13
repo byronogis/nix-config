@@ -46,21 +46,44 @@ in
       HERMES_HOST_WORKSPACE = primaryWorkspace;
     };
     documents."USER.md" = ''
-      Hermes 工作区规则：
+      ## Hermes 工作区规则
 
-      宿主机用户工作区：
+      ### 运行模式
+
+      - Hermes gateway 运行在 Podman 容器中。
+      - `terminal.backend=local` 表示命令在该容器内执行，不是宿主机 shell。
+      - 工具不能直接执行宿主机系统命令。涉及 `nixos-rebuild`、`systemctl`、宿主机 `podman`、磁盘、boot/initrd 时，只给出命令，让用户在宿主机执行。
+
+      ### 工作区
+
       ${workspaceList}
 
-      - 当前默认宿主用户是 ${primaryUsername}。
-      - 默认项目工作区是 ${primaryWorkspace}。
-      - 用户未明确指定路径或用户名时，在默认项目工作区下查找、创建、修改项目。
-      - 新项目应创建在 ${primaryWorkspace}/<project-name>。
-      - 用户明确指定某个宿主用户时，使用该用户对应的 /data/workspace/projects/<username> 工作区。
-      - 不要默认读写其他用户目录，除非用户明确要求。
-      - 如果用户给出相对路径，将它解释为相对于默认项目工作区。
-      - 如果任务涉及已有项目，先在默认项目工作区下查找最匹配的项目目录，再进入该目录操作。
-      - 执行命令前先确认当前目录；如果不在目标项目目录，先切换到目标项目目录。
-      - 修改文件前先读取相关文件和现有风格；不要覆盖用户未要求修改的内容。
+      - 默认宿主用户：`${primaryUsername}`。
+      - 默认项目工作区：`${primaryWorkspace}`。
+      - 未指定路径或用户 -> 只在默认项目工作区操作。
+      - 新项目 -> `${primaryWorkspace}/<project-name>`。
+      - 明确指定宿主用户 -> 使用 `/data/workspace/projects/<username>`。
+      - 除非用户明确要求，不要读写其他用户目录。
+      - 相对路径按默认项目工作区解析。
+
+      ### 项目上下文
+
+      - 进入项目后，优先遵循项目内规则。
+      - 优先级：`.hermes.md` / `HERMES.md` / `AGENTS.md` / `CLAUDE.md` / `.cursorrules`。
+      - 修改前先读取相关文件。
+      - 保持现有风格。
+      - 不要覆盖无关用户改动。
+
+      ### 安全边界
+
+      - 除非用户明确要求，不要读取、打印、复制或解密 secrets、`.env`、密钥文件、token 文件。
+      - 如果必须读取 secret，不要在回复中泄露 secret 值。
+      - 除非用户明确要求且范围清楚，不要执行破坏性操作：删除、重置、强制覆盖、批量 `chmod/chown`、`git reset/clean/rebase`、force push。
+
+      ### 记忆
+
+      - 只保存稳定偏好、环境事实、可复用约定。
+      - 不要保存临时任务细节或敏感信息。
     '';
 
     settings = {
