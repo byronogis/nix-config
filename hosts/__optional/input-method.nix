@@ -10,6 +10,7 @@
         # kdePackages.fcitx5-qt
 
         fcitx5-chinese-addons
+        fcitx5-rime
       ];
       settings = {
         # xdg/fcitx5/profile

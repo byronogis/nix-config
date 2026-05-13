@@ -9,21 +9,16 @@
 {
   homebrew = {
     taps = [
-      # "v2raya/v2raya"
       "fastrepl/fastrepl"
       "tw93/tap"
     ];
 
     brews = [
-      # "v2ray"
-      # "v2raya"
-
       "tesseract" # OCR
       "tesseract-lang" # OCR
 
       "mole"
       "jupyterlab"
-      "rtk"
     ];
 
     casks = [
@@ -31,7 +26,7 @@
       "wechatwebdevtools"
       "hbuilderx"
       "visual-studio-code"
-      "cursor"
+      # "cursor"
       "zed"
       "podman-desktop"
       "gitbutler"
@@ -41,14 +36,13 @@
       "iina" # video player
       "stats" # system monitor
       "keka" # archive utility
-      # "utools"
       "karabiner-elements"
       "jordanbaird-ice" # manage menu bar icons
       "pearcleaner" # app cleaner
       "switchhosts" # hosts manager
       "raycast"
       "cryptomator" # encrypt files
-      "squirrel-app"
+      "squirrel-app" # input method
       "background-music" # per-app volume control
       "nutstore" # 坚果云
       "keepassxc"

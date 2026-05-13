@@ -18,5 +18,6 @@
     wget
     fd
     ripgrep # rg
+    ffmpeg
   ];
 }

@@ -10,11 +10,11 @@
     defaults = {
       dock = {
         persistent-apps = outputs.lib.mkAfter [
-          "${pkgs.alacritty}/Applications/alacritty.app"
-          "/Applications/Obsidian.app"
+          # "${pkgs.alacritty}/Applications/alacritty.app"
+          # "/Applications/Obsidian.app"
           # "/Applications/Microsoft Edge.app"
-          "/Applications/Google Chrome.app"
-          "/Applications/Visual Studio Code.app"
+          # "/Applications/Google Chrome.app"
+          # "/Applications/Visual Studio Code.app"
           "/Applications/WeChat.app"
         ];
         persistent-others = [
