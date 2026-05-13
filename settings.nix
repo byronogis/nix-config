@@ -56,6 +56,7 @@ rec {
           };
         };
       };
+      primaryUser = "byron";
       allowedPorts = [ ];
       allowedPortRanges = [
         {

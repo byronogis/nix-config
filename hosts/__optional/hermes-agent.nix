@@ -9,6 +9,11 @@
 }:
 let
   hostUsernames = builtins.attrNames ctx.host.userAttrs;
+  primaryUsername = ctx.host.primaryUser or (builtins.head hostUsernames);
+  primaryWorkspace = "/data/workspace/projects/${primaryUsername}";
+  workspaceList = builtins.concatStringsSep "\n" (
+    builtins.map (username: "- ${username}: /data/workspace/projects/${username}") hostUsernames
+  );
   # 将每个宿主机用户的项目目录挂载进 Hermes 容器，容器内按用户名分组。
   projectVolumes = builtins.map (
     username: "/home/${username}/projects:/data/workspace/projects/${username}:rw"
@@ -36,6 +41,27 @@ in
     enable = true;
     addToSystemPackages = true;
     environmentFiles = [ config.sops.secrets."hermes-agent-env".path ];
+    environment = {
+      HERMES_HOST_USER = primaryUsername;
+      HERMES_HOST_WORKSPACE = primaryWorkspace;
+    };
+    documents."USER.md" = ''
+      Hermes 工作区规则：
+
+      宿主机用户工作区：
+      ${workspaceList}
+
+      - 当前默认宿主用户是 ${primaryUsername}。
+      - 默认项目工作区是 ${primaryWorkspace}。
+      - 用户未明确指定路径或用户名时，在默认项目工作区下查找、创建、修改项目。
+      - 新项目应创建在 ${primaryWorkspace}/<project-name>。
+      - 用户明确指定某个宿主用户时，使用该用户对应的 /data/workspace/projects/<username> 工作区。
+      - 不要默认读写其他用户目录，除非用户明确要求。
+      - 如果用户给出相对路径，将它解释为相对于默认项目工作区。
+      - 如果任务涉及已有项目，先在默认项目工作区下查找最匹配的项目目录，再进入该目录操作。
+      - 执行命令前先确认当前目录；如果不在目标项目目录，先切换到目标项目目录。
+      - 修改文件前先读取相关文件和现有风格；不要覆盖用户未要求修改的内容。
+    '';
 
     settings = {
       model = {
@@ -47,8 +73,8 @@ in
       terminal = {
         # Hermes gateway 已运行在容器内，因此 local backend 表示命令在该容器中执行。
         backend = "local";
-        # 工作目录指向项目挂载根目录，下面按用户名区分项目空间。
-        cwd = "/data/workspace/projects";
+        # 默认进入主用户项目空间；其他用户目录仍挂载在 /data/workspace/projects 下。
+        cwd = primaryWorkspace;
         timeout = 180;
       };
       # 长会话自动压缩上下文，降低上下文过长导致失败的概率。
