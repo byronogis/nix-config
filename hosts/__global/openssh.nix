@@ -16,30 +16,28 @@ in
     }) (outputs.nixosConfigurations // outputs.darwinConfigurations);
   };
 
-  services.openssh =
-    if ctx.host.os == "nixos" then
+  services.openssh = {
+    enable = true;
+    extraConfig = ''
+      # Allow password authentication for all users, including root
+      PasswordAuthentication yes
+      PermitRootLogin yes
+    '';
+    hostKeys = [
       {
-        enable = true;
-        settings = {
-          PasswordAuthentication = true;
-          PermitRootLogin = "yes";
-        };
-        hostKeys =
-          [ ]
-          ++ outputs.lib.optionals (!outputs.lib._local.hasSopsSshKeys "rsa" ctx.host) [
-            {
-              bits = 4096;
-              path = "${outputs.lib.optionalString ctx.host.impermanence ctx.host.persistencePath}/etc/ssh/ssh_host_rsa_key";
-              type = "rsa";
-            }
-          ]
-          ++ outputs.lib.optionals (!outputs.lib._local.hasSopsSshKeys "ed25519" ctx.host) [
-            {
-              path = "${outputs.lib.optionalString ctx.host.impermanence ctx.host.persistencePath}/etc/ssh/ssh_host_ed25519_key";
-              type = "ed25519";
-            }
-          ];
+        bits = 4096;
+        path = "${outputs.lib.optionalString ctx.host.impermanence ctx.host.persistencePath}/etc/ssh/ssh_host_rsa_key";
+        type = "rsa";
       }
-    else
-      { };
+      {
+        path = "${outputs.lib.optionalString ctx.host.impermanence ctx.host.persistencePath}/etc/ssh/ssh_host_ed25519_key";
+        type = "ed25519";
+      }
+      {
+        bits = 521;
+        path = "${outputs.lib.optionalString ctx.host.impermanence ctx.host.persistencePath}/etc/ssh/ssh_host_ecdsa_key";
+        type = "ecdsa";
+      }
+    ];
+  };
 }
