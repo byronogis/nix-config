@@ -1,36 +1,40 @@
 keys:
   # Users
-  - &users:
+  users:
     - &byron C946B9667B15865746391841AEBF14525A95C379
+    - &byron_at_Byrons-MacBook-Pro age1pe3sdjjmyvu8m9c7as4g2fntrccnzgte9eyhndmrpgx9z4vyvgdqxd5h32
   # Hosts
-  - &hosts:
+  hosts:
     - &itx-nixos age1x9w6endjxpt9jyfjj52tnrs7xg6phf3hys4tdqf565877m2cta3shu2tjt
     - &mv-nixos age1pzzp4d33lrhzcdkyerl6h7lk93n6sup86v46vf9kewcdxtqjle8qfnhc8n
-    - &Byrons-MacBook-Pro age1pe3sdjjmyvu8m9c7as4g2fntrccnzgte9eyhndmrpgx9z4vyvgdqxd5h32
+    - &Byrons-MacBook-Pro age1fkveyg63xayeyjgd9790yz6cjhyq365z26reatytmnfa25lpcs4sjrawp9
 creation_rules:
   - path_regex: hosts/itx-nixos/secrets.ya?ml$
     key_groups:
-    - age:
-      - *itx-nixos
-      pgp:
-      - *byron
+      - age:
+          - *itx-nixos
+        pgp:
+          - *byron
   - path_regex: hosts/mv-nixos/secrets.ya?ml$
     key_groups:
-    - age:
-      - *mv-nixos
-      pgp:
-      - *byron
+      - age:
+          - *mv-nixos
+          - *byron_at_Byrons-MacBook-Pro
+        pgp:
+          - *byron
   - path_regex: hosts/Byrons-MacBook-Pro/secrets.ya?ml$
     key_groups:
-    - age:
-      - *Byrons-MacBook-Pro
-      pgp:
-      - *byron
+      - age:
+          - *Byrons-MacBook-Pro
+          - *byron_at_Byrons-MacBook-Pro
+        pgp:
+          - *byron
   - path_regex: hosts/secrets.ya?ml$
     key_groups:
-    - age:
-      - *itx-nixos
-      - *mv-nixos
-      - *Byrons-MacBook-Pro
-      pgp:
-      - *byron
+      - age:
+          - *itx-nixos
+          - *mv-nixos
+          - *Byrons-MacBook-Pro
+          - *byron_at_Byrons-MacBook-Pro
+        pgp:
+          - *byron

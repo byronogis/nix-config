@@ -299,7 +299,7 @@ A attr inside `hostAttrs` in [settings][settings] file. Key is hostname, value i
 
 ## TODO
 
-- [ ]  manage sops with system-wide under darwin
+- [x]  manage sops with system-wide under darwin
 
 
 ## References
