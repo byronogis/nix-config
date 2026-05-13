@@ -37,28 +37,6 @@ rec {
   usernames = builtins.attrNames userAttrs;
 
   hostAttrs = {
-    itx-nixos = {
-      hostname = "itx-nixos";
-      os = "nixos";
-      system = "x86_64-linux";
-      device = "sda";
-      impermanence = true;
-      persistencePath = "/persist";
-      sops.sshKeys = {
-        rea = false;
-        ed25519 = false;
-      };
-      userAttrs = {
-        inherit (userAttrs) byron;
-      };
-      allowedPorts = [ ];
-      allowedPortRanges = [
-        {
-          from = 3000;
-          to = 5999;
-        }
-      ];
-    };
     mv-nixos = {
       hostname = "mv-nixos";
       os = "nixos";
