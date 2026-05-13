@@ -11,7 +11,7 @@
       username: user:
       let
         hashedPasswordFileValue = outputs.lib.attrByPath [
-          "${username}-password"
+          "${username}:password"
           "path"
         ] null config.sops.secrets;
       in

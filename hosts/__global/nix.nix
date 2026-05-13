@@ -38,6 +38,10 @@
       ++ builtins.attrNames ctx.host.userAttrs;
     };
 
+    extraOptions = ''
+      !include ${config.sops.secrets.nix-extra-access-tokens.path}
+    '';
+
     # Add each flake input as a registry
     # To make nix3 commands consistent with the flake
     registry = outputs.lib.mkDefault (outputs.lib.mapAttrs (_: value: { flake = value; }) inputs);

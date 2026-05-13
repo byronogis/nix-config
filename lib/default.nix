@@ -100,6 +100,45 @@
       environment.persistence."${host.persistencePath}" = settings;
     };
 
+  hasSopsSshKeys = type: value: value.sops.sshKeys.${type} or false;
+
+  /**
+    Join path fragments with exactly one slash between each fragment.
+
+    Preserves a leading slash from the first fragment, trims extra leading/trailing
+    slashes from fragments, and ignores empty fragments.
+
+    Examples:
+      joinPath [ "/home/byron/" "/.ssh/" "id_ed25519" ] => "/home/byron/.ssh/id_ed25519"
+      joinPath [ "var/" "/lib" ] => "var/lib"
+  */
+  joinPath =
+    parts:
+    let
+      removePrefixAll =
+        prefix: str:
+        let
+          stripped = lib.strings.removePrefix prefix str;
+        in
+        if stripped == str then str else removePrefixAll prefix stripped;
+
+      removeSuffixAll =
+        suffix: str:
+        let
+          stripped = lib.strings.removeSuffix suffix str;
+        in
+        if stripped == str then str else removeSuffixAll suffix stripped;
+
+      stringParts = builtins.map builtins.toString parts;
+      nonEmptyParts = builtins.filter (part: part != "") stringParts;
+      isAbsolute = nonEmptyParts != [ ] && lib.strings.hasPrefix "/" (builtins.head nonEmptyParts);
+      normalizedParts = builtins.filter (part: part != "") (
+        builtins.map (part: removePrefixAll "/" (removeSuffixAll "/" part)) nonEmptyParts
+      );
+      joined = lib.strings.concatStringsSep "/" normalizedParts;
+    in
+    if isAbsolute then "/${joined}" else joined;
+
   /**
     Make a cask with greedy option for homebrew
     See https://github.com/nix-darwin/nix-darwin/issues/935

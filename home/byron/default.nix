@@ -61,4 +61,13 @@
       ".sisphus"
     ];
   };
+
+  programs.ssh = {
+    matchBlocks = {
+      # mv-nixos
+      "10.211.55.5" = {
+        user = "byron";
+      };
+    };
+  };
 }
