@@ -7,6 +7,9 @@
 }:
 let
   hostname = ctx.host.hostname;
+  # systemd device unit names escape '-' inside path components as '\x2d'.
+  # /dev/disk/by-label/mv-nixos -> dev-disk-by\x2dlabel-mv\x2dnixos.device
+  deviceUnit = "dev-disk-by\\x2dlabel-${builtins.replaceStrings [ "-" ] [ "\\x2d" ] hostname}.device";
   wipeScript = ''
     mkdir /tmp -p
     MNTPOINT=$(mktemp -d)
@@ -37,10 +40,10 @@ in
       description = "Rollback btrfs rootfs";
       wantedBy = [ "initrd.target" ];
       requires = [
-        "dev-disk-by\\x2dlabel-${hostname}.device"
+        deviceUnit
       ];
       after = [
-        "dev-disk-by\\x2dlabel-${hostname}.device"
+        deviceUnit
       ];
       before = [ "sysroot.mount" ];
       unitConfig.DefaultDependencies = "no";
