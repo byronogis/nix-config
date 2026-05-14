@@ -53,6 +53,10 @@ nix eval .#nixosConfigurations.<hostname>.config.system.build.toplevel.drvPath
 nix eval .#darwinConfigurations.<hostname>.config.system.build.toplevel.drvPath
 ```
 
+When evaluating changes that add new files, first add them to the Git index
+(`git add -N <path>` is enough) or evaluate through `path:$PWD#...`; plain
+`.#...` flake references ignore untracked files.
+
 Format Nix when appropriate:
 
 ```sh

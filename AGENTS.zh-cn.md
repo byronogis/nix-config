@@ -53,6 +53,9 @@ nix eval .#nixosConfigurations.<hostname>.config.system.build.toplevel.drvPath
 nix eval .#darwinConfigurations.<hostname>.config.system.build.toplevel.drvPath
 ```
 
+评估包含新文件的改动时，先把新文件加入 Git 索引（`git add -N <path>` 即可），
+或使用 `path:$PWD#...` 评估；普通 `.#...` flake 引用会忽略未跟踪文件。
+
 适当时格式化 Nix：
 
 ```sh
