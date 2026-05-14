@@ -100,8 +100,6 @@
       environment.persistence."${host.persistencePath}" = settings;
     };
 
-  hasSopsSshKeys = type: value: value.sops.sshKeys.${type} or false;
-
   /**
     Join path fragments with exactly one slash between each fragment.
 

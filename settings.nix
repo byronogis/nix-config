@@ -7,10 +7,6 @@ rec {
       usernameFull = "Byron Ogis";
       useremail = "byronogis@outlook.com";
       initialPassword = "123456";
-      sops.sshKeys = {
-        rea = false;
-        ed25519 = false;
-      };
       persistence = {
         directories = [
           "projects"
@@ -44,17 +40,8 @@ rec {
       device = "sda";
       impermanence = true;
       persistencePath = "/persist";
-      sops.sshKeys = {
-        rea = false;
-        ed25519 = true;
-      };
       userAttrs = {
-        byron = userAttrs.byron // {
-          sops.sshKeys = {
-            rea = false;
-            ed25519 = true;
-          };
-        };
+        inherit (userAttrs) byron;
       };
       primaryUser = "byron";
       allowedPorts = [ ];
@@ -71,17 +58,8 @@ rec {
       os = "darwin";
       system = "aarch64-darwin";
       impermanence = false;
-      sops.sshKeys = {
-        rea = false;
-        ed25519 = true;
-      };
       userAttrs = {
-        byron = userAttrs.byron // {
-          sops.sshKeys = {
-            rea = false;
-            ed25519 = true;
-          };
-        };
+        inherit (userAttrs) byron;
       };
       primaryUser = "byron";
     };
