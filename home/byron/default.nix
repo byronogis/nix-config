@@ -9,6 +9,7 @@
 {
   imports = [
     ../__optional/cli
+    ../__optional/tmux
   ];
 
   home = {
