@@ -1,7 +1,14 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   keybindings = import ../keybindings.nix { };
   tmux = lib.getExe config.programs.tmux.package;
+  zsh = lib.getExe config.programs.zsh.package;
+  defaultCommand = "${tmux} new -A -s main; exec ${zsh} -l";
 
   toLuaString = builtins.toJSON;
 
@@ -60,7 +67,7 @@ in
 
     return function(config, wezterm)
       config.keys = config.keys or {}
-      config.default_prog = { ${toLuaString tmux}, "new", "-A", "-s", "main" }
+      config.default_prog = { ${toLuaString zsh}, "-lc", ${toLuaString defaultCommand} }
       local tmuxPrefix = string.char(1)
 
     ${lib.concatMapStringsSep "\n" renderBinding keybindings.bindings}
