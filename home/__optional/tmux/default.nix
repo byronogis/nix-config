@@ -56,7 +56,7 @@
       bind L resize-pane -R 5
 
       # 会话管理：d 沿用 tmux 默认 detach，e 确认后清理当前 session。
-      bind e confirm-before -p 'kill session #S? (y/n)' kill-session
+      bind e confirm-before -y -p 'kill session #S? (Y/n)' kill-session
 
       # 关闭 pane/window 时不二次确认。
       bind x kill-pane
