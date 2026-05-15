@@ -1,15 +1,36 @@
 # See https://zsh.sourceforge.io/Doc/Release/Options.html
 {
+  ctx,
   outputs,
   pkgs,
   ...
 }:
+let
+  statMtimeCommand = if ctx.host.os == "darwin" then "stat -f %m" else "stat -c %Y";
+in
 {
   home.shell.enableZshIntegration = true;
   programs = {
     zsh = {
       enable = true;
       enableCompletion = true;
+      # 补全缓存不存在或超过一天时完整刷新；其余新 shell 直接读取缓存。
+      completionInit = ''
+        autoload -Uz compinit
+        zmodload zsh/datetime
+        zcompdump="''${ZDOTDIR:-$HOME}/.zcompdump"
+
+        if [[ ! -f "$zcompdump" ]]; then
+          compinit -d "$zcompdump"
+        elif zcompdump_mtime="$(${statMtimeCommand} "$zcompdump" 2>/dev/null)" \
+          && (( EPOCHSECONDS - zcompdump_mtime > 86400 )); then
+          compinit -d "$zcompdump"
+        else
+          compinit -C -d "$zcompdump"
+        fi
+
+        unset zcompdump zcompdump_mtime
+      '';
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       autocd = true;
