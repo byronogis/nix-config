@@ -250,6 +250,29 @@ in
       sequence = "&";
       description = "关闭当前 window";
     }
+    {
+      action = "detach-session";
+      shortcut = {
+        key = keys.e;
+        modifiers = [ "command" ];
+      };
+      # 对应 tmux 默认 bind d detach-client；保留当前 session 和布局。
+      sequence = "d";
+      description = "断开当前 tmux session，保留会话状态";
+    }
+    {
+      action = "kill-session";
+      shortcut = {
+        key = keys.e;
+        modifiers = [
+          "command"
+          "shift"
+        ];
+      };
+      # 对应 tmux 配置中的 bind e kill-session。
+      sequence = "e";
+      description = "清理当前 tmux session 并回到外层 shell";
+    }
   ]
   # Cmd+1 到 Cmd+9 切换 tmux window 1 到 9。
   ++ builtins.genList (

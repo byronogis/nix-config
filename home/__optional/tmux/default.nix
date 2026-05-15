@@ -27,7 +27,8 @@
 
       # 不引入主题插件，只做最小化的状态栏和 pane 边框样式。
       set -g status-interval 5
-      set -g status-left '#{?client_prefix,#[fg=colour16 bg=colour81 bold] PREFIX #[default] ,#[fg=colour81] #S #[default] }'
+      set -g status-left-length 30
+      set -g status-left '#[fg=colour16 bg=colour81 bold] #S #[default]#{?client_prefix,#[fg=colour16 bg=colour214 bold] PREFIX #[default] ,}#{?pane_in_mode,#[fg=colour16 bg=colour214 bold] COPY #[default] , }'
       set -g status-right '#[fg=colour244]#(~/.config/tmux/status-right.sh) #[fg=colour81]%H:%M'
       set -g status-style 'bg=default,fg=colour244'
       set -g window-status-format '#I:#{b:pane_current_path}'
@@ -53,6 +54,9 @@
       bind J resize-pane -D 5
       bind K resize-pane -U 5
       bind L resize-pane -R 5
+
+      # 会话管理：d 沿用 tmux 默认 detach，e 确认后清理当前 session。
+      bind e confirm-before -p 'kill session #S? (y/n)' kill-session
 
       # 关闭 pane/window 时不二次确认。
       bind x kill-pane
