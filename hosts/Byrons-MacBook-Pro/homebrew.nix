@@ -11,6 +11,7 @@
     taps = [
       "fastrepl/fastrepl"
       "tw93/tap"
+      "darrylmorley/whatcable"
     ];
 
     brews = [
@@ -49,6 +50,7 @@
       "obsidian"
       "calibre"
       "fastrepl/fastrepl/char@nightly"
+      "darrylmorley/whatcable/whatcable"
 
       "discord"
       "feishu"
