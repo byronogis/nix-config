@@ -24,9 +24,9 @@ let
 
   # 共享按键表使用通用 modifier 名称，适配器负责映射到 Kaku/WezTerm 名称。
   modifierNames = {
-    command = "CMD";
-    control = "CTRL";
-    option = "OPT";
+    primary = "CMD";
+    secondary = "OPT";
+    extra = "CTRL";
     shift = "SHIFT";
   };
   shiftedKeyNames = {

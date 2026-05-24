@@ -8,11 +8,10 @@ let
   keybindings = import ../keybindings.nix { };
 
   modifierNames = {
-    # Windows Terminal has no Command key. Treat the shared Command layer as Ctrl,
-    # Option as Alt, and the shared Control layer as Shift for pane resizing.
-    command = "ctrl";
-    control = "shift";
-    option = "alt";
+    # Map semantic modifiers to Windows Terminal names.
+    primary = "ctrl";
+    secondary = "alt";
+    extra = "shift";
     shift = "shift";
   };
 
