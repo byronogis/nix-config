@@ -61,7 +61,11 @@ in
 
   # 终端模拟器无关的快捷键表：
   # - action: 逻辑动作名，方便搜索和未来给其它适配器复用。
-  # - shortcut: 用户感知的快捷键，用通用名称描述，不使用某个终端的键名。
+  # - shortcut: 用户感知的快捷键。modifiers 使用语义化名称，由适配器映射到平台按键：
+  #   primary = macOS Command / Windows Ctrl；
+  #   secondary = macOS Option / Windows Alt；
+  #   extra = 额外修饰层，当前映射为 macOS Control / Windows Shift；
+  #   shift = 两个平台的 Shift。
   # - sequence: 发送给 tmux 的前缀后按键；例如 "c" 表示 C-a c。
   # - description: 面向人的功能说明。
   bindings = [
@@ -69,7 +73,7 @@ in
       action = "new-window";
       shortcut = {
         key = keys.t;
-        modifiers = [ "command" ];
+        modifiers = [ "primary" ];
       };
       sequence = "c";
       description = "新建 tmux window";
@@ -79,7 +83,7 @@ in
       shortcut = {
         key = keys."[";
         modifiers = [
-          "command"
+          "primary"
           "shift"
         ];
       };
@@ -91,7 +95,7 @@ in
       shortcut = {
         key = keys."]";
         modifiers = [
-          "command"
+          "primary"
           "shift"
         ];
       };
@@ -102,7 +106,7 @@ in
       action = "split-horizontal";
       shortcut = {
         key = keys.d;
-        modifiers = [ "command" ];
+        modifiers = [ "primary" ];
       };
       # 对应 tmux 配置中的 bind | split-window -h -c '#{pane_current_path}'。
       sequence = "|";
@@ -113,7 +117,7 @@ in
       shortcut = {
         key = keys.d;
         modifiers = [
-          "command"
+          "primary"
           "shift"
         ];
       };
@@ -126,8 +130,8 @@ in
       shortcut = {
         key = keys.left;
         modifiers = [
-          "command"
-          "option"
+          "primary"
+          "secondary"
         ];
       };
       sequence = "h";
@@ -138,8 +142,8 @@ in
       shortcut = {
         key = keys.down;
         modifiers = [
-          "command"
-          "option"
+          "primary"
+          "secondary"
         ];
       };
       sequence = "j";
@@ -150,8 +154,8 @@ in
       shortcut = {
         key = keys.up;
         modifiers = [
-          "command"
-          "option"
+          "primary"
+          "secondary"
         ];
       };
       sequence = "k";
@@ -162,8 +166,8 @@ in
       shortcut = {
         key = keys.right;
         modifiers = [
-          "command"
-          "option"
+          "primary"
+          "secondary"
         ];
       };
       sequence = "l";
@@ -174,7 +178,7 @@ in
       shortcut = {
         key = keys.enter;
         modifiers = [
-          "command"
+          "primary"
           "shift"
         ];
       };
@@ -186,8 +190,8 @@ in
       shortcut = {
         key = keys.left;
         modifiers = [
-          "command"
-          "control"
+          "primary"
+          "extra"
         ];
       };
       sequence = "H";
@@ -198,8 +202,8 @@ in
       shortcut = {
         key = keys.down;
         modifiers = [
-          "command"
-          "control"
+          "primary"
+          "extra"
         ];
       };
       sequence = "J";
@@ -210,8 +214,8 @@ in
       shortcut = {
         key = keys.up;
         modifiers = [
-          "command"
-          "control"
+          "primary"
+          "extra"
         ];
       };
       sequence = "K";
@@ -222,8 +226,8 @@ in
       shortcut = {
         key = keys.right;
         modifiers = [
-          "command"
-          "control"
+          "primary"
+          "extra"
         ];
       };
       sequence = "L";
@@ -233,7 +237,7 @@ in
       action = "close-pane";
       shortcut = {
         key = keys.w;
-        modifiers = [ "command" ];
+        modifiers = [ "primary" ];
       };
       sequence = "x";
       description = "关闭当前 pane";
@@ -243,7 +247,7 @@ in
       shortcut = {
         key = keys.w;
         modifiers = [
-          "command"
+          "primary"
           "shift"
         ];
       };
@@ -254,7 +258,7 @@ in
       action = "detach-session";
       shortcut = {
         key = keys.e;
-        modifiers = [ "command" ];
+        modifiers = [ "primary" ];
       };
       # 对应 tmux 默认 bind d detach-client；保留当前 session 和布局。
       sequence = "d";
@@ -265,7 +269,7 @@ in
       shortcut = {
         key = keys.e;
         modifiers = [
-          "command"
+          "primary"
           "shift"
         ];
       };
@@ -274,7 +278,7 @@ in
       description = "清理当前 tmux session 并回到外层 shell";
     }
   ]
-  # Cmd+1 到 Cmd+9 切换 tmux window 1 到 9。
+  # Primary+1 到 Primary+9 切换 tmux window 1 到 9。
   ++ builtins.genList (
     index:
     let
@@ -284,7 +288,7 @@ in
       action = "select-window-${window}";
       shortcut = {
         key = keys.${window};
-        modifiers = [ "command" ];
+        modifiers = [ "primary" ];
       };
       sequence = window;
       description = "切换到 tmux window ${window}";

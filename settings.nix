@@ -53,6 +53,18 @@ rec {
       ];
     };
 
+    itx-wsl = {
+      hostname = "itx-wsl";
+      os = "nixos";
+      system = "x86_64-linux";
+      impermanence = false;
+      # persistencePath = "/persist";
+      userAttrs = {
+        inherit (userAttrs) byron;
+      };
+      primaryUser = "byron";
+    };
+
     Byrons-MacBook-Pro = {
       hostname = "Byrons-MacBook-Pro";
       os = "darwin";
