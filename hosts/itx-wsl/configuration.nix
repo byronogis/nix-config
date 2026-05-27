@@ -14,6 +14,8 @@
     ../__optional/hermes-agent.nix
   ];
 
+  services.hermes-agent.container.enable = outputs.lib.mkForce false;
+
   networking.firewall.enable = outputs.lib.mkForce false;
 
   boot.kernel.sysctl = {

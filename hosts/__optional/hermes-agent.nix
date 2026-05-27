@@ -100,15 +100,61 @@ in
         cwd = primaryWorkspace;
         timeout = 180;
       };
+      fallback_model = {
+        provider = "opencode-go";
+        model = "kimi-k2.6";
+      };
       # 长会话自动压缩上下文，降低上下文过长导致失败的概率。
       compression = {
         enabled = true;
         threshold = 0.50;
       };
-      # 压缩任务使用辅助模型策略，避免强制占用主对话模型。
-      auxiliary.compression = {
-        provider = "auto";
-        # model = "";
+      # 为 Hermes 辅助任务直接指定模型，避免默认 auto 回落到主对话模型。
+      auxiliary = {
+        vision = {
+          provider = "opencode-go";
+          model = "glm-5.1";
+        };
+        compression = {
+          provider = "opencode-go";
+          model = "minimax-m2.7";
+        };
+        web_extract = {
+          provider = "opencode-go";
+          model = "minimax-m2.7";
+        };
+        approval = {
+          provider = "opencode-go";
+          model = "minimax-m2.7";
+        };
+        mcp = {
+          provider = "opencode-go";
+          model = "kimi-k2.6";
+        };
+        title_generation = {
+          provider = "opencode-go";
+          model = "minimax-m2.7";
+        };
+        skills_hub = {
+          provider = "opencode-go";
+          model = "minimax-m2.7";
+        };
+        triage_specifier = {
+          provider = "opencode-go";
+          model = "minimax-m2.7";
+        };
+        kanban_decomposer = {
+          provider = "opencode-go";
+          model = "glm-5.1";
+        };
+        profile_describer = {
+          provider = "opencode-go";
+          model = "kimi-k2.6";
+        };
+        curator = {
+          provider = "opencode-go";
+          model = "kimi-k2.6";
+        };
       };
       # Hermes 是常驻服务，开启长期记忆和用户画像能跨会话保留偏好。
       memory = {
