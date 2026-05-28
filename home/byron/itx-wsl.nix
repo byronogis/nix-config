@@ -2,6 +2,6 @@
 { ... }:
 {
   imports = [
-    ../__optional/tmux/adapters/windows-terminal.nix
+    # ../__optional/tmux/adapters/windows-terminal.nix
   ];
 }
