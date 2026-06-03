@@ -19,7 +19,7 @@
       "tesseract-lang" # OCR
 
       "mole"
-      "jupyterlab"
+      # "jupyterlab"
     ];
 
     casks = [
