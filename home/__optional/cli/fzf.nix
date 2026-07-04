@@ -6,7 +6,7 @@
       "--cycle"
       "--layout reverse"
     ];
-    fileWidgetOptions = [
+    fileWidget.options = [
       "--preview 'bat {} || cat {} | head -500'"
     ];
   };
