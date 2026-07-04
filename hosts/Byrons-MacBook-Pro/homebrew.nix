@@ -55,7 +55,7 @@
 
       # "openvpn-connect"
       # "zerotier-one"
-      "clash-verge-rev"
+      # "clash-verge-rev"
       "karing"
       "wireshark-app"
 
