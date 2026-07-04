@@ -9,9 +9,7 @@
 {
   homebrew = {
     taps = [
-      "fastrepl/fastrepl"
       "tw93/tap"
-      "darrylmorley/whatcable"
     ];
 
     brews = [
@@ -19,19 +17,16 @@
       "tesseract-lang" # OCR
 
       "mole"
-      # "jupyterlab"
     ];
 
     casks = [
-      "android-studio"
-      "wechatwebdevtools"
-      "hbuilderx"
       "visual-studio-code"
-      # "cursor"
       "zed"
       "podman-desktop"
       "gitbutler"
       "tw93/tap/kakuku"
+      "letos" # "sqlitestudio"
+      "dbeaver-community"
 
       "obs"
       "iina" # video player
@@ -49,8 +44,7 @@
       "keepassxc"
       "obsidian"
       "calibre"
-      "fastrepl/fastrepl/char@nightly"
-      "darrylmorley/whatcable/whatcable"
+      "qlmarkdown" # Quick Look plugin for Markdown files
 
       "discord"
       "feishu"
@@ -58,16 +52,15 @@
       "wechatwork"
       "wechat"
       "tencent-meeting"
-      "dingtalk"
 
       # "openvpn-connect"
       # "zerotier-one"
       "clash-verge-rev"
+      "karing"
       "wireshark-app"
 
       "firefox"
       "google-chrome"
-      # "microsoft-edge"
     ]
     ++ map outputs.lib._local.mkCaskGreedy [
     ];
