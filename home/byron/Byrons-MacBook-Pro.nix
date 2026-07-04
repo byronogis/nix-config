@@ -11,7 +11,7 @@
     ../__optional/desktop/__base/font.nix
     ../__optional/tmux/adapters/kaku.nix
     # ../__optional/gui/alacritty.nix
-    # ../__optional/ai.nix
+    ../__optional/ai.nix
     # ../__optional/gui/kitty.nix
     # ../__optional/gui/zellij/zellij.nix
   ];
