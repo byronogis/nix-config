@@ -68,7 +68,7 @@ in
     return function(config, wezterm)
       config.keys = config.keys or {}
       config.default_prog = { ${toLuaString zsh}, "-lc", ${toLuaString defaultCommand} }
-      local tmuxPrefix = string.char(1)
+      local tmuxPrefix = string.char(tonumber(${toLuaString keybindings.prefixSequence}, 16))
 
     ${lib.concatMapStringsSep "\n" renderBinding keybindings.bindings}
     end

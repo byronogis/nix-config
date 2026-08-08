@@ -58,6 +58,8 @@ in
 
   # tmux 前缀键。适配器会把下面的 sequence 渲染成 “prefix + sequence”。
   prefix = "C-a";
+  # 前缀控制字符的 Unicode code point，供终端适配器生成各自的发送格式。
+  prefixSequence = "0001";
 
   # 终端模拟器无关的快捷键表：
   # - action: 逻辑动作名，方便搜索和未来给其它适配器复用。

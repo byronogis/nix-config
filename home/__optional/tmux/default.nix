@@ -6,7 +6,7 @@
     # 这些选项会生成多行或结构性配置，用 Home Manager 声明更清晰。
     baseIndex = 1;
     keyMode = "vi";
-    # Kaku 适配器当前通过 string.char(1) 发送 C-a；修改这里时需要同步适配器。
+    # 终端适配器通过 keybindings.nix 中的 prefixSequence 发送此前缀。
     prefix = "C-a";
     terminal = "tmux-256color";
 

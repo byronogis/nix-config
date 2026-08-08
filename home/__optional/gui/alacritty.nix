@@ -1,8 +1,12 @@
 {
   config,
-  pkgs,
+  lib,
   ...
 }:
+let
+  tmux = lib.getExe config.programs.tmux.package;
+  zsh = lib.getExe config.programs.zsh.package;
+in
 {
   programs.alacritty = {
     enable = true;
@@ -27,10 +31,18 @@
       window = {
         startup_mode = "Windowed";
         option_as_alt = "Both";
+        dimensions = {
+          columns = 170;
+          lines = 48;
+        };
       };
 
       terminal.shell = {
-        program = "${pkgs.zsh}/bin/zsh";
+        program = zsh;
+        args = [
+          "-lc"
+          "${tmux} new -A -s main; exec ${zsh} -l"
+        ];
       };
     };
   };

@@ -33,7 +33,7 @@ let
           {
             "command": {
               "action": "sendInput",
-              "input": "\u0001${sequence}"
+              "input": "\u${keybindings.prefixSequence}${sequence}"
             },
             "id": ${builtins.toJSON "User.Tmux.${binding.action}"},
             "name": ${builtins.toJSON "tmux: ${binding.description}"}
