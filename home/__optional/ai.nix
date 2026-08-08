@@ -24,6 +24,8 @@
       environmentVariables = {
         # more can find by `ollama serve -h`
         OLLAMA_ORIGINS = "*";
+
+        OLLAMA_CONTEXT_LENGTH  = "8192";
       };
     };
   };

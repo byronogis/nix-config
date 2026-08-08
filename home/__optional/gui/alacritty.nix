@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   ...
 }:
 {
@@ -26,6 +27,10 @@
       window = {
         startup_mode = "Windowed";
         option_as_alt = "Both";
+      };
+
+      terminal.shell = {
+        program = "${pkgs.zsh}/bin/zsh";
       };
     };
   };
