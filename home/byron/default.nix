@@ -21,6 +21,7 @@
       gh
       act # GitHub Actions locally
       rtk
+      postgresql
     ];
     file = {
       # "projects/.envrc".text = "use flake ~/projects/personal/nix-config#byron --no-pure-eval";
