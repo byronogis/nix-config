@@ -12,7 +12,6 @@
     ../__optional/systemd-boot.nix
     ../__optional/nix-ld.nix
     ../__optional/podman.nix
-    ../__optional/hermes-agent.nix
   ];
 
   networking.firewall.enable = outputs.lib.mkForce false;

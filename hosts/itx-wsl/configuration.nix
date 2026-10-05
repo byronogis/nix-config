@@ -11,10 +11,7 @@
     ../__optional/wsl.nix
     ../__optional/nix-ld.nix
     ../__optional/podman.nix
-    ../__optional/hermes-agent.nix
   ];
-
-  services.hermes-agent.container.enable = outputs.lib.mkForce false;
 
   networking.firewall.enable = outputs.lib.mkForce false;
 

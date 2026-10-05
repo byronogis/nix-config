@@ -15,6 +15,8 @@ let
         ({
           # Set devenv root if provided
           devenv.root = devenvRoot;
+          # Avoid importing patched nixpkgs during cross-system evaluation.
+          task.package = devenv.packages.${pkgs.stdenv.hostPlatform.system}.devenv-tasks;
 
           packages = with pkgs; [ zsh ];
           enterShell = ''

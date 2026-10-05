@@ -13,6 +13,7 @@
     ../__optional/tmux/adapters/alacritty.nix
     ../__optional/gui/alacritty.nix
     ../__optional/ai.nix
+    ../__optional/hermes-agent.nix
     # ../__optional/gui/kitty.nix
     # ../__optional/gui/zellij/zellij.nix
   ];

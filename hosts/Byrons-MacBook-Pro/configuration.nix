@@ -1,5 +1,6 @@
 {
   config,
+  ctx,
   pkgs,
   ...
 }:
@@ -15,6 +16,12 @@
     scrcpy
     cocoapods
   ];
+
+  # The Home Manager gateway reads this file as the primary user.
+  sops.secrets.hermes-agent-env = {
+    owner = ctx.host.primaryUser;
+    mode = "0400";
+  };
 
   environment.variables = {
     PATH = [
