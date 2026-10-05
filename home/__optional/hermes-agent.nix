@@ -39,6 +39,30 @@
           PADDLEOCR_MCP_AISTUDIO_ACCESS_TOKEN = "\${PADDLEOCR_MCP_AISTUDIO_ACCESS_TOKEN}";
         };
       };
+      "basic_ent_tools" = {
+        url = "https://datamcp.qibook.com/mcp/qibook-basic";
+        headers = {
+          access_key = "\${QIBOOK_ACCESS_KEY}";
+        };
+      };
+      "operate_ent_tools" = {
+        url = "https://datamcp.qibook.com/mcp/qibook-operate";
+        headers = {
+          access_key = "\${QIBOOK_ACCESS_KEY}";
+        };
+      };
+      "relation_ent_tools" = {
+        url = "https://datamcp.qibook.com/mcp/qibook-relation";
+        headers = {
+          access_key = "\${QIBOOK_ACCESS_KEY}";
+        };
+      };
+      "risk_ent_tools" = {
+        url = "https://datamcp.qibook.com/mcp/qibook-risk";
+        headers = {
+          access_key = "\${QIBOOK_ACCESS_KEY}";
+        };
+      };
     };
 
     # sops-nix is configured by the host, not Home Manager.
