@@ -24,6 +24,23 @@
         default = "deepseek-flash";
       };
     };
+
+    mcpServers = {
+      "PaddleOCR-VL-1.6" = {
+        command = "uvx";
+        args = [
+          "--from"
+          "paddleocr-mcp"
+          "paddleocr_mcp"
+        ];
+        env = {
+          PADDLEOCR_MCP_MODEL = "PaddleOCR-VL-1.6";
+          PADDLEOCR_MCP_PPOCR_SOURCE = "aistudio";
+          PADDLEOCR_MCP_AISTUDIO_ACCESS_TOKEN = "\${PADDLEOCR_MCP_AISTUDIO_ACCESS_TOKEN}";
+        };
+      };
+    };
+
     # sops-nix is configured by the host, not Home Manager.
     environmentFiles = [ osConfig.sops.secrets."hermes-agent-env".path ];
   };
