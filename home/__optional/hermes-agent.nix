@@ -23,6 +23,9 @@
         provider = "deepseek";
         default = "deepseek-flash";
       };
+      skills = {
+        create_dir = "${config.home.homeDirectory}/projects/skills/hermes-agent-learned";
+      };
     };
 
     mcpServers = {
