@@ -34,7 +34,7 @@ in
 {
   assertions = [
     {
-      assertion = pkgs.stdenv.isDarwin;
+      assertion = pkgs.stdenv.hostPlatform.isDarwin;
       message = "The Alacritty tmux terminal adapter is only supported on macOS.";
     }
   ];
